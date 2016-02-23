@@ -5,10 +5,10 @@ _Class 2 - Group 2 - lbaw1522_
 
 Member         | Email                            | FEUP
 ---------------|----------------------------------|----------------------------------
-Diogo Carvalho | up201304573@fe.up.pt             | [Link](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201304573)
-Diogo Pereira  | up201305602@fe.up.pt             | [Link](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201305602)
-Hugo Drumond   | hugo.drumond@fe.up.pt            | [Link](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201102900)
-Pedro Albano   | ei11016@fe.up.pt                 | [Link](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201008982)
+Diogo Carvalho | up201304573@fe.up.pt             | https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201304573
+Diogo Pereira  | up201305602@fe.up.pt             | https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201305602
+Hugo Drumond   | hugo.drumond@fe.up.pt            | https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201102900
+Pedro Albano   | ei11016@fe.up.pt                 | https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=201008982
 
 ## Links
 Page           |👆 
