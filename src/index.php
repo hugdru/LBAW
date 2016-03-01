@@ -6,15 +6,18 @@
         <script src="js/bootstrap.js"></script>
         <script src="js/jquery-1.12.1.js"></script>
         <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/eventbook/main.css">
         
         <title>EventBook</title>        
     </head>
     <body>
+        <div class="jumbotron">
+              <h1>EventBook</h1>
+              <p>An extreme work in progress</p>
+            </div>   
+        
          <div class="container">
-            <div class="jumbotron">
-              <h1>My First Bootstrap Page</h1>
-              <p>Resize this responsive page to see the effect!</p>
-            </div>
+            
              
             <div class="row">
               <div class="col-sm-4">
@@ -24,13 +27,14 @@
               </div>
               <div class="col-sm-4">
                 <h3>Column 2</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                <code>
+                    Hello World
+                </code>
               </div>
               <div class="col-sm-4">
-                <h3>Column 3</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                <h3>Click Him</h3>
+                <button class="btn btn-primary">FEUP</button>
+                <button class="btn btn-default">Google</button>
               </div>
             </div>
           </div>
