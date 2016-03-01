@@ -1,0 +1,392 @@
+html{
+  background-color: #D2EDE7;
+  height:100%;
+}
+
+body{
+  font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+
+#map{
+  height: 15rem;
+  margin:1rem;
+}
+.find-user-list > input{
+  margin-left: 21.6rem;
+}
+.find-user-list{
+  width: 90%;
+  display: block;
+  margin: 2rem auto;
+  text-align: left;
+}
+.find-user-list > ul > li{
+  display: inline;
+  position: relative;
+  text-align: center;
+  width: 204px;
+  margin: 0 0 0 3rem;
+}
+
+.find-user-list h4{
+  text-align: center;
+  font-size: 2rem;
+}
+.fb-share-button span, .fb-share-button iframe {
+    height: 75px !important;
+    width: 75px !important;
+    margin: 0rem 8.5rem;
+}
+
+.error_message, .success_message{
+  margin-left: -0.3rem;
+  width: 101%;
+  height: 1.5rem;
+  padding: 1rem;
+}
+
+.success_message > *, .error_message *{
+  display:inline;
+}
+
+.error_message > img, .success_message > img{
+  float:right;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.error_message{
+  background-color: #f9a7a7;
+}
+
+.success_message{
+  background-color: #b6ffb6;;
+}
+
+body{
+  margin: 0 auto;
+  width: 60rem;
+  padding: 5px;
+  border-radius: 10px;
+}
+.navigation{
+  padding: 0.5rem;
+  border-width: 1px;
+  border-bottom: solid #8AACA4 1px;
+}
+.navigation > li{
+  display: inline;
+  font-size: 1.5rem;
+  padding: 5px;
+  border-right: solid #CBE5DF 1px;
+  margin: auto 0;
+}
+.navigation > li:last-child{
+  border-right-width: 0;
+}
+.navigation > li:hover{
+    border-radius: 5px;
+  border-bottom: solid #8AACA4 3px;
+}
+
+.navigation > li > a{
+  font-weight: bold;
+  text-decoration:none;
+  color: #696969;
+}
+.navigation > li:hover a{
+  color: black;
+}
+#changeDescriptionForm > textarea{
+  resize: none;
+}
+
+a {
+  text-decoration:none;
+  color: black;
+}
+a:hover{
+  color: #212121;
+  text-decoration: underline;
+}
+
+#profile{
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+.description > li{
+  display: inline-block;
+  width: 49%;
+  text-align: center;
+}
+.description li:last-child{
+  text-align: left;
+}
+.information > li{
+  display: block;
+  width: 100%;
+}
+.information label{
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.2rem;
+  width: 100%;
+  border-bottom: solid #8AACA4 1px;
+}
+.name{
+  font-size: 2rem;
+}
+
+.event-list{
+  width: 90%;
+  display: block;
+  margin: 2rem auto;
+  text-align: left;
+}
+.event-list > ul > li{
+  display: inline;
+  position: relative;
+  margin: 0 1rem;
+  text-align: center;
+  width: 204px;
+}
+.event-list > ul > li > a > h4 , .find-user-list > ul > li > a > h4 {
+  display: inline;
+  position: absolute;
+  padding: 10px 0;
+  right:0px;
+  left:0px;
+  background-color: #595959;
+  background: rgba(0, 0, 0, 0.4);
+  width: 200px;
+}
+.intention{
+  bottom: 0px;
+}
+h4 > span{
+  color: white;
+}
+h4 > span:hover{
+  color:#c3c5ff;
+}
+.event-header{
+  font-size: 2rem;
+  text-align: center;
+  padding: 1rem;
+  border-bottom: solid #8AACA4 1px;
+  width: 100%;
+}
+
+
+.header-form{
+  display: block;
+  margin: 3rem auto;
+  width: 50%;
+}
+.animated-form form{
+  margin:1rem 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 1s ease-out;
+}
+.form-title{
+  font-size: 2rem;
+  text-align: center;
+  border-bottom: solid #8AACA4 1px;
+  padding: 0.5rem;
+  margin: 0.5rem auto;
+}
+.header-form a{
+  color: black;
+}
+
+.animated-form :target{
+  height: 400px;
+  transition: height 1s ease-out;
+}
+.header-form input,.header-form select,.header-form textarea{
+  display:block;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.header-form input:focus,.header-form textarea:focus{
+  background-color: #d6ebbe;
+}
+.header-form label{
+  font-size: 1.5rem;
+}
+.header-form form{
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+
+.event{
+  width: 600px;
+  margin: 0 auto;
+}
+.event > h1{
+  text-align: center;
+  font-size: 2rem;
+  border-bottom: solid #8AACA4 2px;
+}
+.event .header-form{
+  width: 600px;
+  text-align: center;
+}
+.event .header-form textarea{
+  resize: none;
+  width: 90%;
+  margin: 1rem auto;
+}
+.horizontal-bar{
+  padding: 0.5rem 0;
+  background-color: rgba(244, 244, 244, 0.53);
+}
+.horizontal-bar li{
+  display: inline-block;
+}
+.horizontal-bar li > label{
+  font-weight: bold;
+  margin: 0.5rem;
+}
+.horizontal-bar li > a{
+  text-decoration: underline;;
+  margin: 0.5rem;
+}
+.horizontal-bar li>div{
+  margin: 0.5rem;
+  display: inline-block;
+}
+
+#threads > div:first-child{
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: solid #8AACA4 1px;
+}
+.thread{
+  margin: 1rem 0;
+  background-color: #D2EDE7;
+}
+.thread-author{
+  padding: 0.2rem;
+  text-align: center;
+  border-bottom: solid #8AACA4 1px;
+  margin: 0.5rem;
+}
+.thread-author > a{
+  color: black;
+}
+.thread-text{
+  padding: 0.5rem 1rem;
+}
+.thread-footer{
+  padding:0.5rem 0.5rem 0 1rem;
+  border-bottom: solid #739D92 2px;
+}
+.thread-footer li{
+  display: inline;
+  margin-right: 0.5rem;
+}
+.thread-footer{
+  margin: 0;
+}
+.comments{
+  padding: 0;
+}
+.comments > li{
+  display: block;
+  margin: 0.2rem;
+}
+
+.comment{
+  padding: 0.5rem;
+  background-color: #CBE5DF;
+}
+.comment > ul > li{
+  display: block;
+}
+.comment > ul{
+  padding: 0;
+}
+.comment-author{
+  border-bottom: solid #8AACA4 1px;
+  text-align: center;
+}
+.comment-text{
+  padding: 1rem 0.5rem;
+}
+
+.comments-link{
+  font-size: 1.2rem;
+}
+.new-comment{
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+.new-comment > textarea{
+  resize: none;
+  width: 50%;
+  position: relative;
+  margin: 0 1rem;
+}
+.new-comment > button{
+  position: absolute;
+
+}
+
+
+.section-title{
+  font-size: 1.5rem;
+  padding: 0.2rem;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: solid #8AACA4 1px;
+  width: 100%;
+}
+.photo-list > li{
+  display: inline-block;
+  padding: 1rem 0.2rem;
+}
+.album-list > li{
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  margin: 1rem;
+  background-color: #c9e2dc;
+}
+.album-list > li:hover {
+  background-color: #c1d7d2;
+}
+
+#intention,#changeVisibilityForm{
+  text-align: center;
+  font-size: 1.5rem;
+}
+#going , #maybe{
+  padding: 5px;
+  border-radius: 10px;
+}
+#going{
+  background-color: #b9ffc8;
+}
+#maybe{
+  background-color: #fffdcb;
+}
+
+input[type=submit], button {
+  color: #f6f6f6;
+    padding:5px 15px;
+    background:#3c3c3c;
+    border:0 none;
+    cursor:pointer;
+    border-radius: 5px;
+}
+input[type=submit]:hover , button:hover{
+  background-color: #252525;
+}
+
+.update-form{
+  font-size: 1.5rem;
+}
