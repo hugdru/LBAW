@@ -1,0 +1,23 @@
+{
+  "name": "lbaw1522",
+  "description": "",
+  "main": "",
+  "authors": [
+    "lbaw1522"
+  ],
+  "license": "MIT",
+  "homepage": "http://gnomo.fe.up.pt/~lbaw1522",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.6"
+  }
+}
