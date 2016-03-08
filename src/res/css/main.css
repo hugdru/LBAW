@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+}
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    background: white;
+    
+    padding-top: 70px; /* Navigation bar fix */
+}
+
+.dropdown li a:hover{
+    background: lightgray;
+}
+
+#menu{
+    box-shadow: 0px 0px 5px black;
+}
+
+#content{
+    
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -25px; /* make space for footer's height */
+}
+
+.push{
+    height: 25px; /* push and footer must be the same height */
+}
+.footer{ 
+    height: 25px; 
+}
+
+
+
