@@ -1,6 +1,7 @@
 * {
     margin: 0;
 }
+
 html{
     height: 100%;
 }
@@ -15,14 +16,66 @@ body{
     background: lightgray;
 }
 
+.nav-login:hover{
+    color: white;
+}
+
 #menu{
-    box-shadow: 0px 0px 5px black;
+    box-shadow: 0px 0px 2px black;
 }
 
 #content{
     
 }
 
+.eventbox{
+    color: black;
+    background: #EEE;
+    
+    display: block;
+    
+    margin-top: 20px;
+    margin-right: 5px;
+    padding: 10px;
+    
+    box-shadow: 0px 0px 2px black;
+    
+    min-height: 200px;
+}
+
+.eventbox:focus{
+    text-decoration: none;
+}
+
+.eventbox:hover{
+    text-decoration: none;
+}
+
+.eventbox .title{
+    padding: 0px;
+    margin: 0px;
+}
+
+.eventbox .description{
+    padding: 0px;
+    margin: 0px;
+}
+
+.eventbox .details{
+    padding: 0px;
+    margin: 0px;
+}
+
+.accountfield{
+    max-width: 400px; 
+    margin: 0px auto;
+    
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0px 0px 2px black;
+}
+
+/* Sticky Footer CSS */
 .wrapper {
     min-height: 100%;
     height: auto !important;

@@ -19,23 +19,40 @@
                     <a href="<?php echo $root; ?>/explore/">Explore</a>
                 </li>
                 <li <?php if($id=="create"){ echo 'class="active"'; }?>>
-                    <a href="<?php echo $root; ?>/create/">Create</a>
-                </li>
+                    <a href="<?php echo $root; ?>/create/">
+                        Create
+                    </a>
+                </li>        
             </ul>
 
+            
+            
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Guest <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Login</a></li>                            
-                        <li><a href="#">Sign up</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
+                
+                <?php
+                    if($_SESSION["online"]==false){
+                        echo ($id=="register" ? "<li class='active'>" : "<li>");
+                        echo "  <a href='$root/account/register.php'>Register</a>";
+                        echo "</li>";
+                        echo ($id=="login" ? "<li class='active'>" : "<li>");
+                        echo "  <a href='$root/account/login.php'>Login</a>";
+                        echo "</li>"; 
+                    }else{
+                        echo "
+                        <li class='dropdown'>
+                            <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
+                                Esteves Prototipo <span class='caret'></span>
+                            </a>
+                            <ul class='dropdown-menu'>
+                                <li><a href='$root/account/settings.php'>Settings</a></li>
+                                <li role='separator' class='divider'></li>
+                                <li><a href='$root/account/login_test.php'>Logout</a></li>
+                            </ul>
+                        </li>
+                        ";
+                    }
+                ?>     
+                
             </ul>
         </div>
 
