@@ -1,6 +1,7 @@
 * {
     margin: 0;
 }
+
 html{
     height: 100%;
 }
@@ -8,21 +9,116 @@ body{
     height: 100%;
     background: white;
     
-    padding-top: 70px; /* Navigation bar fix */
+    padding-top: 50px; /* Navigation bar fix */
 }
 
 .dropdown li a:hover{
     background: lightgray;
 }
 
+.nav-login:hover{
+    color: white;
+}
+
 #menu{
-    box-shadow: 0px 0px 5px black;
+    box-shadow: 0px 0px 2px black;
 }
 
 #content{
     
 }
 
+#event-imgbox{
+    color: white;
+    text-shadow: 0px 0px 2px black;
+    background: #EEE;
+    
+    min-height: 350px;
+}
+
+#event-detailbox{
+    color: black;
+    
+    min-height: 350px;    
+}
+
+.comment{
+    padding-bottom: 20px;
+}
+
+.comment-holder{
+    vertical-align: top;
+    padding-top: 25px;
+    padding-left: 0px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+}
+
+.eventbox{
+    color: black;
+    background: #EEE;
+    
+    display: block;
+    
+    margin-top: 20px;
+    margin-right: 5px;
+    padding: 10px;
+    
+    box-shadow: 0px 0px 2px black;
+    
+    min-height: 200px;
+}
+
+.eventbox:focus{
+    text-decoration: none;
+}
+
+.eventbox:hover{
+    text-decoration: none;
+}
+
+.eventbox .title{
+    padding: 0px;
+    margin: 0px;
+}
+
+.eventbox .description{
+    padding: 0px;
+    margin: 0px;
+}
+
+.eventbox .details{
+    padding: 0px;
+    margin: 0px;
+}
+
+.accountfield{
+    max-width: 400px; 
+    margin: 0px auto;
+    
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0px 0px 2px black;
+}
+
+.avatar{
+    width: 64px;
+    height: 64px;
+    
+    box-shadow: 0px 0px 5px black;
+}
+
+.avatar-nav{
+    width: 32px;
+    height: 32px;
+    
+    margin-top: -9px;
+    margin-left: 0px;
+    margin-right: 10px;
+    margin-bottom: -9px;
+}
+
+/* Sticky Footer CSS */
 .wrapper {
     min-height: 100%;
     height: auto !important;
