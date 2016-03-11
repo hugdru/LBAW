@@ -41,7 +41,7 @@
                         echo "
                         <li class='dropdown'>
                             <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
-                                Esteves Prototipo <span class='caret'></span>
+                                <img class='img-circle avatar-nav' src='$root/res/img/avatar_default.png'> Esteves Prototipo <span class='caret'></span>
                             </a>
                             <ul class='dropdown-menu'>
                                 <li><a href='$root/account/settings.php'>Settings</a></li>

@@ -34,9 +34,11 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="tmd">
                     <div class="input-group-btn">
-                       <button type="submit" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-time"></i>
-                       </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-time"></i>
+                            Select
+                        </button>
+                        
                     </div>
                 </div>
             </div>
@@ -52,9 +54,10 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="lct">
                     <div class="input-group-btn">
-                       <button type="submit" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-globe"></i>
-                       </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-globe"></i>
+                            Select
+                        </button>
                     </div>
                 </div>
             </div>
