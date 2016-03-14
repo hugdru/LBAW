@@ -4,3 +4,4 @@
 .*
 projeto/public
 *.iml
+!.gitignore
