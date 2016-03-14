@@ -1,42 +1,35 @@
+<?php
+    $id = "home"; //This page's identifier
+    $title = "Home"; //Page title extension
+    $root = ".";  //Root location relative to this page
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="js/bootstrap.js"></script>
-        <script src="js/jquery-1.12.1.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/eventbook/main.css">
-        
-        <title>EventBook</title>        
+        <?php require "$root/res/php/head.php"; ?>
+        <link rel="stylesheet" href="res/css/home.css">
     </head>
     <body>
-        <div class="jumbotron">
-              <h1>EventBook</h1>
-              <p>An extreme work in progress</p>
-            </div>   
+        <?php require "$root/res/php/navbar.php"; ?>
+        <?php require "$root/res/php/content-top.php"; ?>        
+        <!-- Content Start -->
         
-         <div class="container">
-            
-             
-            <div class="row">
-              <div class="col-sm-4">
-                <h3>Column 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-              </div>
-              <div class="col-sm-4">
-                <h3>Column 2</h3>
-                <code>
-                    Hello World
-                </code>
-              </div>
-              <div class="col-sm-4">
-                <h3>Click Him</h3>
-                <button class="btn btn-primary">FEUP</button>
-                <button class="btn btn-default">Google</button>
-              </div>
-            </div>
-          </div>
+        <h1>Welcome</h1>
+        <p>Eventbook allows you to create and share events for any occasion!</p>
+        <p>Creating an account is easy! And it only takes a minute or two.</p>
+        
+        <p id="home-loginbox">
+            <a href="account/register.php"><button class="btn btn-default">Register</button></a>
+            <a href="account/login.php"><button class="btn btn-primary">Login</button></a>
+            <br>
+            <small>You can also start to explore public events by <a href="explore/">clicking here</a></small>.
+        </p>
+        
+        
+        
+        
+        <!-- Content Finish -->
+        <?php require "$root/res/php/content-bottom.php"; ?>
     </body>
 </html>
