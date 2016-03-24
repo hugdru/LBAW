@@ -118,6 +118,10 @@ body{
     margin-bottom: -9px;
 }
 
+form small{
+    color: gray;
+}
+
 /* Sticky Footer CSS */
 .wrapper {
     min-height: 100%;
