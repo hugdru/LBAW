@@ -1,6 +1,6 @@
 <?php
 	//Yet another Gnomo.fe.up.pt fix
-	session_save_path("~/eventbook_cache/");
+	session_save_path("$root/_system/");
 
 
     session_start();
