@@ -1,6 +1,6 @@
 <?php
-	//Yet another Gnomo.fe.up.pt fix
-	session_save_path("$root/_system/");
+    //Yet another Gnomo.fe.up.pt fix
+    session_save_path("$root/_system/");
 
 
     session_start();
