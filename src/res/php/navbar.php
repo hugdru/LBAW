@@ -44,6 +44,7 @@
                                 <img class='img-circle avatar-nav' src='$root/res/img/avatar_default.png'> Esteves Prototipo <span class='caret'></span>
                             </a>
                             <ul class='dropdown-menu'>
+                                <li><a href='$root/account/profile.php'>Profile</a></li>
                                 <li><a href='$root/account/settings.php'>Settings</a></li>
                                 <li role='separator' class='divider'></li>
                                 <li><a href='$root/account/login_test.php'>Logout</a></li>

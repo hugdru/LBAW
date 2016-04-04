@@ -21,15 +21,36 @@
         <div class="row">
             <div class="col-sm-4">
                 <form role="form">
-                    <h3>Change Account Picture</h3>
+                    <h3>Profile: Picture</h3>
                     <div class="form-group">
-                        <label for="eml">Upload Picture</label>
                         <input type="file" class="form-control-static">
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
             
+            <div class="col-sm-4">
+                <form role="form">
+                    <h3>Profile: Description</h3>
+                    <div class="form-group">
+                        <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc">Hello, i'm a test user for EventBook</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>            
+            
+            <div class="col-sm-4">
+                <form role="form">
+                    <h3>Profile: Region</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="rgn" value="Portugal">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row">
             <div class="col-sm-4">
                 <form role="form">
                     <h3>Change Email Address</h3>
@@ -59,6 +80,25 @@
                         <input type="password" class="form-control" id="pwd3">
                     </div>
 
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+            
+            <div class="col-sm-4">
+                <form role="form">
+                    <h3>Notification Preferences</h3>
+                    <div class="form-group">
+                        <label>Send me a Email when</label>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">I'm invited to an Event</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">An event i follow has updates</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">EventBook has recommended events for me</label>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
