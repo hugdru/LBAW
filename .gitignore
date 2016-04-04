@@ -5,3 +5,6 @@
 projeto/public
 *.iml
 !.gitignore
+/src/cgi-bin/
+/src/_system/*
+!/src/_system/.htaccess

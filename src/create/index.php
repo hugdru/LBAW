@@ -25,8 +25,33 @@
 
             
             <div class="form-group">
-                <label for="eml">Cover Picture</label>
+                <label>Cover Picture</label>
                 <input type="file" class="form-control-static">
+            </div>
+            
+            <div class="form-group">
+                <label>Event Privacy</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="pvr">
+                        Public<br>
+                        <small>Viewable in the explore page, and joinable by anyone.</small>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="pvr">
+                        Hidden<br>
+                        <small>Only viewable and joinable for someone with the link.</small>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="pvr">
+                        Private<br>
+                        <small>Users cannot view or join the event unless invited by a host.</small>
+                    </label>
+                </div>
             </div>
             
             <div class="form-group">
