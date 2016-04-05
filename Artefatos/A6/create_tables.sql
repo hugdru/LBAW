@@ -47,6 +47,7 @@ CREATE TABLE Sondagem(
 	idSondagem SERIAL PRIMARY KEY,
 	descricao TEXT,
 	"data" DATE NOT NULL,
+	escolhaMultipla BOOLEAN DEFAULT FALSE NOT NULL,
 	idEvento INTEGER REFERENCES Evento(idEvento)
 );
 
