@@ -15,6 +15,10 @@ DROP TABLE IF EXISTS Administrador CASCADE;
 DROP TABLE IF EXISTS Album CASCADE;
 DROP TABLE IF EXISTS Imagem CASCADE;
 
+DROP DOMAIN IF EXISTS Classificacao;
+
+CREATE DOMAIN DMClassificacao AS Integer CHECK( VALUE <= 5 AND VALUE >= 0);
+
 -- Tomar atencao as relacoes, as referencias so podem ser criadas depois do referendo
 
 CREATE TABLE Evento (
@@ -80,7 +84,7 @@ CREATE TABLE Seguidor(
 CREATE TABLE Participacao(
   idEvento INTEGER REFERENCES Evento(idEvento),
   idParticipante INTEGER REFERENCES Utilizador(idUtilizador),
-  classificacao INTEGER,
+  classificacao DMClassificacao,
   comentario TEXT,
   PRIMARY KEY(idEvento, idParticipante)
 );
