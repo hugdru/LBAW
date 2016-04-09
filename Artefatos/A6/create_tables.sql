@@ -142,3 +142,29 @@ CREATE TABLE Imagem(
   "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
   idAlbum INTEGER NOT NULL REFERENCES Album(idAlbum)
 );
+
+-- User Defined Functions
+
+-- Check if event is completed
+CREATE OR REPLACE FUNCTION check_event_complete(INTEGER) RETURNS BOOLEAN AS $$ 
+BEGIN
+  SELECT EXISTS (
+    SELECT idEvento, dataInicio, duracao FROM Evento WHERE idEvento = $1 AND dataInicio + (duracao * INTERVAL '1 second') >= CURRENT_TIMESTAMP
+  ); 
+END
+$$ LANGUAGE plpgsql;
+
+-- Triggers
+
+-- Prevent Rating if check_event_complete is false
+DROP TRIGGER IF EXISTS CanRate ON Participacao;
+
+CREATE OR REPLACE FUNCTION trigger_canRate() RETURNS TRIGGER AS $$
+BEGIN
+  IF NOT check_event_complete(New.eventId) THEN
+    RAISE EXCEPTION 'Event is not complete yet';
+  END IF;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER canRate BEFORE INSERT ON Participacao EXECUTE PROCEDURE trigger_canRate();
