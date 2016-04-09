@@ -23,7 +23,7 @@ CREATE TABLE Evento (
   capa TEXT,
   descricao TEXT,
   localizacao TEXT NOT NULL,
-  dataInicio DATE NOT NULL,
+  dataInicio TIMESTAMP NOT NULL CHECK (dataInicio >= CURRENT_TIMESTAMP),
   duracao INTEGER NOT NULL,
   publico BOOLEAN DEFAULT TRUE NOT NULL
 );
@@ -46,7 +46,7 @@ CREATE TABLE Utilizador(
 CREATE TABLE Sondagem(
   idSondagem SERIAL PRIMARY KEY,
   descricao TEXT,
-  "data" DATE NOT NULL,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
   escolhaMultipla BOOLEAN DEFAULT FALSE NOT NULL,
   idEvento INTEGER NOT NULL REFERENCES Evento(idEvento)
 );
@@ -60,7 +60,7 @@ CREATE TABLE Opcao(
 CREATE TABLE Comentario(
   idComentario SERIAL PRIMARY KEY,
   texto TEXT NOT NULL,
-  "data" DATE NOT NULL,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
   idComentador INTEGER NOT NULL REFERENCES Utilizador(idUtilizador),
   idEvento INTEGER NOT NULL REFERENCES Evento(idEvento),
   idComentarioPai INTEGER REFERENCES Comentario(idComentario)
@@ -72,7 +72,7 @@ CREATE TABLE Comentario(
 CREATE TABLE Seguidor(
   idSeguidor INTEGER REFERENCES Utilizador(idUtilizador),
   idSeguido INTEGER REFERENCES Utilizador(idUtilizador),
-  "data" DATE NOT NULL,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
   PRIMARY KEY(idSeguidor, idSeguido)
 );
 
@@ -88,7 +88,7 @@ CREATE TABLE Participacao(
 CREATE TABLE Convite(
   idEvento INTEGER REFERENCES Evento(idEvento),
   idConvidado INTEGER REFERENCES Utilizador(idUtilizador),
-  "data" DATE NOT NULL,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
   resposta BOOLEAN,
   PRIMARY KEY(idEvento, idConvidado)
 );
@@ -135,6 +135,6 @@ CREATE TABLE Album(
 CREATE TABLE Imagem(
   idImagem SERIAL PRIMARY KEY,
   caminho TEXT NOT NULL,
-  "data" DATE NOT NULL,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
   idAlbum INTEGER NOT NULL REFERENCES Album(idAlbum)
 );
