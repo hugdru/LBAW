@@ -39,7 +39,7 @@ CREATE TABLE Utilizador(
   username VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL CHECK( LENGTH(password) >= 8),
   foto TEXT,
-  email TEXT UNIQUE NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* /^[^\s\@]+@[^\s\@]+\.[^\s\@\.]+$/ ),
   idPais INTEGER NOT NULL REFERENCES Pais(idPais)
 );
 
@@ -122,7 +122,7 @@ CREATE TABLE Administrador(
   idAdministrador SERIAL PRIMARY KEY,
   username VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL CHECK( LENGTH(password) >= 8),
-  email VARCHAR(100) UNIQUE NOT NULL
+  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* /^[^\s\@]+@[^\s\@]+\.[^\s\@\.]+$/ )
 );
 
 CREATE TABLE Album(
