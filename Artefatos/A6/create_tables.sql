@@ -167,4 +167,6 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
+CREATE TRIGGER CanRate BEFORE INSERT ON Participacao EXECUTE PROCEDURE trigger_canRate();
+
 CREATE TRIGGER canRate BEFORE INSERT ON Participacao EXECUTE PROCEDURE trigger_canRate();
