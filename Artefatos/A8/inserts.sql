@@ -1,4 +1,5 @@
 -- Reset Serial Sequences to 1
+
 ALTER SEQUENCE pais_idpais_seq RESTART WITH 1;
 ALTER SEQUENCE utilizador_idutilizador_seq RESTART WITH 1;
 ALTER SEQUENCE comentario_idcomentario_seq RESTART WITH 1;
@@ -259,80 +260,57 @@ INSERT INTO pais (nome) VALUES ('Zimbabwe');
 -- Tabela "Evento"
 
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (1, 'Be better be ', 'badjoras.jpg', '"water my friend" Bruce Lee', 'FEUP', '2016-04-18', 60, TRUE);
-
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (2, 'The Great Artists', 'progrockepicmusic.jpg', 'The best Prog Rock and Epic Music', 'Viana', '2016-06-05', 180, TRUE);
-
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (3, 'CARL COX', 'carlcox.jpg', 'Bailarico', 'Viana', '2016-05-01', 150, TRUE);
 
 -- Tabela "Utilizador"
 
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Xavi', 'diogodometro', 'lbaw1522', 'metro.jpg', 'diogoxavier95@hotmail.com', 177);
-
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Diogo', 'avc', 'schwein123', 'schwein.jpg', 'avc@hotmail.com', 1);
-
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Hugo', 'drumond', 'fruhstuck', 'drumond.jpg', 'drumond@hotmail.com', 6);
 
 -- Tabela "Sondagem"
 
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (1, 'Onde realizar?', '2016-12-01', FALSE, 1);
-
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (2, 'Prog Rock or Epic?', '2016-05-12', FALSE, 2);
-
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (3, 'Bebidas?', '2016-12-15', TRUE, 3);
 
 -- Tabela "Opcao"
 
 INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (1, 'Queijos', 1);
-
 INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (2, 'B003', 1);
-
 INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (3, 'B330', 1);
-
 INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (4, 'Biblioteca', 1);
-
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (5, 'Prog Rock', 2);
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (6, 'Epic', 2);
-
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (7, 'Laranjada', 3);
-
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (8, 'Compal de ananás', 3);
-
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (9, 'Vodka', 3);
-
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (10, 'Água', 3);
 
 -- Tabela "Comentario"
 
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (1, 'LoLOlOLolOloLol', '2016-05-01', 2, 1, NULL);
-
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (2, 'tas lixado', '2016-05-01', 1, 1, 1);
-
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (3, 'nao estou nao lol', '2016-5-4', 2, 1, 1);
-
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4, 'ahahahah que riso estes dois', '2016-5-4', 3, 1, 1);
 
 -- Tabela "Seguidor"
 
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 1, '2016-06-03');
-
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (3, 1, '2016-06-18');
-
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 3, '2016-06-20');
 
 -- Tabela "Participacao"
 
 INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (2, 2, 4, 'Adorei!');
-
 INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (1, 3, 3, 'Nem me aqueceu nem arrefeceu!');
-
 INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (3, 1, 0, 'Jamais voltarei a pôr os pés num evento deste género!');
 
 -- Tabela "Convite"
 
 INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (1, 2, '2016-04-20', NULL);
-
 INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (2, 3, '2016-06-24', TRUE);
-
 INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (3, 1, '2016-5-1', FALSE);
 
 -- Tabela "Anfitriao"
@@ -360,14 +338,14 @@ INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (4, 2, FAL
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(1, 'First Session', 'Brainstorming and Meetup', 1);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(2, 'Second Session', 'Games', 1);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(3, 'Third Session', 'Bye bye' , 1);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(4, 'Fourth Session', 'no description', 2);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(5, 'Fifth Day',  'Description is not here', 2);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(4, 'Progressive Rock', 'Pink Floyd, Led Zeppelin, King Crimson, Camel', 2);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(5, 'Epic Music',  'Hans Zimmer', 'Thomas Bergersen, Audiomachine, Two Steps From Hell', 2);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(6, 'Malucos', 'Os loucos da festa', 3);
 
 -- Tabela "Imagem"
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-04-12', 1);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2016-04-13', 2);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2016-04-14', 3);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-04-13', 1);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2016-04-14', 2);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2016-04-15', 3);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('pinkfloyd-rocking.jpg', '2016-05-12', 4);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('ledzeppelin-rocking.jpg', '2016-05-12', 4);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('hans-zimmer.jpg', '2016-07-10', 5);
