@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS Participacao CASCADE;
 DROP TABLE IF EXISTS Convite CASCADE;
 DROP TABLE IF EXISTS Anfitriao CASCADE;
 DROP TABLE IF EXISTS UtilizadorOpcao CASCADE;
-DROP TABLE IF EXISTS SondagemOpcao CASCADE;
 DROP TABLE IF EXISTS ComentarioVoto CASCADE;
 DROP TABLE IF EXISTS Administrador CASCADE;
 DROP TABLE IF EXISTS Album CASCADE;
@@ -101,12 +100,6 @@ CREATE TABLE UtilizadorOpcao(
   idUtilizador INTEGER REFERENCES Utilizador(idUtilizador),
   idOpcao INTEGER REFERENCES Opcao(idOpcao),
   PRIMARY KEY(idUtilizador, idOpcao)
-);
-
-CREATE TABLE SondagemOpcao(
-  idSondagem INTEGER REFERENCES Sondagem(idSondagem),
-  idOpcao INTEGER REFERENCES Opcao(idOpcao),
-  PRIMARY KEY(idSondagem, idOpcao)
 );
 
 CREATE TABLE ComentarioVoto(
