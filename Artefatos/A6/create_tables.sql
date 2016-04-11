@@ -19,8 +19,6 @@ DROP DOMAIN IF EXISTS DMClassificacao;
 
 CREATE DOMAIN DMClassificacao AS Integer CHECK( VALUE <= 5 AND VALUE >= 0);
 
--- Tomar atencao as relacoes, as referencias so podem ser criadas depois do referendo
-
 CREATE TABLE Evento (
   idEvento SERIAL PRIMARY KEY,
   titulo VARCHAR(100) NOT NULL,
@@ -43,7 +41,7 @@ CREATE TABLE Utilizador(
   username VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL CHECK( LENGTH(password) >= 8),
   foto TEXT,
-  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$' ),
+  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* '^[^\s@]+@[^\s@]+\.[^\s@.]+$'),
   idPais INTEGER NOT NULL REFERENCES Pais(idPais)
 );
 
@@ -70,9 +68,6 @@ CREATE TABLE Comentario(
   idComentarioPai INTEGER REFERENCES Comentario(idComentario)
 );
 
-
-
--- Constrain -> idSeguidor != idSeguido
 CREATE TABLE Seguidor(
   idSeguidor INTEGER REFERENCES Utilizador(idUtilizador),
   idSeguido INTEGER REFERENCES Utilizador(idUtilizador),
@@ -80,7 +75,6 @@ CREATE TABLE Seguidor(
   PRIMARY KEY(idSeguidor, idSeguido)
 );
 
--- Constrain -> range da classificacao
 CREATE TABLE Participacao(
   idEvento INTEGER REFERENCES Evento(idEvento),
   idParticipante INTEGER REFERENCES Utilizador(idUtilizador),
@@ -126,7 +120,7 @@ CREATE TABLE Administrador(
   idAdministrador SERIAL PRIMARY KEY,
   username VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL CHECK( LENGTH(password) >= 8),
-  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$' )
+  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* '^[^\s@]+@[^\s@]+\.[^\s@.]+$')
 );
 
 CREATE TABLE Album(
@@ -142,29 +136,3 @@ CREATE TABLE Imagem(
   "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
   idAlbum INTEGER NOT NULL REFERENCES Album(idAlbum)
 );
-
--- User Defined Functions
-
--- Check if event is completed
-CREATE OR REPLACE FUNCTION check_event_complete(INTEGER) RETURNS BOOLEAN AS $$ 
-BEGIN
-  SELECT EXISTS (
-    SELECT idEvento, dataInicio, duracao FROM Evento WHERE idEvento = $1 AND dataInicio + (duracao * INTERVAL '1 second') >= CURRENT_TIMESTAMP
-  ); 
-END
-$$ LANGUAGE plpgsql;
-
--- Triggers
-
--- Prevent Rating if check_event_complete is false
-DROP TRIGGER IF EXISTS CanRate ON Participacao;
-
-CREATE OR REPLACE FUNCTION trigger_canRate() RETURNS TRIGGER AS $$
-BEGIN
-  IF NOT check_event_complete(New.eventId) THEN
-    RAISE EXCEPTION 'Event is not complete yet';
-  END IF;
-END
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER CanRate BEFORE INSERT ON Participacao EXECUTE PROCEDURE trigger_canRate();
