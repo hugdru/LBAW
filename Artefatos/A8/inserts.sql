@@ -256,7 +256,6 @@ INSERT INTO pais (nome) VALUES ('Yemen');
 INSERT INTO pais (nome) VALUES ('Zambia');
 INSERT INTO pais (nome) VALUES ('Zimbabwe');
 
-
 -- Tabela "Evento"
 
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (1, 'Be better be ', 'badjoras.jpg', '"water my friend" Bruce Lee', 'FEUP', '2016-04-18', 60, TRUE);
@@ -332,9 +331,8 @@ INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (2, 2, TRU
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 1, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (4, 2, FALSE);
 
-
-
 -- Tabela "Album"
+
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(1, 'First Session', 'Brainstorming and Meetup', 1);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(2, 'Second Session', 'Games', 1);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(3, 'Third Session', 'Bye bye' , 1);
@@ -343,6 +341,7 @@ INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(5, 'Epic Music',  
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(6, 'Malucos', 'Os loucos da festa', 3);
 
 -- Tabela "Imagem"
+
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-04-13', 1);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2016-04-14', 2);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2016-04-15', 3);
@@ -356,6 +355,6 @@ INSERT INTO imagem(caminho, data, idAlbum) VALUES('alberto.jpg', '2016-06-09', 6
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('gertrudes.jpg', '2016-08-14', 6);
 
 -- Tabela "Administrador
+
 INSERT INTO Administrador (username, email, password) VALUES ('theboss', 'theboss@gg.bb', 'queriasbatatasfrias');
 INSERT INTO Administrador(username, email, password) VALUES('magical', 'unicorn@blue.sky', '12314nanananana');
-
