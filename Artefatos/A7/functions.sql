@@ -5,5 +5,5 @@ BEGIN
     SELECT idEvento, dataInicio, duracao FROM Evento WHERE idEvento = $1 AND dataInicio + (duracao * INTERVAL '1 second') >= CURRENT_TIMESTAMP
   );
 END
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE SQL;
 
