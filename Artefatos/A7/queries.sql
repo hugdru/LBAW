@@ -23,26 +23,33 @@ SELECT
 Comentario.idComentario, Comentario.texto, Comentario.data, Utilizador.idUtilizador, Utilizador.username
 FROM Comentario, Utilizador
 WHERE
-  Comentario.idEvento = 1;
+  Comentario.idEvento = 1 AND
   Comentario.idComentario = Utilizador.idUtilizador;
 
 -- Get the users that voted on a "Comentario"
-SELECT Utilizador.idUtilizador, Utilizador.username
+SELECT ComentarioVoto.idComentario, Utilizador.idUtilizador, Utilizador.username
 FROM ComentarioVoto, Utilizador
 WHERE
   ComentarioVoto.idVotante = Utilizador.idUtilizador;
 
--- Get the number of "Comentario" upvotes and downvotes
-SELECT COUNT(positivo)
+-- Get the number of "Comentario" upvotes
+SELECT ComentarioVoto.idComentario, COUNT(positivo)
 FROM ComentarioVoto
-GROUP BY positivo;
+WHERE positivo is TRUE
+GROUP BY ComentarioVoto.idComentario;
+
+-- Get the number of "Comentario" downvotes
+SELECT ComentarioVoto.idComentario, COUNT(positivo)
+FROM ComentarioVoto
+WHERE positivo is FALSE
+GROUP BY ComentarioVoto.idComentario;
 
 -- Find the albums and images of an "Evento"
 SELECT Album.*, Imagem.*
 FROM Album, Imagem
 WHERE
   Album.idEvento = 2 AND
-  Image.idAlbum = Album.idAlbum;
+  Imagem.idAlbum = Album.idAlbum;
 
 -- Get the "Sondagem" and its "opcao"
 SELECT Sondagem.IdSondagem, Sondagem.descricao, Sondagem.data, Sondagem.escolhaMultipla, Opcao.idOpcao, Opcao.descricao
@@ -56,12 +63,12 @@ SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao,
 FROM Participacao, Utilizador
 WHERE
   Participacao.idEvento = 1 AND
-  Participacao.idUtilizador = Utilizador.idUtilizador;
+  Participacao.IdParticipante = Utilizador.idUtilizador;
 
 -- Get the people that are Participants of an "Evento" that I follow
 SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
 FROM Participacao, Seguidor, Utilizador
 WHERE
   Participacao.idEvento = 2 AND
-  Participacao.idUtilizador IN (SELECT Seguidor.idSeguido FROM Seguidor WHERE Seguidor.idSeguidor = 1) AND
-  Utilizador.IdUtilizador = Participacao.IdUtilizador;
+  Participacao.IdParticipante IN (SELECT Seguidor.idSeguido FROM Seguidor WHERE Seguidor.idSeguidor = 1) AND
+  Utilizador.IdUtilizador = Participacao.IdParticipante;
