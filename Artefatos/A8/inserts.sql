@@ -337,7 +337,7 @@ INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(1, 'First Session'
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(2, 'Second Session', 'Games', 1);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(3, 'Third Session', 'Bye bye' , 1);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(4, 'Progressive Rock', 'Pink Floyd, Led Zeppelin, King Crimson, Camel', 2);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(5, 'Epic Music',  'Hans Zimmer', 'Thomas Bergersen, Audiomachine, Two Steps From Hell', 2);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(5, 'Epic Music',  'Hans Zimmer, Thomas Bergersen, Audiomachine, Two Steps From Hell', 2);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(6, 'Malucos', 'Os loucos da festa', 3);
 
 -- Tabela "Imagem"
