@@ -32,6 +32,20 @@ FOR EACH ROW
 EXECUTE PROCEDURE trigger_deleteImages();
 
 
+-- Delete every option of a poll after its deletion
+CREATE OR REPLACE FUNCTION trigger_deleteOptions() RETURNS TRIGGER AS $$
+BEGIN
+  DELETE FROM Opcao
+  WHERE Opcao.IdSondagem = Sondagem.TG_RELID;
+  RETURN OLD;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER DeleteOptions BEFORE DELETE ON Sondagem
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_deleteOptions();
+
+
 -- Prevent Users from following themselves
 CREATE OR REPLACE FUNCTION trigger_canFollow() RETURNS TRIGGER AS $$
 BEGIN
@@ -60,17 +74,3 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER CanVote BEFORE INSERT ON ComentarioVoto
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_canVote();
-
-
--- Delete every option of a poll after its deletion
-CREATE OR REPLACE FUNCTION trigger_deleteOptions() RETURNS TRIGGER AS $$
-BEGIN
-  DELETE FROM Opcao
-  WHERE Opcao.IdSonsagem = Sondagem.TG_RELID;
-  RETURN OLD;
-END
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER DeleteOptions BEFORE DELETE ON Sondagem
-FOR EACH ROW
-EXECUTE PROCEDURE trigger_deleteOptions();

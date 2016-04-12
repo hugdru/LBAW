@@ -8,7 +8,7 @@ $$ LANGUAGE SQL;
 -- Check if user participated in event
 CREATE OR REPLACE FUNCTION check_participation(INTEGER) RETURNS BOOLEAN AS $$
   SELECT EXISTS (
-    SELECT idEvento, idParticipante FROM Evento, Participante WHERE Evento.idEvento = Participante.idParticipante AND Participante.idParticipante = $1
+    SELECT Evento.idEvento, idParticipante FROM Evento, Participacao WHERE Evento.idEvento = Participacao.idParticipante AND Participacao.idParticipante = $1
   );
 $$ LANGUAGE SQL;
 
