@@ -11,3 +11,10 @@ CREATE OR REPLACE FUNCTION check_participation(INTEGER) RETURNS BOOLEAN AS $$
     SELECT idEvento, idParticipante FROM Evento, Participante WHERE Evento.idEvento = Participante.idParticipante AND Participante.idParticipante = $1
   );
 $$ LANGUAGE SQL;
+
+-- Check if user
+CREATE OR REPLACE FUNCTION check_participation(INTEGER, INTEGER) RETURNS BOOLEAN AS $$
+  SELECT EXISTS (
+    SELECT IdComentario, IdComentador FROM Comentario WHERE Comentario.IdComentario = $1 AND Comentario.IdComentador = $2
+  );
+$$ LANGUAGE SQL;
