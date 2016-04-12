@@ -50,3 +50,18 @@ FROM Sondagem, Opcao
 WHERE
   Sondagem.idEvento = 1 AND
   Opcao.idSondagem = Sondagem.idSondagem;
+
+-- Get the Participants of an "Evento"
+SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
+FROM Participacao, Utilizador
+WHERE
+  Participacao.idEvento = 1 AND
+  Participacao.idUtilizador = Utilizador.idUtilizador;
+
+-- Get the people that are Participants of an "Evento" that I follow
+SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
+FROM Participacao, Seguidor, Utilizador
+WHERE
+  Participacao.idEvento = 2 AND
+  Participacao.idUtilizador IN (SELECT Seguidor.idSeguido FROM Seguidor WHERE Seguidor.idSeguidor = 1) AND
+  Utilizador.IdUtilizador = Participacao.IdUtilizador;
