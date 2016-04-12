@@ -1,9 +1,16 @@
 ##### A7 #####
-  * SQL criar tabelas (physical schema)
-  * Selects (SQL dos mais usados)
-  * Update && Delete (SQL dos mais usados)
-  * Triggers (SQL) 
-  * User-defined Functions(SQL)
-  
+  * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação
+  * Index para username e email
+  * Remover o index do nome
+  * Pesquisa usando full text search combinação de cenas para a pesquisa
+  * Indexes através da full text search
+  * Remover as duas primeiras queries (-- Find "eventos" with a certain "titulo" e -- Find "utilizadores" with a certain username or email) e substituir por full text search 
+  * Listar os próximos dez eventos: com mais participantes; ordenado por popularidade; combinação de popularidade e proximidade (data)
+  * Indexes nas chaves estrangeiras nas tabelas mais usadas
+  * Mudar a syntax do wiki para SQL
+  * Nos triggers de apagar coisas caso outras queiram desaparecer, substituir por cascade
+
 ##### A8 #####
-  * Script com tudo por esta ordem: criação das tabelas, indexes, user-defined functions, triggers, inserts.
+  * Tudo exceto os inserts num ficheiro
+  * Inserts noutro ficheiro
+  * Mais inserts por cada tabela cerca de dez (poderá depender da dimensão da tabela)
