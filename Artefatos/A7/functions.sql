@@ -12,8 +12,8 @@ CREATE OR REPLACE FUNCTION check_participation(INTEGER) RETURNS BOOLEAN AS $$
   );
 $$ LANGUAGE SQL;
 
--- Check if user
-CREATE OR REPLACE FUNCTION check_participation(INTEGER, INTEGER) RETURNS BOOLEAN AS $$
+-- Check if user can vote in the comment
+CREATE OR REPLACE FUNCTION check_vote(INTEGER, INTEGER) RETURNS BOOLEAN AS $$
   SELECT EXISTS (
     SELECT IdComentario, IdComentador FROM Comentario WHERE Comentario.IdComentario = $1 AND Comentario.IdComentador = $2
   );
