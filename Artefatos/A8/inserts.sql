@@ -269,6 +269,15 @@ INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, 
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Xavi', 'diogodometro', 'lbaw1522', 'metro.jpg', 'diogoxavier95@hotmail.com', 177);
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Diogo', 'avc', 'schwein123', 'schwein.jpg', 'avc@hotmail.com', 1);
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Hugo', 'drumond', 'fruhstuck', 'drumond.jpg', 'drumond@hotmail.com', 6);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Joao Fernandes', 'faker', 'jogotantolol', 'pig.jpg', 'joao_zinho@hotmail.com', 150);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Antonio Pina', 'pinnoy', 'gajomaisfixe', 'self.jpg', 'p1n4@hotmail.com', 12);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Carina', 'carinafonteseca', 'carina@@@', 'alema.jpg', 'cursos@fe.up.pt', 21);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Barack Obama', 'blackhouse', 'yeswecan50', 'bo.jpg', 'BarackObama@whitehouse.us', 74);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Jose Mourinho', 'zemoura', 'souomaiordesde2004', 'mou.jpg', 'mou@mou.pt', 1);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cristiano Ronaldo', 'cris85', 'adoroomessi!', 'ballondor.jpg', 'ganhomaisquetu@ganhobues.com', 142);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('José Sócrates', 'josesocas', 'ninguemsabe', 'politico.png', 'maconaria_22@macons.pt', 170);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cavaco Silva', 'cavaquinho', 'password123', 'cadaver.png', 'maconaria_33@macons.pt', 170);
+
 
 -- Tabela "Sondagem"
 
