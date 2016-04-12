@@ -1,5 +1,7 @@
 ##### A7 #####
+
   * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação
+  * Remover os indexes em que se junta colunas indevidas
   * Index para username e email
   * Remover o index do nome
   * Pesquisa usando full text search combinação de cenas para a pesquisa
