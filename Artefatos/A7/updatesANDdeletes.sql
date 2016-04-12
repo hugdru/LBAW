@@ -1,7 +1,7 @@
--- UPDATES	
+-- UPDATES
 
 UPDATE Evento
-SET descriçao = 'A festa e fixe'
+SET descricao = 'A festa e fixe'
 WHERE idEvento = 1;
 
 UPDATE Evento
@@ -22,11 +22,11 @@ WHERE idSondagem = 1;
 
 UPDATE UtilizadorOpcao
 SET IdOpcao = 5,
-WHERE 
+WHERE IdUtilizador = 1 AND IdOpcao = 3;
 
 UPDATE Convite
 SET resposta = 'TRUE'
-WHERE idEvento = 1, idConvidado = 2;
+WHERE idEvento = 1 AND idConvidado = 2;
 
 
 -- DELETES
@@ -38,13 +38,13 @@ DELETE FROM Opcao
 WHERE idOpcao = 10;
 
 DELETE FROM Seguidor
-WHERE IdSeguidor = 2, IdSeguido = 1;
+WHERE IdSeguidor = 2 AND IdSeguido = 1;
 
 DELETE FROM UtilizadorOpcao
-WHERE IdUtilizador = 2, IdOpcao = 5;
+WHERE IdUtilizador = 2 AND IdOpcao = 5;
 
 DELETE FROM ComentarioVoto
-WHERE IdComentario = 2, IdVotante = 2;
+WHERE IdComentario = 2 AND IdVotante = 2;
 
 DELETE FROM Imagem
 WHERE IdImagem = 5;
