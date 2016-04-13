@@ -72,3 +72,10 @@ WHERE
   Participacao.idEvento = 2 AND
   Participacao.IdParticipante IN (SELECT Seguidor.idSeguido FROM Seguidor WHERE Seguidor.idSeguidor = 1) AND
   Utilizador.IdUtilizador = Participacao.IdParticipante;
+  
+-- Get the top 10 (if exists at least 10) upcoming public Events 
+
+SELECT * FROM Evento
+WHERE publico = true
+ORDER BY dataInicio ASC
+LIMIT 10;
