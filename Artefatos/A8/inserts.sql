@@ -303,7 +303,17 @@ INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (10, 'Água', 3);
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (1, 'LoLOlOLolOloLol', '2016-05-01', 2, 1, NULL);
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (2, 'tas lixado', '2016-05-01', 1, 1, 1);
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (3, 'nao estou nao lol', '2016-5-4', 2, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4, 'ahahahah que riso estes dois', '2016-5-4', 3, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4 'ahahahah que riso estes dois', '2016-5-4', 3, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (5, 'ja sabes', '2016-5-4', 1, 2, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (6, 'boa cena', '2016-5-12', 2, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (7, 'xahando', '2016-5-19', 3, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (8, 'ronaldo', '2016-5-20', 1, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (9, 'quatrocentos e vinte', '2016-5-12', 1, 3, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (10, 'vinte e dois', '2016-4-29', 3, 3, 9);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (11, 'ich heisse diogo', '2016-4-30', 2, 3, 9);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (12, 'hahahhaah i love you', '2016-5-9', 1, 3, 9);
+
+
 
 -- Tabela "Seguidor"
 
@@ -353,7 +363,7 @@ INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(6, 'Malucos', 'Os 
 
 -- Tabela "Imagem"
 
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-04-13', 1);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-04-15', 1);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2016-04-14', 2);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2016-04-15', 3);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('pinkfloyd-rocking.jpg', '2016-05-12', 4);
