@@ -8,12 +8,12 @@ $$ LANGUAGE SQL;
 -- Check if user participated in event
 CREATE OR REPLACE FUNCTION check_participation(INTEGER) RETURNS BOOLEAN AS $$
   SELECT EXISTS (
-    SELECT idEvento, idParticipante FROM Evento, Participante WHERE Evento.idEvento = Participante.idParticipante AND Participante.idParticipante = $1
+    SELECT Evento.idEvento, idParticipante FROM Evento, Participacao WHERE Evento.idEvento = Participacao.idParticipante AND Participacao.idParticipante = $1
   );
 $$ LANGUAGE SQL;
 
--- Check if user
-CREATE OR REPLACE FUNCTION check_participation(INTEGER, INTEGER) RETURNS BOOLEAN AS $$
+-- Check if user can vote in the comment
+CREATE OR REPLACE FUNCTION check_vote(INTEGER, INTEGER) RETURNS BOOLEAN AS $$
   SELECT EXISTS (
     SELECT IdComentario, IdComentador FROM Comentario WHERE Comentario.IdComentario = $1 AND Comentario.IdComentador = $2
   );

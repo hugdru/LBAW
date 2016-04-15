@@ -260,15 +260,34 @@ INSERT INTO pais (nome) VALUES ('Zimbabwe');
 
 -- Tabela "Evento"
 
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (1, 'Be better be ', 'badjoras.jpg', '"water my friend" Bruce Lee', 'FEUP', '2016-04-18', 60, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (1, 'Be better be ', 'badjoras.jpg', '"water my friend" Bruce Lee', 'FEUP', '2016-04-29', 60, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (2, 'The Great Artists', 'progrockepicmusic.jpg', 'The best Prog Rock and Epic Music', 'Viana', '2016-06-05', 180, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (3, 'CARL COX', 'carlcox.jpg', 'Bailarico', 'Viana', '2016-05-01', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (3, 'CARL COX', 'carlcox.jpg', 'Bailarico', 'Viana', '2016-05-19', 150, FALSE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (4, 'champions', 'benfica.jpg', 'futebol', 'Lisboa', '2016-05-29', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (5, 'alfandega', 'fiesta.jpg', 'Dançar', 'Caminha', '2016-05-22', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (6, 'matador', 'matador.jpg', 'da-lhe bues', 'Pacha', '2016-05-12', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (7, 'neopop', 'bensims.jpg', 'melhor festival', 'Viana', '2016-08-07', 150, FALSE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (8, 'LBAW', 'sergionunes.jpg', 'A8', 'Porto', '2016-05-14', 150, FALSE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (9, 'IART', 'touras.jpg', 'Biometria', 'Biblioteca FMUP', '2016-05-10', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (10, 'COMP', 'maranhao.jpg', 'MATDSL', 'Biblioteca FEUP', '2016-05-01', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (11, 'PPIN', 'firmino.jpg', 'Comunicacao', 'Queijos', '2016-05-01', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (12, 'SDIS', 'souto.jpg', 'multicast', 'FEUP', '2016-05-01', 150, FALSE);
+
 
 -- Tabela "Utilizador"
 
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Xavi', 'diogodometro', 'lbaw1522', 'metro.jpg', 'diogoxavier95@hotmail.com', 177);
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Diogo', 'avc', 'schwein123', 'schwein.jpg', 'avc@hotmail.com', 1);
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Hugo', 'drumond', 'fruhstuck', 'drumond.jpg', 'drumond@hotmail.com', 6);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Joao Fernandes', 'faker', 'jogotantolol', 'pig.jpg', 'joao_zinho@hotmail.com', 150);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Antonio Pina', 'pinnoy', 'gajomaisfixe', 'self.jpg', 'p1n4@hotmail.com', 12);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Carina', 'carinafonteseca', 'carina@@@', 'alema.jpg', 'cursos@fe.up.pt', 21);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Barack Obama', 'blackhouse', 'yeswecan50', 'bo.jpg', 'BarackObama@whitehouse.us', 74);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Jose Mourinho', 'zemoura', 'souomaiordesde2004', 'mou.jpg', 'mou@mou.pt', 1);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cristiano Ronaldo', 'cris85', 'adoroomessi!', 'ballondor.jpg', 'ganhomaisquetu@ganhobues.com', 142);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('José Sócrates', 'josesocas', 'ninguemsabe', 'politico.png', 'maconaria_22@macons.pt', 170);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cavaco Silva', 'cavaquinho', 'password123', 'cadaver.png', 'maconaria_33@macons.pt', 170);
+
 
 -- Tabela "Sondagem"
 
@@ -295,6 +314,16 @@ INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdCom
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (2, 'tas lixado', '2016-05-01', 1, 1, 1);
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (3, 'nao estou nao lol', '2016-5-4', 2, 1, 1);
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4, 'ahahahah que riso estes dois', '2016-5-4', 3, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (5, 'ja sabes', '2016-5-4', 1, 2, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (6, 'boa cena', '2016-5-12', 2, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (7, 'xahando', '2016-5-19', 3, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (8, 'ronaldo', '2016-5-20', 1, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (9, 'quatrocentos e vinte', '2016-5-12', 1, 3, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (10, 'vinte e dois', '2016-4-29', 3, 3, 9);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (11, 'ich heisse diogo', '2016-4-30', 2, 3, 9);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (12, 'hahahhaah i love you', '2016-5-9', 1, 3, 9);
+
+
 
 -- Tabela "Seguidor"
 
@@ -344,9 +373,9 @@ INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(6, 'Malucos', 'Os 
 
 -- Tabela "Imagem"
 
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-04-13', 1);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2016-04-14', 2);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2016-04-15', 3);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-09-30', 1);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2016-09-14', 2);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2016-09-15', 3);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('pinkfloyd-rocking.jpg', '2016-05-12', 4);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('ledzeppelin-rocking.jpg', '2016-05-12', 4);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('hans-zimmer.jpg', '2016-07-10', 5);
