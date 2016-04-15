@@ -58,6 +58,14 @@ WHERE
   Sondagem.idEvento = 1 AND
   Opcao.idSondagem = Sondagem.idSondagem;
 
+-- Get the current results of a "Sondagem"
+SELECT Opcao.idOpcao, COUNT(Opcao.idOpcao)
+FROM Opcao, UtilizadorOpcao
+WHERE
+  Opcao.idSondagem = 1 AND
+  Opcao.idOpcao = UtilizadorOpcao
+GROUP BY Opcao.idOpcao;
+
 -- Get the Participants of an "Evento"
 SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
 FROM Participacao, Utilizador
