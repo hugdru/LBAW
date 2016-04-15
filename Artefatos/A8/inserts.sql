@@ -426,7 +426,6 @@ INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (6, 11);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (6, 12);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (8, 8); 
 
-
 -- Tabela "ComentarioVoto"
 
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (1, 2, TRUE);
