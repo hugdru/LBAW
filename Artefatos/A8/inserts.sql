@@ -260,18 +260,18 @@ INSERT INTO pais (nome) VALUES ('Zimbabwe');
 
 -- Tabela "Evento"
 
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (1, 'Be better be ', 'badjoras.jpg', '"water my friend" Bruce Lee', 'FEUP', '2016-04-29', 60, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (2, 'The Great Artists', 'progrockepicmusic.jpg', 'The best Prog Rock and Epic Music', 'Viana', '2016-06-05', 180, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (3, 'CARL COX', 'carlcox.jpg', 'Bailarico', 'Viana', '2016-05-19', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (4, 'champions', 'benfica.jpg', 'futebol', 'Lisboa', '2016-05-29', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (5, 'alfandega', 'fiesta.jpg', 'Dançar', 'Caminha', '2016-05-22', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (6, 'matador', 'matador.jpg', 'da-lhe bues', 'Pacha', '2016-05-12', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (1, 'Be better, be', 'badjoras.jpg', 'water my friend Bruce Lee', 'FEUP', '2016-12-29', 60, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (2, 'The Great Artists', 'progrockepicmusic.jpg', 'The best Prog Rock and Epic Music', 'Viana', '2016-07-05', 180, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (3, 'CARL COX', 'carlcox.jpg', 'Bailarico', 'Viana', '2016-11-19', 150, FALSE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (4, 'champions', 'benfica.jpg', 'futebol', 'Lisboa', '2016-10-29', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (5, 'alfandega', 'fiesta.jpg', 'Dançar', 'Caminha', '2016-08-22', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (6, 'matador', 'matador.jpg', 'da-lhe bues', 'Pacha', '2016-07-23', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (7, 'neopop', 'bensims.jpg', 'melhor festival', 'Viana', '2016-08-07', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (8, 'LBAW', 'sergionunes.jpg', 'A8', 'Porto', '2016-05-14', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (9, 'IART', 'touras.jpg', 'Biometria', 'Biblioteca FMUP', '2016-05-10', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (10, 'COMP', 'maranhao.jpg', 'MATDSL', 'Biblioteca FEUP', '2016-05-01', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (11, 'PPIN', 'firmino.jpg', 'Comunicacao', 'Queijos', '2016-05-01', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (12, 'SDIS', 'souto.jpg', 'multicast', 'FEUP', '2016-05-01', 150, FALSE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (8, 'LBAW', 'sergionunes.jpg', 'A10', 'Porto', '2016-10-14', 150, FALSE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (9, 'IART', 'touras.jpg', 'Biometria', 'Biblioteca FMUP', '2016-12-10', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (10, 'COMP', 'maranhao.jpg', 'MATDSL', 'Biblioteca FEUP', '2016-11-12', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (11, 'PPIN', 'firmino.jpg', 'Comunicacao', 'Queijos', '2016-07-21', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (12, 'SDIS', 'souto.jpg', 'multicast', 'FEUP', '2016-07-11', 150, FALSE);
 
 
 -- Tabela "Utilizador"
@@ -291,9 +291,19 @@ INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('
 
 -- Tabela "Sondagem"
 
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (1, 'Onde realizar?', '2016-12-01', FALSE, 1);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (2, 'Prog Rock or Epic?', '2016-05-12', FALSE, 2);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (3, 'Bebidas?', '2016-12-15', TRUE, 3);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (1, 'Onde realizar?', '2016-12-30', TRUE, 1);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (2, 'Prog Rock or Epic?', '2016-07-06', FALSE, 2);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (3, 'Musica preferida?', '2016-11-21', FALSE, 3);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (4, 'Vencedor?', '2017-10-31', FALSE, 4);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (5, 'Interessado em que festa?', '2016-08-25', TRUE, 5);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (6, 'Musica preferida de Matador?', '2016-07-25', FALSE, 6);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (7, 'Artista que mais gostaste de ver ver no neostage?', '2016-08-10', FALSE, 7);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (8, 'Qual é a tua linguagem de programaçao web preferida?', '2016-10-19', FALSE, 8);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (9, 'Qual é o teu algoritmo best-first preferido?', '2016-12-01', FALSE, 9);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (10, 'Qual é a fase do compilador preferida?', '2016-11-17', FALSE, 10);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (11, 'Enuncia os signos de linguagem nao verbal que mais gostas', '2016-07-23', TRUE, 11);
+INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (12, 'Qual é o teu protocolo de transferencia de dados preferido?', '2016-07-17', FALSE, 12);
+
 
 -- Tabela "Opcao"
 
@@ -303,64 +313,134 @@ INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (3, 'B330', 1);
 INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (4, 'Biblioteca', 1);
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (5, 'Prog Rock', 2);
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (6, 'Epic', 2);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (7, 'Laranjada', 3);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (8, 'Compal de ananás', 3);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (9, 'Vodka', 3);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (10, 'Água', 3);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (7, 'Jaguar', 3);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (8, 'Fantasee', 3);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (9, 'Bayern', 4);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (10, 'Real Madrid', 4);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (11, 'ISEP finos a 20 centimos', 5);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (12, 'Fim de ano', 5);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (13, 'Da hustle', 6);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (14, 'Klay', 6);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (15, 'Maya Jane Coles', 7);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (16, 'Richie Hawtin', 7);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (17, 'PHP', 8);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (18, 'Javascript', 8);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (19, 'A*', 9);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (20, 'Uniform Cost - Branch & Bound', 9);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (21, 'Analise semantica', 10);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (22, 'Analise lexical', 10);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (23, 'Sorriso', 11);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (24, 'Gestos', 11);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (25, 'TCP', 12);
+INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (26, 'UDP', 12);
 
 -- Tabela "Comentario"
 
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (1, 'LoLOlOLolOloLol', '2016-05-01', 2, 1, NULL);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (2, 'tas lixado', '2016-05-01', 1, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (3, 'nao estou nao lol', '2016-5-4', 2, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4, 'ahahahah que riso estes dois', '2016-5-4', 3, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (5, 'ja sabes', '2016-5-4', 1, 2, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (1, 'LoLOlOLolOloLol', '2016-05-01', 3, 1, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (2, 'bruce fucking lee', '2016-05-01', 3, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (3, 'jackie jan > bruce lee', '2016-5-4', 2, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4, 'ahahahah que riso', '2016-5-4', 2, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (5, 'eargasm', '2016-5-4', 1, 2, NULL);
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (6, 'boa cena', '2016-5-12', 2, 2, 5);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (7, 'xahando', '2016-5-19', 3, 2, 5);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (8, 'ronaldo', '2016-5-20', 1, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (7, 'adoro adoro adoro', '2016-5-19', 2, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (8, 'que grandes sons!!', '2016-5-20', 1, 2, 5);
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (9, 'quatrocentos e vinte', '2016-5-12', 1, 3, NULL);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (10, 'vinte e dois', '2016-4-29', 3, 3, 9);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (11, 'ich heisse diogo', '2016-4-30', 2, 3, 9);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (10, 'oh yes oh yes', '2016-4-29', 2, 3, 9);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (11, 'fantastic fantastic', '2016-4-30', 2, 3, 9);
 INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (12, 'hahahhaah i love you', '2016-5-9', 1, 3, 9);
 
 
 
 -- Tabela "Seguidor"
 
-INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 1, '2016-06-03');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 1, '2016-06-23');
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (3, 1, '2016-06-18');
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 3, '2016-06-20');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 7, '2016-06-30');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (3, 2, '2016-07-18');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (4, 5, '2016-07-26');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (5, 4, '2016-07-02');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (9, 10, '2016-08-01');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (10, 9, '2016-08-29');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (7, 8, '2016-08-06');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (8, 7, '2016-10-10');
+INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (6, 5, '2016-10-24');
 
 -- Tabela "Participacao"
 
-INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (2, 2, 4, 'Adorei!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (2, 2, 5, 'Adorei!');
 INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (1, 3, 3, 'Nem me aqueceu nem arrefeceu!');
-INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (3, 1, 0, 'Jamais voltarei a pôr os pés num evento deste género!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (3, 1, 5, 'RECOMENDO VIVAMENTE!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (3, 2, 5, 'Adorei!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (3, 7, 5, 'Pro ano estou ca!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (2, 8, 3, 'Pouca variedade..');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (2, 10, 4, 'Bem fixe!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (3, 9, 5, 'Nota maxima!!!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (2, 9, 2, 'Jamais voltarei a pôr os pés num evento deste género!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (8, 5, 4, 'Continuem com a boa organização da cadeira!');
+INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (10, 4, 4, 'Uma das cadeiras mais interessantes do MIEIC!');
 
 -- Tabela "Convite"
 
-INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (1, 2, '2016-04-20', NULL);
-INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (2, 3, '2016-06-24', TRUE);
-INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (3, 1, '2016-5-1', FALSE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (1, 2, '2017-01-10', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (1, 3, '2017-01-11', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (2, 1, '2016-07-08', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (2, 2, '2016-07-20', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (3, 2, '2016-11-24', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (3, 1, '2016-11-30', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (4, 4, '2016-12-20', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (4, 5, '2016-12-27', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (5, 5, '2016-09-01', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (5, 6, '2016-09-02', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (6, 6, '2016-07-24', TRUE);
+INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (6, 8, '2016-07-31', TRUE);
 
 -- Tabela "Anfitriao"
 
-INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (1, 2);
-INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (2, 1);
-INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (3, 3);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (1, 7);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (2, 5);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (3, 1);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (4, 2);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (5, 9);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (6, 8);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (7, 5);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (8, 6);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (9, 4);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (10, 2);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (10, 1);
+INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (10, 3);
+
 
 -- Tabela "UtilizadorOpcao"
 
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (1, 3);
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (2, 5);
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (3, 1);
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (3, 8);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (1, 5);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (1, 7);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (2, 2);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (2, 3);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (3, 2); 
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (3, 3);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (4, 10); 
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (5, 11); 
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (5, 12);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (6, 11); 
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (6, 12);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (8, 8); 
+
 
 -- Tabela "ComentarioVoto"
 
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (1, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (2, 2, TRUE);
-INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 1, TRUE);
-INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (4, 2, FALSE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 3, FALSE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (4, 3, TRUE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (5, 2, TRUE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (6, 1, FALSE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (7, 1, TRUE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (8, 2, TRUE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (9, 2, FALSE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (10, 1, TRUE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (11, 1, TRUE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (12, 2, TRUE);
 
 -- Tabela "Album"
 
@@ -370,22 +450,29 @@ INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(3, 'Third Session'
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(4, 'Progressive Rock', 'Pink Floyd, Led Zeppelin, King Crimson, Camel', 2);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(5, 'Epic Music',  'Hans Zimmer, Thomas Bergersen, Audiomachine, Two Steps From Hell', 2);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(6, 'Malucos', 'Os loucos da festa', 3);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(7, 'Final Milao', 'Highlights', 4);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(8, 'Segundo dia neopop', 'Matador, pan pot, etc..', 6);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(9, 'Artefactos', 'Exemplos dos diversos artefatos' , 8);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(10, 'ISEP - finos a 20 centimos', 'Melhores momentos deste festão', 5);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(11, 'Material apoio',  'Screenshots para resolver bug do bootstrapping duma network', 12);
+INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(12, 'Neopop all days', 'As melhores fotos desta ediçao', 7);
 
 -- Tabela "Imagem"
 
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-09-30', 1);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2016-09-14', 2);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2016-09-15', 3);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('pinkfloyd-rocking.jpg', '2016-05-12', 4);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('ledzeppelin-rocking.jpg', '2016-05-12', 4);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-12-30', 1);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2017-01-14', 2);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2017-01-15', 3);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('pinkfloyd-rocking.jpg', '2016-08-12', 4);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('ledzeppelin-rocking.jpg', '2016-08-13', 4);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('hans-zimmer.jpg', '2016-07-10', 5);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('audiomachine.jpg', '2016-07-13', 5);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('audiomachine.jpg', '2016-07-14', 5);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('joaquim.jpg', '2016-06-01', 6);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('alberto.jpg', '2016-06-09', 6);
-INSERT INTO imagem(caminho, data, idAlbum) VALUES('gertrudes.jpg', '2016-08-14', 6);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('audiomachine2.jpg', '2016-07-14', 5);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('joaquim.jpg', '2016-11-22', 6);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('alberto.jpg', '2016-11-29', 6);
+INSERT INTO imagem(caminho, data, idAlbum) VALUES('gertrudes.jpg', '2016-11-24', 6);
 
 -- Tabela "Administrador
 
 INSERT INTO Administrador (username, email, password) VALUES ('theboss', 'theboss@gg.bb', 'queriasbatatasfrias');
 INSERT INTO Administrador(username, email, password) VALUES('magical', 'unicorn@blue.sky', '12314nanananana');
+INSERT INTO Administrador(username, email, password) VALUES('major', 'majorbeast@gmail.com', 'majorcontrollingthezone');
