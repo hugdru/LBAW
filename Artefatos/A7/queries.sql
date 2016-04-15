@@ -1,14 +1,12 @@
--- Find "eventos" with a certain "titulo"
-SELECT *
-FROM Evento
-WHERE titulo ILIKE '%be%';
-
--- Find "utilizadores" with a certain username or email
+-- Get login Information of an "Utilizador" by email
 SELECT *
 FROM Utilizador
-WHERE
-  email ILIKE '%mon%' OR
-  username ILIKE '%drum%';
+WHERE email ILIKE '%mon%';
+
+-- Get login Information of an "Utilizador" by username
+SELECT *
+FROM Utilizador
+WHERE username ILIKE '%drum%';
 
 -- Find the "Eventos" of a given "Utilizador"
 SELECT Evento.*
@@ -80,8 +78,8 @@ WHERE
   Participacao.idEvento = 2 AND
   Participacao.IdParticipante IN (SELECT Seguidor.idSeguido FROM Seguidor WHERE Seguidor.idSeguidor = 1) AND
   Utilizador.IdUtilizador = Participacao.IdParticipante;
-  
--- Get the top 10 (if exists at least 10) upcoming public Events 
+
+-- Get the top 10 (if exists at least 10) upcoming public Events
 
 SELECT * FROM Evento
 WHERE publico = true
