@@ -85,3 +85,13 @@ SELECT * FROM Evento
 WHERE publico = true
 ORDER BY dataInicio ASC
 LIMIT 10;
+
+-- Get the top 10 (if exists at least 10) with most participants
+
+SELECT E.idEvento, E.titulo, E.capa, E.descricao, E.localizacao, E.dataInicio, E.duracao, P.Numero_de_Participantes
+  FROM Evento E
+       INNER JOIN (SELECT idEvento, count(idEvento) as Numero_de_Participantes
+                     FROM Participacao 
+                    GROUP BY idEvento) P ON E.idEvento = P.idEvento
+ORDER BY Numero_de_Participantes DESC
+LIMIT 10;
