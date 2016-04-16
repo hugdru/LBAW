@@ -16,3 +16,7 @@
   * Tudo exceto os inserts num ficheiro
   * Inserts noutro ficheiro
   * (DONE) Mais inserts por cada tabela cerca de dez (poderá depender da dimensão da tabela)
+ 
+
+##### A9 #####
+  * JSONs
