@@ -48,5 +48,3 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER CanVote BEFORE INSERT ON ComentarioVoto
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_canVote();
-
--- Prevent Users from commenting on comments that are answer to another comment
