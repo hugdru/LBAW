@@ -88,7 +88,7 @@ LIMIT 10;
 
 -- Get the top 10 (if exists at least 10) with most participants
 
-SELECT E.idEvento, E.titulo, E.capa, E.descricao, E.localizacao, E.dataInicio, E.duracao, P.Numero_de_Participantes
+SELECT E.idEvento, E.titulo, E.capa, E.descricao, E.localizacao, E.dataInicio, E.duracao, E.publico, P.Numero_de_Participantes
   FROM Evento E
        INNER JOIN (SELECT idEvento, count(idEvento) as Numero_de_Participantes
                      FROM Participacao 
