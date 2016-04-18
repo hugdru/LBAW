@@ -51,9 +51,9 @@ ORDER BY ts_rank(Event_view_user_fts.document, plainto_tsquery('english MATDSL')
 --
 
 -- Find the comments concerning an "Evento" and the votes
-SELECT Results.idComentario, Results.idComentador, Results.username, Results.texto, Results.data, Results.idComentarioPai, json_object_agg(Results.positivo, Results.voters) AS votes
+SELECT Results.idComentario, Results.idComentador, Results.username, Results.texto, Results.data, Results.idComentarioPai, json_object_agg(Results.positivo, json_build_object('voters', Results.voters, 'votes', Results.count)) AS votes
 FROM (
-  SELECT Comentario.idComentario, Comentario.idComentador, (SELECT Utilizador.username FROM Utilizador WHERE Utilizador.idUtilizador = Comentario.idComentario) AS username, Comentario.texto, Comentario.data, json_object_agg(Utilizador.idUtilizador, Utilizador.username) AS voters, Comentario.idComentarioPai, positivo, COUNT(positivo) AS count
+  SELECT Comentario.idComentario, Comentario.idComentador, (SELECT Utilizador.username FROM Utilizador WHERE Utilizador.idUtilizador = Comentario.idComentario) AS username, Comentario.texto, Comentario.data, json_agg(json_build_object('id', Utilizador.idUtilizador, 'username', Utilizador.username)) AS voters, Comentario.idComentarioPai, positivo, COUNT(positivo) AS count
   FROM Comentario
   JOIN ComentarioVoto ON ComentarioVoto.idComentario = Comentario.idComentario
   JOIN Utilizador ON Utilizador.idUtilizador = ComentarioVoto.idVotante
@@ -62,13 +62,6 @@ FROM (
 ) AS Results
 GROUP BY Results.idComentario, Results.idComentador, Results.username, Results.texto, Results.data, Results.idComentarioPai;
 --
-
--- Get only the number of "Comentario" votes and who voted upvoted or downvoted
-SELECT ComentarioVoto.idComentario, json_object_agg(Utilizador.idUtilizador, Utilizador.username) AS Votes, positivo, COUNT(positivo)
-FROM ComentarioVoto
-JOIN Utilizador ON ComentarioVoto.idVotante = Utilizador.idUtilizador
-WHERE ComentarioVoto.idComentario = 3
-GROUP BY ComentarioVoto.idComentario, ComentarioVoto.Positivo;
 
 -- Get the albums and images of an "Evento"
 SELECT Album.idAlbum, Album.nome, Album.descricao, json_agg(json_build_object('id', Imagem.IdImagem, 'caminho', Imagem.caminho, 'data', Imagem.data))
