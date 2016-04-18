@@ -1,8 +1,17 @@
--- Optimize search by "evento titulo" because it is used to list and search for events.
--- CREATE INDEX CONCURRENTLY evento_titulo_index ON Evento(titulo);
+-- Index for login
+CREATE UNIQUE INDEX
+utilizador_username_index ON Utilizador(username);
 
--- Alternative to INDEX on all "evento" rows, depending on being public or not. (Would have to analyze the users trend)
-CREATE INDEX CONCURRENTLY evento_titulo_index ON Evento(titulo) WHERE publico is TRUE;
+-- Index for login
+CREATE UNIQUE INDEX
+utilizador_email_index ON Utilizador(email);
 
--- Optimize search by "utilizador username" because it is used in the: search of events, "utilizadores", search of "anfitrioes"; login. Every search box where username fits email also fits.
-CREATE UNIQUE INDEX CONCURRENTLY utilizador_nomeUsernameEmail_index ON Utilizador(nome, username, email);
+-- Full text search indexes for Evento, these are always used together
+CREATE INDEX fts_evento_index
+ON Evento
+USING
+gin((
+    setweight(to_tsvector('english', titulo),'A') ||
+    setweight(to_tsvector('english', descricao), 'B') ||
+    setweight(to_tsvector('english', localizacao), 'B')
+));
