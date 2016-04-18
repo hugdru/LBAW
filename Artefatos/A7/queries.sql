@@ -1,86 +1,102 @@
 -- Get login Information of an "Utilizador" by email
 SELECT *
 FROM Utilizador
-WHERE email ILIKE '%mon%';
+WHERE email = 'drumond@gmail.com';
 
 -- Get login Information of an "Utilizador" by username
 SELECT *
 FROM Utilizador
-WHERE username ILIKE '%drum%';
+WHERE username = 'blackhouse';
 
--- Find the "Eventos" of a given "Utilizador"
-SELECT Evento.*
-FROM Utilizador, Anfitriao, Evento
-WHERE
-    (Utilizador.username ILIKE '%mon%' OR Utilizador.email ILIKE '%mon%') AND
-  Utilizador.idUtilizador = Anfitriao.idAnfitriao AND
-  Anfitriao.idEvento = Evento.idEvento;
+-- Find website events, FULL TEXT SEARCH
+SELECT id, title, descricao
+FROM (
+  SELECT Evento.idEvento as id,
+         Evento.titulo as title,
+         Evento.descricao as descricao,
+         to_tsvector(Evento.titulo) ||
+         to_tsvector(COALESCE(Evento.descricao, '')) ||
+         to_tsvector(Evento.localizacao) ||
+         to_tsvector(string_agg(Utilizador.username, ' ')) AS document
+  FROM Evento
+  JOIN Anfitriao ON Anfitriao.idEvento = Evento.idEvento
+  JOIN Utilizador ON Utilizador.idUtilizador = Anfitriao.IdAnfitriao
+  GROUP BY Evento.idEvento) evento_search
+WHERE evento_search.document @@ to_tsquery('water');
 
--- Find the comments concerning an "Evento"
-SELECT
-Comentario.idComentario, Comentario.texto, Comentario.data, Utilizador.idUtilizador, Utilizador.username
-FROM Comentario, Utilizador
-WHERE
-  Comentario.idEvento = 1 AND
-  Comentario.idComentario = Utilizador.idUtilizador;
+-- Find website events of a given "Utilizador", FULL TEXT SEARCH
+SELECT id, title, descricao
+FROM (
+  SELECT Evento.idEvento as id,
+         Evento.titulo as title,
+         Evento.descricao as descricao,
+         to_tsvector(Evento.titulo) ||
+         to_tsvector(COALESCE(Evento.descricao, '')) ||
+         to_tsvector(Evento.localizacao) AS document
+  FROM Evento
+  JOIN Anfitriao ON Anfitriao.idEvento = Evento.idEvento
+  WHERE
+    Anfitriao.idAnfitriao = (SELECT Utilizador.idUtilizador FROM Utilizador WHERE Utilizador.username = 'avc')
+  GROUP BY Evento.idEvento) evento_search
+WHERE evento_search.document @@ to_tsquery('MATDSL');
 
--- Get the users that voted on a "Comentario"
-SELECT ComentarioVoto.idComentario, Utilizador.idUtilizador, Utilizador.username
-FROM ComentarioVoto, Utilizador
-WHERE
-  ComentarioVoto.idVotante = Utilizador.idUtilizador;
+-- Find the comments concerning an "Evento" and the votes
+SELECT Results.idComentario, Results.idComentador, Results.username, Results.texto, Results.data, Results.idComentarioPai, json_object_agg(Results.positivo, Results.voters) AS votes
+FROM (
+  SELECT Comentario.idComentario, Comentario.idComentador, (SELECT Utilizador.username FROM Utilizador WHERE Utilizador.idUtilizador = Comentario.idComentario) AS username, Comentario.texto, Comentario.data, json_object_agg(Utilizador.idUtilizador, Utilizador.username) AS voters, Comentario.idComentarioPai, positivo, COUNT(positivo) AS count
+  FROM Comentario
+  JOIN ComentarioVoto ON ComentarioVoto.idComentario = Comentario.idComentario
+  JOIN Utilizador ON Utilizador.idUtilizador = ComentarioVoto.idVotante
+  WHERE Comentario.idEvento = 1
+  GROUP BY Comentario.idComentario, ComentarioVoto.Positivo
+) AS Results
+GROUP BY Results.idComentario, Results.idComentador, Results.username, Results.texto, Results.data, Results.idComentarioPai;
 
--- Get the number of "Comentario" upvotes
-SELECT ComentarioVoto.idComentario, COUNT(positivo)
+-- Get only the number of "Comentario" votes and who voted upvoted or downvoted
+SELECT ComentarioVoto.idComentario, json_object_agg(Utilizador.idUtilizador, Utilizador.username) AS Votes, positivo, COUNT(positivo)
 FROM ComentarioVoto
-WHERE positivo is TRUE
-GROUP BY ComentarioVoto.idComentario;
+JOIN Utilizador ON ComentarioVoto.idVotante = Utilizador.idUtilizador
+WHERE ComentarioVoto.idComentario = 3
+GROUP BY ComentarioVoto.idComentario, ComentarioVoto.Positivo;
 
--- Get the number of "Comentario" downvotes
-SELECT ComentarioVoto.idComentario, COUNT(positivo)
-FROM ComentarioVoto
-WHERE positivo is FALSE
-GROUP BY ComentarioVoto.idComentario;
-
--- Find the albums and images of an "Evento"
-SELECT Album.*, Imagem.*
-FROM Album, Imagem
-WHERE
-  Album.idEvento = 2 AND
-  Imagem.idAlbum = Album.idAlbum;
+-- Get the albums and images of an "Evento"
+SELECT Album.idAlbum, Album.nome, Album.descricao, json_agg(json_build_object('id', Imagem.IdImagem, 'caminho', Imagem.caminho, 'data', Imagem.data))
+FROM Album
+JOIN Imagem ON Imagem.idAlbum = Album.idAlbum
+WHERE Album.idEvento = 2
+GROUP BY Album.idAlbum;
 
 -- Get the "Sondagem" and its "opcao"
-SELECT Sondagem.IdSondagem, Sondagem.descricao, Sondagem.data, Sondagem.escolhaMultipla, Opcao.idOpcao, Opcao.descricao
-FROM Sondagem, Opcao
-WHERE
-  Sondagem.idEvento = 1 AND
-  Opcao.idSondagem = Sondagem.idSondagem;
+SELECT Sondagem.IdSondagem, Sondagem.descricao, Sondagem.data, Sondagem.escolhaMultipla, json_agg(json_build_object('id', Opcao.idOpcao, 'descricao', Opcao.descricao))
+FROM Sondagem
+JOIN Opcao ON Opcao.idSondagem = Sondagem.idSondagem
+WHERE Sondagem.idEvento = 1
+GROUP BY Sondagem.idSondagem;
 
 -- Get the current results of a "Sondagem"
-SELECT Opcao.idOpcao, COUNT(Opcao.idOpcao)
-FROM Opcao, UtilizadorOpcao
-WHERE
-  Opcao.idSondagem = 1 AND
-  Opcao.idOpcao = UtilizadorOpcao
-GROUP BY Opcao.idOpcao;
+SELECT json_agg(ResultsById.ResultsById) AS SondagemResults
+FROM (
+  SELECT json_build_object('id', Opcao.idOpcao, 'votes', COUNT(Opcao.idOpcao)) AS ResultsById
+  FROM Opcao
+  JOIN UtilizadorOpcao ON Opcao.idOpcao = UtilizadorOpcao.idOpcao
+  WHERE Opcao.idSondagem = 1
+  GROUP BY Opcao.idOpcao
+) AS ResultsById;
 
 -- Get the Participants of an "Evento"
 SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
-FROM Participacao, Utilizador
-WHERE
-  Participacao.idEvento = 1 AND
-  Participacao.IdParticipante = Utilizador.idUtilizador;
+FROM Participacao
+JOIN Utilizador ON Participacao.IdParticipante = Utilizador.idUtilizador
+WHERE Participacao.idEvento = 1;
 
 -- Get the people that are Participants of an "Evento" that I follow
-SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
-FROM Participacao, Seguidor, Utilizador
-WHERE
-  Participacao.idEvento = 2 AND
-  Participacao.IdParticipante IN (SELECT Seguidor.idSeguido FROM Seguidor WHERE Seguidor.idSeguidor = 1) AND
-  Utilizador.IdUtilizador = Participacao.IdParticipante;
+SELECT Utilizador.idUtilizador, Utilizador.username
+FROM Participacao
+JOIN Seguidor ON Participacao.IdParticipante IN (SELECT Seguidor.idSeguido FROM Seguidor WHERE Seguidor.idSeguidor = 7)
+JOIN Utilizador ON Utilizador.IdUtilizador = Participacao.IdParticipante AND Seguidor.idSeguido = Participacao.IdParticipante
+WHERE Participacao.idEvento = 2;
 
 -- Get the top 10 (if exists at least 10) upcoming public Events
-
 SELECT * FROM Evento
 WHERE publico = true
 ORDER BY dataInicio ASC

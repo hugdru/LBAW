@@ -417,20 +417,22 @@ INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (1, 5);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (1, 7);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (2, 2);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (2, 3);
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (3, 2); 
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (3, 2);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (3, 3);
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (4, 10); 
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (5, 11); 
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (4, 10);
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (5, 11);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (5, 12);
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (6, 11); 
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (6, 11);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (6, 12);
-INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (8, 8); 
+INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (8, 8);
 
 -- Tabela "ComentarioVoto"
 
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (1, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (2, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 3, FALSE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 2, TRUE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 1, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (4, 3, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (5, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (6, 1, FALSE);
