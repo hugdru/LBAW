@@ -263,7 +263,7 @@ INSERT INTO pais (nome) VALUES ('Zimbabwe');
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (1, 'Be better, be', 'badjoras.jpg', 'water my friend Bruce Lee', 'FEUP', '2016-12-29', 60, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (2, 'The Great Artists', 'progrockepicmusic.jpg', 'The best Prog Rock and Epic Music', 'Viana', '2016-07-05', 180, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (3, 'CARL COX', 'carlcox.jpg', 'Bailarico', 'Viana', '2016-11-19', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (4, 'champions', 'benfica.jpg', 'futebol', 'Lisboa', '2016-10-29', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (4, 'champions league', 'benfica.jpg', 'futebol', 'Lisboa', '2016-10-29', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (5, 'alfandega', 'fiesta.jpg', 'Dançar', 'Caminha', '2016-08-22', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (6, 'matador', 'matador.jpg', 'da-lhe bues', 'Pacha', '2016-07-23', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (7, 'neopop', 'bensims.jpg', 'melhor festival', 'Viana', '2016-08-07', 150, FALSE);
@@ -272,6 +272,7 @@ INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, 
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (10, 'COMP', 'maranhao.jpg', 'MATDSL', 'Biblioteca FEUP', '2016-11-12', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (11, 'PPIN', 'firmino.jpg', 'Comunicacao', 'Queijos', '2016-07-21', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (12, 'SDIS', 'souto.jpg', 'multicast', 'FEUP', '2016-07-11', 150, FALSE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (13, 'euro league', 'portugal.jpg', 'futebol', 'Porto', '2016-06-05', 150, TRUE);
 
 
 -- Tabela "Utilizador"
@@ -429,6 +430,7 @@ INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (8, 8);
 -- Tabela "ComentarioVoto"
 
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (1, 2, TRUE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (1, 3, FALSE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (2, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 3, FALSE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 2, TRUE);

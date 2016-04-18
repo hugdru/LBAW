@@ -17,36 +17,9 @@ CREATE TRIGGER CanRate BEFORE INSERT ON Participacao
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_canRate();
 
-
--- Delete every image of an album after its deletion
-CREATE OR REPLACE FUNCTION trigger_deleteImages() RETURNS TRIGGER AS $$
-BEGIN
-  DELETE FROM Imagem
-  WHERE Imagem.idAlbum = Album.TG_RELID;
-  RETURN OLD;
-END
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER DeleteImages BEFORE DELETE ON Album
-FOR EACH ROW
-EXECUTE PROCEDURE trigger_deleteImages();
-
-
--- Delete every option of a poll after its deletion
-CREATE OR REPLACE FUNCTION trigger_deleteOptions() RETURNS TRIGGER AS $$
-BEGIN
-  DELETE FROM Opcao
-  WHERE Opcao.IdSondagem = Sondagem.TG_RELID;
-  RETURN OLD;
-END
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER DeleteOptions BEFORE DELETE ON Sondagem
-FOR EACH ROW
-EXECUTE PROCEDURE trigger_deleteOptions();
-
-
 -- Prevent Users from following themselves
+DROP TRIGGER IF EXISTS CanFollow ON Seguidor;
+
 CREATE OR REPLACE FUNCTION trigger_canFollow() RETURNS TRIGGER AS $$
 BEGIN
   IF (New.IdSeguidor = New.IdSeguido) THEN
@@ -60,12 +33,13 @@ CREATE TRIGGER CanFollow BEFORE INSERT ON Seguidor
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_canFollow();
 
-
 -- Prevent Users from voting on their own comments
+DROP TRIGGER IF EXISTS CanVote ON ComentarioVoto;
+
 CREATE OR REPLACE FUNCTION trigger_canVote() RETURNS TRIGGER AS $$
 BEGIN
   IF NOT check_vote(New.IdComentario, New.IdVotante) THEN
-    RAISE EXCEPTION 'Users cannote vote on their own comments';
+    RAISE EXCEPTION 'Users cannot vote on their own comments';
   END IF;
   RETURN NEW;
 END
