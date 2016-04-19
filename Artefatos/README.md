@@ -14,7 +14,7 @@
    * (DONE) proximidade (data)
    * popularidade = participantes + proximidade;
   * Indexes nas chaves estrangeiras nas tabelas mais usadas -----> chaves externas no idevento de comentarios, albuns e sondagens
-  * (DONE) Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação
+  * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação --------> ORDEM DE GRANDEZA EM POTENCIAS DE 10
 
 ##### A8 #####
   * Tudo exceto os inserts num ficheiro
