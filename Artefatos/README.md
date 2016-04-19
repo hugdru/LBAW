@@ -1,4 +1,4 @@
-##### A7 #####
+#### A7 ####
 
 
   * (DONE) Remover os indexes em que se junta colunas indevidas
@@ -14,13 +14,13 @@
    * (DONE) proximidade (data)
    * popularidade = participantes + proximidade;
 
-### TODO: ###
-  * Indexes nas chaves estrangeiras nas tabelas mais usadas -----> chaves externas no idevento de comentarios, albuns e sondagens
+##### TODO: #####
+  * Indexes nas chaves estrangeiras nas tabelas mais usadas com hash -----> chaves externas no idevento de comentarios, albuns e sondagens
   * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação --------> ORDEM DE GRANDEZA EM POTENCIAS DE 10
-  * Rever trigger de partcipação/cçassificação
+  * Rever trigger de partcipação/classificação
  
 
-##### A9 #####
+#### A9 ####
   * Juntar Módulos 2 e 3
   * Juntar recursos todos do Módulo 4 nma só pag
   * Mudar grupo VISITANTE para PUBLICO
