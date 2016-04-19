@@ -14,7 +14,7 @@
    * (DONE) proximidade (data)
    * popularidade = participantes + proximidade;
   * Indexes nas chaves estrangeiras nas tabelas mais usadas
-  * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação
+  * (DONE) Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação
 
 ##### A8 #####
   * Tudo exceto os inserts num ficheiro
@@ -23,4 +23,4 @@
  
 
 ##### A9 #####
-  * JSONs
+  * (DONE) JSONs
