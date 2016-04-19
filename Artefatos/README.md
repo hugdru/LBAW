@@ -13,14 +13,17 @@
    * (DONE) com mais participantes
    * (DONE) proximidade (data)
    * popularidade = participantes + proximidade;
+
+### TODO: ###
   * Indexes nas chaves estrangeiras nas tabelas mais usadas -----> chaves externas no idevento de comentarios, albuns e sondagens
   * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação --------> ORDEM DE GRANDEZA EM POTENCIAS DE 10
-
-##### A8 #####
-  * Tudo exceto os inserts num ficheiro
-  * Inserts noutro ficheiro
-  * (DONE) Mais inserts por cada tabela cerca de dez (poderá depender da dimensão da tabela)
+  * Rever trigger de partcipação/cçassificação
  
 
 ##### A9 #####
-  * (DONE) JSONs
+  * Juntar Módulos 2 e 3
+  * Juntar recursos todos do Módulo 4 nma só pag
+  * Mudar grupo VISITANTE para PUBLICO
+  * IMPORTANTE: Acrescentar tabelas para páginas de ação. Cada ação prática no site é composta por uma página de vista (interface) e uma página de ação (sem interface), cada uma delas deve ter uma tabela
+  * IMPORTANTE: Ver que ações devem ser feitas por AJAX e acrescentar respetiva resposta JSON (ação de classificar, votar; pedido para saber se há novos comentários, pesquisas)
+  * Ver tabela de edição de perfil
