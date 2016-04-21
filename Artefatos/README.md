@@ -21,9 +21,9 @@
  
 
 #### A9 ####
-  * Juntar Módulos 2 e 3
+  * (DONE) Juntar Módulos 2 e 3
   * Juntar recursos todos do Módulo 4 nma só pag
-  * Mudar grupo VISITANTE para PUBLICO
+  * (DONE) Mudar grupo VISITANTE para PUBLICO
   * IMPORTANTE: Acrescentar tabelas para páginas de ação. Cada ação prática no site é composta por uma página de vista (interface) e uma página de ação (sem interface), cada uma delas deve ter uma tabela
   * IMPORTANTE: Ver que ações devem ser feitas por AJAX e acrescentar respetiva resposta JSON (ação de classificar, votar; pedido para saber se há novos comentários, pesquisas)
   * Ver tabela de edição de perfil
