@@ -1,6 +1,6 @@
 /nbproject/private/
-**/node_modules
-**/bower_components
+**/node_modules/
+**/bower_components/
 .*
 projeto/public
 *.iml
@@ -8,3 +8,5 @@ projeto/public
 /src/cgi-bin/
 /src/_system/*
 !/src/_system/.htaccess
+/extra
+**/templates_c
