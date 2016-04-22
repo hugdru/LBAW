@@ -1,0 +1,20 @@
+#/usr/bin/env bash
+
+killall postgres php
+
+# Create the database cluster and start postgresql
+database_cluster_path='/tmp/${USER}/postgresql/'
+rm -rf "$database_cluster_path"
+mkdir -p "$database_cluster_path"
+initdb --locale $LANG -E UTF8 -D "$database_cluster_path"
+postgres -D "$database_cluster_path" > /dev/null 2>&1 &
+cd "$database_cluster_path"
+createuser --superuser --pwprompt --echo admin
+createdb proto -U admin
+
+# Start php
+doc_root="$HOME/data/projetos/lbaw1522/Artefatos/A10"
+php -S localhost:8000 -t "$doc_root" > /dev/null 2>&1 &
+
+doc_root="$HOME/data/projetos/lbaw1522/extra/phppgAdmin"
+php -S localhost:8001 -t "$doc_root" > /dev/null 2>&1 &

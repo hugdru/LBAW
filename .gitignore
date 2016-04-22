@@ -8,5 +8,4 @@ projeto/public
 /src/cgi-bin/
 /src/_system/*
 !/src/_system/.htaccess
-/extra
 **/templates_c
