@@ -1,16 +1,15 @@
 <?php
-  
-  function createUser($realname, $username, $password) {
+  function createUser($name, $username, $email, $password, $photo, $country) {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO users VALUES (?, ?, ?)");
-    $stmt->execute(array($username, $realname, sha1($password)));
+    $query = "INSERT INTO Utilizador VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->execute(array($name, $username, $email, sha1($password), $photo, $country));
   }
 
   function isLoginCorrect($username, $password) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * 
-                            FROM users 
-                            WHERE username = ? AND password = ?");
+    $query = "SELECT * FROM Utilizador WHERE username = ? AND password = ?";
+    $stmt = $conn->prepare($query);
     $stmt->execute(array($username, sha1($password)));
     return $stmt->fetch() == true;
   }

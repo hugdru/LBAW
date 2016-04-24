@@ -1,8 +1,14 @@
+<?php
+    $id = "register"; //This page's identifier
+    $title = "Register Account"; //Page title extension
+    $root = "..";  //Root location relative to this page
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         {include file='common/head.tpl'}
-        <link rel="stylesheet" href="../../css/home.css">
+        <link rel="stylesheet" href="res/css/home.css">
     </head>
     <body>
 	{include file='common/navbar.tpl'}
@@ -13,8 +19,8 @@
         <div class="accountfield">
             <h1>Register Account</h1>           
 
-            <form role="form" action="{$BASE_URL}actions/users/register.php" method="post" enctype="multipart/form-data">
-		        <div class="form-group">
+            <form role="form">
+		<div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name">
                 </div>
