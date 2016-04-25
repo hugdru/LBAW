@@ -8,4 +8,10 @@ projeto/public
 /src/cgi-bin/
 /src/_system/*
 !/src/_system/.htaccess
+/src/_system_admin/*
+!/src/_system_admin/.htaccess
+/Artefatos/A10/_system/*
+!/Artefatos/A10/_system/.htaccess
+/Artefatos/A10/_system_admin/*
+!/Artefatos/A10/_system_admin/.htaccess
 **/templates_c
