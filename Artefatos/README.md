@@ -27,3 +27,4 @@
 
 ##### Lista de transações #####
 * Aceitar convite: Apaga a entrada do convite e cria a entrada da participação
+* NOTIFICAÇÕES?????
