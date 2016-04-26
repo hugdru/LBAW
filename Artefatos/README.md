@@ -1,25 +1,3 @@
-#### A7 ####
-
-
-  * (DONE) Remover os indexes em que se junta colunas indevidas
-  * (DONE) Index para username e email
-  * (DONE) Remover o index do nome
-  * (DONE) Pesquisa usando full text search combinação de cenas para a pesquisa
-  * (DONE) Indexes através da full text search
-  * (DONE) Remover as duas primeiras queries (-- Find "eventos" with a certain "titulo" e -- Find "utilizadores" with a certain username or email) e substituir por full text search.
-  * (DONE) Mudar a syntax do wiki para SQL
-  * (DONE) Nos triggers de apagar coisas caso outras queiram desaparecer, substituir por cascade
-  * Listar os próximos dez eventos:
-   * (DONE) com mais participantes
-   * (DONE) proximidade (data)
-   * popularidade = participantes + proximidade;
-
-##### TODO: #####
-  * Indexes nas chaves estrangeiras nas tabelas mais usadas com hash -----> chaves externas no idevento de comentarios, albuns e sondagens
-  * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação --------> ORDEM DE GRANDEZA EM POTENCIAS DE 10
-  * Rever trigger de partcipação/classificação
- 
-
 #### A9 ####
   * (DONE) Juntar Módulos 2 e 3
   * Juntar recursos todos do Módulo 4 nma só pag
@@ -27,3 +5,24 @@
   * (DONE) IMPORTANTE: Acrescentar tabelas para páginas de ação. Cada ação prática no site é composta por uma página de vista (interface) e uma página de ação (sem interface), cada uma delas deve ter uma tabela
   * (DONE) IMPORTANTE: Ver que ações devem ser feitas por AJAX e acrescentar respetiva resposta JSON (ação de classificar, votar; pedido para saber se há novos comentários, pesquisas)
   * (DONE) Ver tabela de edição de perfil
+
+##### TODO: #####
+  * Indexes nas chaves estrangeiras nas tabelas mais usadas com hash -----> chaves externas no idevento de comentarios, albuns e sondagens
+  * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação --------> ORDEM DE GRANDEZA EM POTENCIAS DE 10
+  * Rever trigger de partcipação/classificação
+ 
+
+#### A10 ####
+ * Implementar o upload/visualização da foto de utilizador
+ * Implementar a edição de perfil
+ * Pôr tabelas das User Stories implementadas na wiki
+
+#### A11 ####
+* Cada instrução SQL [SQLXXX] deve ser representada por uma tabela:
+** 1 - Nome. Ex: SQL101 - Login
+** 2 - Descrição
+** 3 - Código/Instrução/transação SQL
+** 4 - Referência para o recurso que utiliza a instrução/transação.
+* TRANSAÇÕES: são conjuntos de instruções SQL que só fazem sentido como um todo. Não podem ser interrompidas a meio.
+* Identificar as transações necessárias para o site e explorar isso exaustivamente
+* Identificar o nível de isolamento para cada ação
