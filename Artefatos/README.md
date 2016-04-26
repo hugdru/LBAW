@@ -19,11 +19,7 @@
  * Pôr tabelas das User Stories implementadas na wiki
 
 #### A11 ####
-* Cada instrução SQL [SQLXXX] deve ser representada por uma tabela:
-** 1 - Nome. Ex: SQL101 - Login
-** 2 - Descrição
-** 3 - Código/Instrução/transação SQL
-** 4 - Referência para o recurso que utiliza a instrução/transação.
+* Cada instrução SQL [SQLXXX] deve ser representada por uma tabela: L1 - Nome. Ex: "SQL101 - Login"; L2 - Descrição; L3 - Código/Instrução/transação SQL; L4 - Referência para o recurso que utiliza a instrução/transação.
 * TRANSAÇÕES: são conjuntos de instruções SQL que só fazem sentido como um todo. Não podem ser interrompidas a meio.
 * Identificar as transações necessárias para o site e explorar isso exaustivamente
 * Identificar o nível de isolamento para cada ação
