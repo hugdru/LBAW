@@ -6,11 +6,12 @@
   * (DONE) IMPORTANTE: Ver que ações devem ser feitas por AJAX e acrescentar respetiva resposta JSON (ação de classificar, votar; pedido para saber se há novos comentários, pesquisas)
   * (DONE) Ver tabela de edição de perfil
 
-##### TODO: #####
+##### TODO (A7): #####
   * Indexes nas chaves estrangeiras nas tabelas mais usadas com hash -----> chaves externas no idevento de comentarios, albuns e sondagens
   * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação --------> ORDEM DE GRANDEZA EM POTENCIAS DE 10
   * Rever trigger de partcipação/classificação
  
+### TODO: ###
 
 #### A10 ####
  * Implementar o upload/visualização da foto de utilizador
