@@ -24,3 +24,6 @@
 * TRANSAÇÕES: são conjuntos de instruções SQL que só fazem sentido como um todo. Não podem ser interrompidas a meio.
 * Identificar as transações necessárias para o site e explorar isso exaustivamente
 * Identificar o nível de isolamento para cada ação
+
+##### Lista de transações #####
+* Aceitar convite: Apaga a entrada do convite e cria a entrada da participação
