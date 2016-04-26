@@ -3,7 +3,7 @@
     include_once($BASE_DIR .'database/users.php');
 
     $id = "myevents"; //This page's identifier
-$smarty->assign('id', $id);
+$smarty->assign('myevents', $id);
 
 
     $smarty->display('event/myevents.tpl');

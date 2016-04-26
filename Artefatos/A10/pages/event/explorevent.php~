@@ -4,7 +4,7 @@
     include_once($BASE_DIR .'database/users.php');
 
     $id = "explore"; //This page's identifier
-    $smarty->assign('id', $id);
+    $smarty->assign('explore', $id);
     $smarty->display('event/explorevent.tpl');
 
 

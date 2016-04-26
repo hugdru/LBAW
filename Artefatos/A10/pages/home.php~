@@ -11,7 +11,7 @@
 
     $smarty->display('home.tpl');
 
-    $id = "home"; //This page's identifier
+	    $id = "home"; //This page's identifier
     $smarty->assign('home', $id);
 
     $title = "Home"; //Page title extension
