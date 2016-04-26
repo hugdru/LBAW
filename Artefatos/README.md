@@ -17,7 +17,7 @@
  * Implementar o upload/visualização da foto de utilizador
  * Implementar a edição de perfil
  * Pôr tabelas das User Stories implementadas na wiki
- * Validação dos campos de formulario de login/registo para um utilizador regular (tipo jquery: exs de exame ltw)
+ * Validação dos campos de formulario de login/registo para um utilizador regular (tipo jquery: exs de exame ltw) e gravar campos de nome, username, email caso registo invalido.
 
 #### A11 ####
 * Cada instrução SQL [SQLXXX] deve ser representada por uma tabela: L1 - Nome. Ex: "SQL101 - Login"; L2 - Descrição; L3 - Código/Instrução/transação SQL; L4 - Referência para o recurso que utiliza a instrução/transação.
