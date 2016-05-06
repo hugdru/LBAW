@@ -15,4 +15,5 @@ projeto/public
 /Artefatos/A10/_system_admin/*
 !/Artefatos/A10/_system_admin/.htaccess
 **/templates_c
+Artefatos/A10/templates_c
 **/*.*~

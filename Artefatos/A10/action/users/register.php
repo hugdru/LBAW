@@ -34,7 +34,9 @@
     
     createUser($nome, $username, $password, $email, $pais);
     $_SESSION["username"] = $username;
-    $_SESSION["name"] = $name;
+    $_SESSION["name"] = $nome;
+
     $_SESSION["password"] = $password;
-    header("Location: $BASE_URL");
+echo $_SESSION["name"];
+   // header("Location: $BASE_URL");
 ?>

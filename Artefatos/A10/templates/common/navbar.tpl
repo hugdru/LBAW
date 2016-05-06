@@ -37,13 +37,13 @@
                     {else}
                         <li class='dropdown'>
                             <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
-                                <img class='img-circle avatar-nav' src='{$BASE_URL}images/avatar_default.png'>{$NAME}<span class='caret'></span>
+                                <img class='img-circle avatar-nav' src='{$BASE_URL}images/avatar_default.png'>{$USERNAME}<span class='caret'></span>
                             </a>
                             <ul class='dropdown-menu'>
                                 <li><a href='{$BASE_URL}pages/users/profile.php'>Profile</a></li>
                                 <li><a href='{$BASE_URL}pages/users/settings.php'>Settings</a></li>
                                 <li role='separator' class='divider'></li>
-                                <li><a href='{$BASE_URL}actions/users/logout.php'>Logout</a></li>
+                                <li><a href='{$BASE_URL}action/users/logout.php'>Logout</a></li>
                             </ul>
                         </li>
                     {/if}
