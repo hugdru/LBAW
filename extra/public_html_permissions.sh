@@ -14,7 +14,8 @@ echo -e "\nSetting permissions to all directories in $public_html_path"
 find "$public_html_path"/*/ -type d -exec chmod -c 711 {} \;
 
 echo -e "\nSetting permissions to all php and tpl files in $public_html_path"
-find "$public_html_path" -type f -iname '*.php' -o -iname '*.tpl' -exec chmod -c 600 {} \;
+find "$public_html_path" -type f -iname '*.php' -exec chmod -c 600 {} \;
+find "$public_html_path" -type f -iname '*.tpl' -exec chmod -c 600 {} \;
 
 echo -e "\nSetting permissions to all css files in $public_html_path"
 find "$public_html_path" -type f -iname '*.css' -exec chmod -c 644 {} \;
