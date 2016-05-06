@@ -5,7 +5,7 @@
 
     $id = "explore"; //This page's identifier
     $smarty->assign('id', $id);
-    $smarty->display('event/explorevent.tpl');
+    $smarty->display('event/explorevents.tpl');
 
 
 

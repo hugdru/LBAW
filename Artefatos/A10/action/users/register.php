@@ -38,5 +38,5 @@
 
     $_SESSION["password"] = $password;
 echo $_SESSION["name"];
-   // header("Location: $BASE_URL");
+    header("Location: $BASE_URL");
 ?>

@@ -17,11 +17,11 @@
     <a href="{$BASE_URL}pages/users/register.php"><button class="btn btn-default">Register</button></a>
     <a href="{$BASE_URL}pages/users/login.php"><button class="btn btn-primary">Login</button></a>
     <br>
-    <small>You can also start to explore public events by <a href="{$BASE_URL}pages/event/explore_event.php">clicking here</a></small>.
+    <small>You can also start to explore public events by <a href="{$BASE_URL}pages/event/explore_events.php">clicking here</a></small>.
 </p>
 {else}
 <p id="home-loginbox">
-   <p>Go to <a href="{$BASE_URL}pages/event/explorevent.tpl">explore</a> section to check for upcoming events</p>
+   <p>Go to <a href="{$BASE_URL}pages/event/explore_events.php">explore</a> section to check for upcoming events</p>
 </p>
 {/if}
 
