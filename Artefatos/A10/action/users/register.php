@@ -15,11 +15,7 @@
     $r_password = $_POST['repeat_password'];
     $email = $_POST["email"];
     $pais = $_POST["pais"];
-
-    //Implement Later
-    //$photo = $_FILES['photo'];
-    //$extension = end(explode(".", $photo["name"]));
-
+    
     if($password != $r_password){
         $_SESSION['error_messages'][] = 'Password and Repeated Password mismatch';
         header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -32,7 +28,20 @@
         exit;
     }
     
-    createUser($nome, $username, $password, $email, $pais);
+    $fotopath = "images/avatar_default.png";
+    if($_FILES['file']){
+        $foto = $_FILES['file'];
+               
+        if(getimagesize($foto["tmp_name"]) !== false){
+            $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            
+            $fotopath = "images/" . $username . '.' . $ext;
+            
+            move_uploaded_file($_FILES["file"]["tmp_name"], $BASE_DIR . $fotopath);
+        }
+    }
+    
+    createUser($nome, $username, $password, $email, $pais, $fotopath);
     $_SESSION["username"] = $username;
     $_SESSION["name"] = $nome;
 

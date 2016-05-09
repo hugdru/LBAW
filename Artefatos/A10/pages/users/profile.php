@@ -12,6 +12,16 @@ session_start();
 $id = "profile"; //This page's identifier
 $smarty->assign('id', $id);
 
+ $username = $_POST['username'];
+  $password = $_POST['password'];
+  
+  if (isLoginCorrect($username, $password)) {
+    $_SESSION['username'] = $username;
+    $_SESSION['success_messages'][] = 'Login successful';  
+  } else {
+    $_SESSION['error_messages'][] = 'Login failed';  
+  }
+
 
     $smarty->display('users/profile.tpl');
 
