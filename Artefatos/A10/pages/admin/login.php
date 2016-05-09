@@ -19,6 +19,6 @@
         $smarty->assign('alert_message', $_SESSION["alert"]);
         session_destroy();
     }
-    $smarty->assign('action', $BASE_URL . '/actions/admin/login.php');
+    $smarty->assign('action', $BASE_URL . 'action/admin/login.php');
     $smarty->display('admin/login.tpl');
 ?>
