@@ -27,4 +27,10 @@
 
 ##### Lista de transações #####
 * Aceitar convite: Apaga a entrada do convite e cria a entrada da participação e cria a entrada de notificação
-* NOTIFICAÇÕES?????
+* N1: Criação de evento para subscritores do user
+* N2: Participação de evento para anfitriões do evento
+* N3: Participação de evento para subscritores do user
+* N4: Receção de convite
+* N5: Comentar evento para anfitriões do evento
+* N6: Comentário-resposta para o comentador do comentário-pai
+* N7: Alerta de pedido para seguir
