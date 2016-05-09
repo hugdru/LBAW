@@ -14,7 +14,8 @@
 ### TODO: ###
 
 #### A10 ####
- * Implementar a edição de perfil
+ * Atualizar o proto.zip na wiki do A10
+ * Implementar a edição de perfil / Um *UPDATE* na base de dados
  * Validação dos campos de formulario de login/registo para um utilizador regular (tipo jquery: exs de exame ltw) e gravar campos de nome, username, email caso registo invalido.
 
 #### A11 ####
