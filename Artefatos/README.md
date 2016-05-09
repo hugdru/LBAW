@@ -26,5 +26,5 @@
 * Identificar o nível de isolamento para cada ação
 
 ##### Lista de transações #####
-* Aceitar convite: Apaga a entrada do convite e cria a entrada da participação
+* Aceitar convite: Apaga a entrada do convite e cria a entrada da participação e cria a entrada de notificação
 * NOTIFICAÇÕES?????
