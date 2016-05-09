@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS Opcao CASCADE;
 DROP TABLE IF EXISTS Comentario CASCADE;
 DROP TABLE IF EXISTS Pais CASCADE;
 DROP TABLE IF EXISTS Seguidor CASCADE;
+DROP TABLE IF EXISTS Notificacao CASCADE;
 DROP TABLE IF EXISTS Participacao CASCADE;
 DROP TABLE IF EXISTS Convite CASCADE;
 DROP TABLE IF EXISTS Anfitriao CASCADE;
@@ -72,6 +73,14 @@ CREATE TABLE Seguidor(
   idSeguido INTEGER REFERENCES Utilizador(idUtilizador),
   "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
   PRIMARY KEY(idSeguidor, idSeguido)
+);
+
+CREATE TABLE Notificacao(
+  idNotificacao SERIAL PRIMARY KEY,
+  idNotificado INTEGER NOT NULL REFERENCES Utilizador(idUtilizador),
+  descricao TEXT NOT NULL,
+  link TEXT NOT NULL,
+  idNotificante INTEGER NOT NULL REFERENCES Utilizador(idUtilizador)
 );
 
 CREATE TABLE Participacao(
