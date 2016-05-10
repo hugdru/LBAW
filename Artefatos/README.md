@@ -32,3 +32,4 @@ Reminder: Atualizar a versão do Gnomo/Proto.zip sempre que houver alterações
 * N5: Comentar evento para anfitriões do evento
 * N6: Comentário-resposta para o comentador do comentário-pai
 * N7: Alerta de pedido para seguir
+* N8: Alerta de pedido para seguir aceite
