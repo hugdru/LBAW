@@ -1,6 +1,6 @@
 <?php
     include_once('../../config/init.php');
-    include_once($BASE_DIR .'database/user.php');  
+    include_once($BASE_DIR .'database/users.php');  
 
     if (!$_POST['username'] || !$_POST['nome'] || !$_POST['password'] || !$_POST['repeat_password'] || !$_POST['email'] || !$_POST["pais"]) {
         $_SESSION['error_messages'][] = 'All fields are mandatory';

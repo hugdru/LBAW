@@ -1,6 +1,6 @@
 <?php
   include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/user.php');  
+  include_once($BASE_DIR .'database/users.php');  
 
   if (!$_POST['updt_username'] || !$_POST['updt_original_password'] 
           || !$_POST['updt_new_password'] || !$_POST['updt_confirm_new_password']) {
