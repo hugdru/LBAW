@@ -14,9 +14,8 @@
 ### TODO: ###
 
 #### A10 ####
- * Atualizar o proto.zip na wiki do A10, Atualizar a versão do Gnomo
- * Implementar a edição de perfil / Um *UPDATE* na base de dados
- * Validação dos campos de formulario de login/registo para um utilizador regular (tipo jquery: exs de exame ltw) e gravar campos de nome, username, email caso registo invalido.
+Reminder: Atualizar a versão do Gnomo/Proto.zip sempre que houver alterações
+* Ediçao do Perfil
 
 #### A11 ####
 * Cada instrução SQL [SQLXXX] deve ser representada por uma tabela: L1 - Nome. Ex: "SQL101 - Login"; L2 - Descrição; L3 - Código/Instrução/transação SQL; L4 - Referência para o recurso que utiliza a instrução/transação.
