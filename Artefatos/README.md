@@ -33,3 +33,10 @@ Reminder: Atualizar a versão do Gnomo/Proto.zip sempre que houver alterações
 * N6: Comentário-resposta para o comentador do comentário-pai
 * N7: Alerta de pedido para seguir
 * N8: Alerta de pedido para seguir aceite
+
+---------- REVISAO PROFESSOR -----------
+
+* Acrescentar atributo "LIDA" na tabela notificaçoes
+* Testar Transaçoes do tipo "INSERT INTO [...] SELECT [...]"
+* pôr "SET TRANSACTION [...]" no código SQL ??
+* Timeline - Lista de eventos com novidades desde última sessão
