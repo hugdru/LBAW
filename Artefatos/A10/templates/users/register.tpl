@@ -3,6 +3,7 @@
     <head>
         {include file='common/head.tpl'}
         <link rel="stylesheet" href="{$BASE_URL}css/home.css">
+        <script src="{$BASE_URL}js/users/register.js"></script>
     </head>
     <body>
 	{include file='common/navbar.tpl'}
@@ -19,8 +20,8 @@
                     <input name="nome" type="text" class="form-control" id="name">
                 </div>
 		
-                <div class="form-group">
-                    <label for="usr">Username</label>
+                <div id="username_group" class="form-group">
+                    <label id="username_label" for="username">Username</label>
                     <input name="username" type="text" class="form-control" id="username">
                 </div>
                 
@@ -29,12 +30,12 @@
                     <input name="email" type="email" class="form-control" id="email">
                 </div>
                 
-                <div class="form-group">
-                    <label for="pwd1">Password</label>
+                <div class="form-group password_group">
+                    <label for="pwd1" id="password_label">Password</label>
                     <input name="password" type="password" class="form-control" id="password">
                 </div>
                 
-                <div class="form-group">
+                <div class="form-group password_group">
                     <label for="pwd2">Password (Repeat)</label>
                     <input name="repeat_password" type="password" class="form-control" id="passwordRepeat">
                 </div>

@@ -20,6 +20,15 @@
         return false;
     }
     
+    function usernameRegistered($username) {
+        global $conn;
+        $query = "SELECT idUtilizador FROM Utilizador WHERE username = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([$username]);
+        
+        return $stmt->fetch() == true;    
+    }
+    
     function accountAlreadyExists($username) {
         global $conn;
         $query = "SELECT username FROM Utilizador WHERE username = ?";
