@@ -3,7 +3,7 @@
 killall postgres php
 
 # Create the database cluster and start postgresql
-database_cluster_path='/tmp/${USER}/postgresql/'
+database_cluster_path="/tmp/${USER}/postgresql/"
 rm -rf "$database_cluster_path"
 mkdir -p "$database_cluster_path"
 initdb --locale $LANG -E UTF8 -D "$database_cluster_path"
