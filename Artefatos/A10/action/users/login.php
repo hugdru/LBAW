@@ -1,6 +1,6 @@
 <?php
   include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/users.php');  
+  include_once($BASE_DIR .'database/user.php');  
 
   if (!$_POST['username'] || !$_POST['password']) {
     $_SESSION['error_messages'][] = 'Invalid login';
@@ -14,9 +14,11 @@
   
   if (isLoginCorrect($username, $password)) {
     $_SESSION['username'] = $username;
-    $_SESSION['success_messages'][] = 'Login successful';  
+    
+    $_SESSION['success_messages'][] = 'Login successful';
+    header('Location: ' . $BASE_URL . "pages/event/explore_events.php");
   } else {
-    $_SESSION['error_messages'][] = 'Login failed';  
+    $_SESSION['error_messages'][] = 'Login failed';
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
   }
-  header('Location: ' . $BASE_URL . "pages/event/explore_events.php");
 ?>

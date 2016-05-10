@@ -1,10 +1,10 @@
 <?php
     include_once('../../config/init.php');
-    include_once($BASE_DIR .'database/users.php');
+    include_once($BASE_DIR .'database/user.php');
 
     session_save_path("../../_system/");
 
-    session_start();
+
 $id = "register"; //This page's identifier
 
 $smarty->assign('id', $id);
