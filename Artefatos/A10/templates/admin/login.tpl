@@ -2,28 +2,29 @@
 <html>
 <head>
     {include file="common/head.tpl"}
-    <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
-{include file="common/navbar.tpl"}
 {include file="common/content-top.tpl"}
-<!-- Content Start -->
 
+<!-- Content Start -->
+{if $alert eq true}
+<div class="alert alert-danger">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Login Failed</strong> : {$alert_message}
+</div>
+{/if}
 
 <div class="accountfield">
     <h1>Login</h1>
 
-    <form role="form" action="{$action}" method="post" enctype="multipart/form-data">
+    <form action="{$action}" method="post" role="form">
         <div class="form-group">
             <label for="usr">Username</label>
-            <input type="text" class="form-control" id="usr" name="username">
+            <input name="admin_username" type="text" class="form-control" id="usr">
         </div>
         <div class="form-group">
             <label for="pwd">Password</label>
-            <input type="password" class="form-control" id="pwd" name="password">
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox"> Remember me</label>
+            <input name="admin_password" type="password" class="form-control" id="pwd">
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>

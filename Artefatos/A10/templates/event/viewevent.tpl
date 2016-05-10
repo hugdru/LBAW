@@ -2,7 +2,7 @@
 <html>
 <head>
     {include file='common/head.tpl'}
-    <link rel="stylesheet" href="res/css/home.css">
+    <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
 {include file='common/navbar.tpl'}
@@ -51,7 +51,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='<?php echo $root; ?>/res/img/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
                 <p>Peter Commenter</p>
             </div>
         </td>
@@ -66,7 +66,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='<?php echo $root; ?>/res/img/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
                 <p>Professor Prototipe</p>
             </div>
         </td>
@@ -81,7 +81,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='<?php echo $root; ?>/res/img/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
                 <p>May Pockets</p>
             </div>
         </td>
@@ -96,7 +96,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='<?php echo $root; ?>/res/img/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
                 <p>Mr Mister</p>
             </div>
         </td>
@@ -112,7 +112,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='<?php echo $root; ?>/res/img/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
                 <p>Example Guy</p>
             </div>
         </td>

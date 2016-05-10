@@ -7,7 +7,7 @@
   $BASE_DIR = '/opt/lbaw/lbaw1522/public_html/proto/';
   $BASE_URL = '/~lbaw1522/proto/';
 
-  $conn = new PDO('pgsql:host=dbm;dbname=lbaw1522', 'lbaw1522', 'EY55G2M1');
+  $conn = new PDO('pgsql:host=dbm.fe.up.pt;dbname=lbaw1522', 'lbaw1522', 'snJa!*cBqPJ');
   $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -25,6 +25,7 @@
   $smarty->assign('SUCCESS_MESSAGES', $_SESSION['success_messages']);
   $smarty->assign('FORM_VALUES', $_SESSION['form_values']);
   $smarty->assign('USERNAME', $_SESSION['username']);
+  $smarty->assign('NAME', $_SESSION['name']);
   
   unset($_SESSION['success_messages']);
   unset($_SESSION['error_messages']);  

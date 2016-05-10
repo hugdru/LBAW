@@ -7,43 +7,43 @@
                 <span class="icon-bar"></span>
              </button>
             
-            <a class="navbar-brand" href="../../index.php">EventBook</a>
+            <a class="navbar-brand" href="{$BASE_URL}index.php">EventBook</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="nav navbar-nav">
                 <li {if $id=="myevents" } class="active" {/if}>
-                    <a href="../../pages/event/myevents.php">My Events</a>
+                    <a href="{$BASE_URL}pages/event/my_events.php">My Events</a>
                 </li>
                 <li {if $id=="explore"} class="active" {/if}>
-                    <a href="../../pages/event/explorevent.php">Explore</a>
+                    <a href="{$BASE_URL}pages/event/explore_events.php">Explore</a>
                 </li>
                 <li {if $id=="create"} class="active" {/if} >
-                    <a href="../../pages/event/createvent.php">Create</a>
+                    <a href="{$BASE_URL}pages/event/create_event.php">Create</a>
                 </li>        
             </ul>
 
             
             
             <ul class="nav navbar-nav navbar-right">
-                    {if $_SESSION["online"]==false}
+                    {if !isset($USERNAME)}
                         {if $id=="register"} <li class="active">
-                        {else} <li><a href='../../pages/users/register.php'>Register</a></li>
+                        {else} <li><a href='{$BASE_URL}pages/users/register.php'>Register</a></li>
                         {/if}
 
                         {if $id=="login"} <li class="active">
-                        {else} <li><a href='../../pages/users/login.php'>Login</a></li>
+                        {else} <li><a href='{$BASE_URL}pages/users/login.php'>Login</a></li>
                         {/if}
                     {else}
                         <li class='dropdown'>
                             <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
-                                <img class='img-circle avatar-nav' src='../../images/avatar_default.png'> Esteves Prototipo <span class='caret'></span>
+                                <img class='img-circle avatar-nav' src='{$BASE_URL}{$AVATAR}'>{$USERNAME}<span class='caret'></span>
                             </a>
                             <ul class='dropdown-menu'>
-                                <li><a href='../../pages/users/profile.php'>Profile</a></li>
-                                <li><a href='../../pages/users/settings.php'>Settings</a></li>
+                                <li><a href='{$BASE_URL}pages/users/profile.php'>Profile</a></li>
+                                <li><a href='{$BASE_URL}pages/users/settings.php'>Settings</a></li>
                                 <li role='separator' class='divider'></li>
-                                <li><a href='../../pages/users/login_test.php'>Logout</a></li>
+                                <li><a href='{$BASE_URL}action/users/logout.php'>Logout</a></li>
                             </ul>
                         </li>
                     {/if}

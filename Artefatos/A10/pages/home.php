@@ -9,11 +9,13 @@
 
     session_start();
 
+$id = "home"; //This page's identifier
+$smarty->assign('id', $id);
+
     $smarty->display('home.tpl');
 
-    $smarty->assign('home', $id);
 
-    $id = "home"; //This page's identifier
+
     $title = "Home"; //Page title extension
     $root = ".";  //Root location relative to this page
 ?>

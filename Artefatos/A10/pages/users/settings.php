@@ -8,12 +8,15 @@ session_save_path("../../_system/");
 
 
 session_start();
+$id = "settings"; //This page's identifier
+$smarty->assign('id', $id);
+$smarty->assign('action_update_password', $BASE_URL . "action/users/updatePassword.php");
+$smarty->assign('passpop', $_GET["pwr"]);
 
     $smarty->display('users/settings.tpl');
+;
 
-    $smarty->assign('settings', $id);
 
-    $id = "settings"; //This page's identifier
     $title = "Settings"; //Page title extension
     $root = "..";  //Root location relative to this page
 ?>

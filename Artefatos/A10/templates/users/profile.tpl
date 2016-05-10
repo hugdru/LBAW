@@ -2,7 +2,7 @@
 <html>
 <head>
     {include file='common/head.tpl'}
-    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
 {include file='common/navbar.tpl'}
@@ -10,10 +10,10 @@
 <!-- Content Start -->
 <div class="row">
     <div id="profile-imgbox" class="col-md-4">
-        <img class="img-circle" style="min-width: 100%" src="../../images/avatar_default.png" />
+        <img class="img-responsive img-circle" style="min-width: 100%" src="{$BASE_URL}{$AVATAR}" />
     </div>
     <div id="profile-detailbox" class="col-md-8">
-        <h2>Esteves Prototipo</h2>
+        <h2>{$USERNAME}</h2>
         <p id="desc">Hello, i'm a test user for EventBook</p>
 
         <label for="region"> <i class="glyphicon glyphicon-map-marker"></i> Location</label>

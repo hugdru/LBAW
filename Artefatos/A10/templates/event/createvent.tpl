@@ -2,7 +2,7 @@
 <html>
 <head>
     {include file='common/head.tpl'}
-    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
 {include file='common/navbar.tpl'}
