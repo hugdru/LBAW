@@ -17,3 +17,4 @@ projeto/public
 templates_c
 *.*~
 !.htaccess
+extra/postgresdb/
