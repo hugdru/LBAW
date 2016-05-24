@@ -80,6 +80,7 @@ CREATE TABLE Notificacao(
   idNotificado INTEGER NOT NULL REFERENCES Utilizador(idUtilizador),
   descricao TEXT NOT NULL,
   link TEXT NOT NULL,
+  lida BOOLEAN NOT NULL,
   idNotificante INTEGER NOT NULL REFERENCES Utilizador(idUtilizador)
 );
 
