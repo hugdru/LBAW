@@ -18,3 +18,4 @@ templates_c
 *.*~
 !.htaccess
 extra/postgresdb/
+/Artefatos/A12/nbproject/
