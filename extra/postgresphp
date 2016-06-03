@@ -1,19 +1,33 @@
 #!/usr/bin/env bash
 
-usage="$0 (setup|run)"
-if [[ $# -ne 1 ]]; then
+usage="$0 (setup|run) (proto|final)"
+if [[ $# -ne 2 ]]; then
   1>&2 echo "$usage"
   exit 1
 fi
 
+database_cluster_path="$HOME/data/projetos/lbaw1522/extra/postgresdb"
 timeout_duration="10"
 mode="$1"
-database_cluster_path="$HOME/data/projetos/lbaw1522/extra/postgresdb"
+stage="$2"
+
+case "$stage" in
+  "proto")
+    artefact="A10"
+    db_name="proto"
+    ;;
+  "final")
+    artefact="A12"
+    db_name="final"
+    ;;
+  *)
+    1>&2 echo "$usage"
+    exit 1
+    ;;
+esac
 
 case "$mode" in
   "setup")
-    timeout 10 echo "ola"
-    echo $?
     timeout "$timeout_duration" killall postgres php --wait
     if [[ $? -eq 124 ]]; then
       1>&2 echo "killall timed out"
@@ -29,7 +43,7 @@ case "$mode" in
     postgres -D "$database_cluster_path" > /dev/null 2>&1 &
     cd "$database_cluster_path"
     createuser --superuser --pwprompt --echo admin
-    createdb proto -U admin
+    createdb "$db_name" -U admin
     ;;
   "run")
     timeout "$timeout_duration" killall postgres php --wait
@@ -41,7 +55,7 @@ case "$mode" in
     fi
 
     # Start php
-    doc_root="$HOME/data/projetos/lbaw1522/Artefatos/A10"
+    doc_root="$HOME/data/projetos/lbaw1522/Artefatos/$artefact"
     php -S localhost:8000 -t "$doc_root" > /dev/null 2>&1 &
 
     doc_root="$HOME/data/projetos/lbaw1522/extra/phppgAdmin"
