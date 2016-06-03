@@ -36,6 +36,24 @@
         return $stmt->fetchAll();
     }
     
+    function getCommentList(){
+        global $conn;
+        
+        $query = "SELECT idcomentario, username, texto, comentario.idevento, titulo, idcomentariopai FROM comentario, utilizador, evento WHERE comentario.idcomentador = utilizador.idutilizador AND comentario.idevento = evento.idevento ORDER BY idcomentario DESC";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
+    function getEventList(){
+        global $conn;
+        
+        $query = "SELECT idevento,titulo,descricao,publico FROM evento ORDER BY idevento DESC";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    
     function getAdminList(){
         global $conn;
         
@@ -49,6 +67,22 @@
         global $conn;
         
         $query = "DELETE FROM utilizador WHERE idutilizador = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([$id]);
+    }
+    
+    function removeEvent($id){
+        global $conn;
+        
+        $query = "DELETE FROM evento WHERE idevento = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->execute([$id]);
+    }
+    
+    function removeComment($id){
+        global $conn;
+        
+        $query = "DELETE FROM comentario WHERE idcomentario = ?";
         $stmt = $conn->prepare($query);
         $stmt->execute([$id]);
     }

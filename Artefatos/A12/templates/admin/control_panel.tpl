@@ -61,7 +61,7 @@
                     <td>
                         <form onsubmit="return confirm('Do you really want to delete this user and all its contents?');" action="{$action_user_remove}" method="post">
                             <input type="hidden" name="idutilizador" value="{$item['idutilizador']}">
-                            <button type="submit"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                            <button class="btn btn-default btn-xs" type="submit"><span class="glyphicon glyphicon-remove"></span> Remove</button>
                         </form>
                     </td>
                 </tr>
@@ -73,39 +73,75 @@
 
 {if $option eq 2}
     <div class="panel_list">
-        Coming Soon
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Privacy</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$list item='item'}
+                    <tr>
+                        <td>{$item['idevento']}</td>
+                        <td>{$item['titulo']}</td>
+                        <td>{$item['descricao']}</td>
+                        <td>{if $item['publico'] eq 1}<span class="glyphicon glyphicon-eye-open"></span> Public{else}<span class="glyphicon glyphicon-eye-close"></span> Private{/if}</td>
+                        <td>
+                            <form onsubmit="return confirm('Do you really want to delete this event and all its contents?');" action="{$action_event_remove}" method="post">
+                                <input type="hidden" name="idevento" value="{$item['idevento']}">
+                                <a class="btn btn-default btn-xs" href="{$BASE_URL}pages/event/view_event.php?id={$item['idevento']}"><span class="glyphicon glyphicon-search"></span> View</a> 
+                                <button class="btn btn-default btn-xs" type="submit"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                {/foreach}
+            </tbody>
+        </table>
     </div>
 {/if}
 
 {if $option eq 3}
     <div class="panel_list">
-        Coming Soon
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Comment</th>
+                    <th>Author</th>
+                    <th>Event</th>
+                    <th>Parent</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$list item='item'}
+                    <tr>
+                        <td>{$item['idcomentario']}</td>
+                        <td>{$item['texto']}</td>
+                        <td>{$item['username']}</td>
+                        <td>{$item['titulo']}</td>
+                        <td>{$item['idcomentariopai']}</td>
+                        <td>
+                            <form onsubmit="return confirm('Do you really want to delete this comment and its nested comments?');" action="{$action_comment_remove}" method="post">
+                                <input type="hidden" name="idcomentario" value="{$item['idcomentario']}">
+                                <a class="btn btn-default btn-xs" href="{$BASE_URL}pages/event/view_event.php?id={$item['idevento']}"><span class="glyphicon glyphicon-search"></span> View Context</a> 
+                                <button class="btn btn-default btn-xs" type="submit"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                {/foreach}
+            </tbody>
+        </table>
     </div>
 {/if}
 
 {if $option eq 4}
     <div class="panel_list">
-        <div class="row">
-            <div class="col-sm-8">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach from=$list item='item'}
-                            <tr>
-                                <td>{$item['idadministrador']}</td>
-                                <td>{$item['username']}</td>
-                                <td>{$item['email']}</td>
-                            </tr>
-                        {/foreach}
-                    </tbody>
-                </table>                
-            </div>
+        <div class="row">            
             <div class="col-sm-4">
                 <form method="post" action="{$action_create_admin}" role="form" onsubmit="return confirm('Creating a new Administrator account, Continue?');">
                     <h4>Create a new Adminstrator Account</h4>
@@ -129,7 +165,27 @@
                     <button type="submit" class="btn btn-primary btn-block">Create</button>
                 </form>
             </div>
-        </div>        
+            <div class="col-sm-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$list item='item'}
+                            <tr>
+                                <td>{$item['idadministrador']}</td>
+                                <td>{$item['username']}</td>
+                                <td>{$item['email']}</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>                
+            </div>        
+        </div> 
     </div>
 {/if}
 
