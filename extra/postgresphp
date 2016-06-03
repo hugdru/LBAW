@@ -6,7 +6,9 @@ if [[ $# -ne 2 ]]; then
   exit 1
 fi
 
-database_cluster_path="$HOME/data/projetos/lbaw1522/extra/postgresdb"
+script_dir="$(dirname "$0")"
+
+database_cluster_path="$script_dir/postgresdb"
 timeout_duration="10"
 mode="$1"
 stage="$2"
@@ -55,10 +57,10 @@ case "$mode" in
     fi
 
     # Start php
-    doc_root="$HOME/data/projetos/lbaw1522/Artefatos/$artefact"
+    doc_root="$script_dir/../Artefatos/$artefact"
     php -S localhost:8000 -t "$doc_root" > /dev/null 2>&1 &
 
-    doc_root="$HOME/data/projetos/lbaw1522/extra/phppgAdmin"
+    doc_root="$script_dir/phppgAdmin"
     php -S localhost:8001 -t "$doc_root" > /dev/null 2>&1 &
 
     # Start postgresql
