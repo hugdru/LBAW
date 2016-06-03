@@ -258,7 +258,6 @@ EXECUTE PROCEDURE trigger_canVote();
 
 -- INSERTS
 -- Reset Serial Sequences to 1
-
 ALTER SEQUENCE pais_idpais_seq RESTART WITH 1;
 ALTER SEQUENCE utilizador_idutilizador_seq RESTART WITH 1;
 ALTER SEQUENCE comentario_idcomentario_seq RESTART WITH 1;
