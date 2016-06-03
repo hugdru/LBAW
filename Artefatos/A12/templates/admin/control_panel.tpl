@@ -8,6 +8,20 @@
 {include file="common/content-top.tpl"}
 
 <!-- Content Start -->
+{foreach from=$ERROR_MESSAGES item='item'}
+<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {$item}
+</div>
+{/foreach}
+
+{foreach from=$SUCCESS_MESSAGES item='item'}
+<div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {$item}
+</div>
+{/foreach}
+
 <div id="header">
     <strong class="panel_title">
         Control Panel - {$account_email}
@@ -71,7 +85,51 @@
 
 {if $option eq 4}
     <div class="panel_list">
-        Coming Soon
+        <div class="row">
+            <div class="col-sm-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$list item='item'}
+                            <tr>
+                                <td>{$item['idadministrador']}</td>
+                                <td>{$item['username']}</td>
+                                <td>{$item['email']}</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>                
+            </div>
+            <div class="col-sm-4">
+                <form method="post" action="{$action_create_admin}" role="form" onsubmit="return confirm('Creating a new Administrator account, Continue?');">
+                    <h4>Create a new Adminstrator Account</h4>
+
+                    <div class="form-group">
+                        <label for="cad_email">Email:</label>
+                        <input class="form-control" id="cad_email" name="cad_email" type="text">
+                    </div>
+                    <div class="form-group">    
+                        <label for="cad_username">Username:</label>
+                        <input class="form-control" id="cad_username" name="cad_username" type="text">
+                    </div>
+                    <div class="form-group"> 
+                        <label for="cad_password">Password:</label>
+                        <input class="form-control" id="cad_password" name="cad_password" type="password">
+                    </div>
+                    <div class="form-group"> 
+                        <label for="cad_password_repeat">Password (Repeat):</label>
+                        <input class="form-control" id="cad_password_repeat" name="cad_password_repeat" type="password">
+                    </div> 
+                    <button type="submit" class="btn btn-primary btn-block">Create</button>
+                </form>
+            </div>
+        </div>        
     </div>
 {/if}
 
