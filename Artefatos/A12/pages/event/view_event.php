@@ -4,7 +4,7 @@
 
 $id = "event"; //This page's identifier
 $smarty->assign('id', $id);
-    $smarty->display('event/createvent.tpl');
+    $smarty->display('event/viewevent.tpl');
 
     $title = "Event"; //Page title extension
     $root = "..";  //Root location relative to this page

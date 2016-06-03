@@ -30,6 +30,15 @@
     if($option == 1){
         $list = getUserList();
         $smarty->assign('list', $list);
+    }else if($option == 2){
+        $list = getEventList();
+        $smarty->assign('list', $list);
+    }else if($option == 3){
+        $list = getCommentList();
+        $smarty->assign('list', $list);
+    }else if($option == 4){
+        $list = getAdminList();
+        $smarty->assign('list', $list);
     }
     
     $smarty->assign('option', $option);
@@ -37,6 +46,9 @@
     $smarty->assign('account_email', $data["email"]);   
     $smarty->assign('logout_action', $BASE_URL . 'action/admin/logout.php');
     $smarty->assign('action_user_remove', $BASE_URL . 'action/admin/remove_user.php');
+    $smarty->assign('action_event_remove', $BASE_URL . 'action/admin/remove_event.php');
+    $smarty->assign('action_create_admin', $BASE_URL . 'action/admin/createAdmin.php');
+    $smarty->assign('action_comment_remove', $BASE_URL . 'action/admin/remove_comment.php');
     $smarty->display('admin/control_panel.tpl');
 ?>
 
