@@ -503,18 +503,17 @@ INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, 
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (13, 'euro league', 'portugal.jpg', 'futebol', 'Porto', '2016-07-05', 150, TRUE);
 
 -- Tabela "Utilizador"
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Xavi', 'diogodometro', 'lbaw1522', 'metro.jpg', 'diogoxavier95@hotmail.com', 177);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Diogo', 'avc', 'schwein123', 'schwein.jpg', 'avc@hotmail.com', 1);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Hugo', 'drumond', 'fruhstuck', 'drumond.jpg', 'drumond@hotmail.com', 6);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Joao Fernandes', 'faker', 'jogotantolol', 'pig.jpg', 'joao_zinho@hotmail.com', 150);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Antonio Pina', 'pinnoy', 'gajomaisfixe', 'self.jpg', 'p1n4@hotmail.com', 12);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Carina', 'carinafonteseca', 'carina@@@', 'alema.jpg', 'cursos@fe.up.pt', 21);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Barack Obama', 'blackhouse', 'yeswecan50', 'bo.jpg', 'BarackObama@whitehouse.us', 74);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Jose Mourinho', 'zemoura', 'souomaiordesde2004', 'mou.jpg', 'mou@mou.pt', 1);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cristiano Ronaldo', 'cris85', 'adoroomessi!', 'ballondor.jpg', 'ganhomaisquetu@ganhobues.com', 142);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('José Sócrates', 'josesocas', 'ninguemsabe', 'politico.png', 'maconaria_22@macons.pt', 170);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cavaco Silva', 'cavaquinho', 'password123', 'cadaver.png', 'maconaria_33@macons.pt', 170);
-
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Xavi', 'diogodometro', 'whirlpool:1000:MH5KiDFBw3T2NY0ZFULwwG09ZWwwdSyN:v1OCQAtowGxwpucDp2r9deUjQ617t6Fzq+DSWH5yaOhPAgjDxlm9lySoO9YKjcKxdBR0g0HuiiZ1Ro0QRqDHew==', 'metro.jpg', 'diogoxavier95@hotmail.com', 177);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Diogo', 'avc', 'whirlpool:1000:IxTEkfT0DwQkBbcdat2Y2a+DZFHbLaDn:0Z/Y7+Z3UD8grt4S3n1XiiFYBr5w/srcaEjAAO2/3TBxF7XhYkE2DuRvnSvCax7tz0dSLmVeqA+kG59SR5Qu9g==', 'schwein.jpg', 'avc@hotmail.com', 1);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Hugo', 'drumond', 'whirlpool:1000:ijlhOZCh7o6X9ySJ7pHqNeR4u8uvTnIO:fc/BYd3NXyN07f32u4sQO/tybbmORT8rZj/FhW2f2Bp0pDx3w4AaHBl0fkSf0tzNcIy2EotssIsw0NXw1U0MIA==', 'drumond.jpg', 'drumond@hotmail.com', 6);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Joao Fernandes', 'faker', 'whirlpool:1000:N6qDDFLOA2HO346NLaaPduYSZskytTGG:i1VFYerbAPmsmGxOweFCV9bpIpwdSSeSnHhGgsh37SV0bqe5YGptyWI8pWey9J4tLqnzH+Mr0RCBjekmJatAKA==', 'pig.jpg', 'joao_zinho@hotmail.com', 150);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Antonio Pina', 'pinnoy', 'whirlpool:1000:GlmCvmrkFGUacElyi1K7BJcIxBIVEBDz:w4o591MDJfj6X/z9cfFfj+9XE1IkkInTCP/Qcd2HGp33oZWumPtTqCOIc/K6pbQ+FGOJ3OLVlKv1uYGOk+eH1A==', 'self.jpg', 'p1n4@hotmail.com', 12);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Carina', 'carinafonteseca', 'whirlpool:1000:TrS6B0ylD8LtV2UakbTCBubbgmZHSsoM:gS7lol/9mHrK3EjF6jB2mCm5EjG8t7ZnRRXCVQFA815IV6ed4zsowKlty4+174Nwz5Npf1dWDtiEJRqVgxE9YQ==', 'alema.jpg', 'cursos@fe.up.pt', 21);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Barack Obama', 'blackhouse', 'whirlpool:1000:Kg/b79D44EJuOY+dCglMX2vfpnVTp0x0:n7XX03Tbf8xPkopP0RPrXhGw4J7DAt0t0urlHo2QpVEwVmOayyM4iRdZQ+SrSS6Y6F+W43/CKn6rtPZ9tnQLKA==', 'bo.jpg', 'BarackObama@whitehouse.us', 74);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Jose Mourinho', 'zemoura', 'whirlpool:1000:d0Jd0rQoB7n3y8f3t+IzveDrbUyhHuLx:etpCkKxNzrWaUyIal+DPBPl4wA7V3Ad/Jk0K9hvzdJp6kM9OzxhAMZRpX3AneR8HD1LvybuKMN98e+FoFcW6Cw==', 'mou.jpg', 'mou@mou.pt', 1);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cristiano Ronaldo', 'cris85', 'whirlpool:1000:ucvPMf5Qklg9wx99itefPuSG70+E34PT:WXqSYxcP6tuU8nSpeQtI8ulJafIEBxbcD/0UUZpqVmifqkbjS99JzZY7gBoUYUX7LaylP2uim69vIF7JqrVYgA==', 'ballondor.jpg', 'ganhomaisquetu@ganhobues.com', 142);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('José Sócrates', 'josesocas', 'whirlpool:1000:G5m4Db/9mTf2ecDqJ+JFMft+eAqFo4+y:EyPkUdwzjIvmj0nM+LS8kX5823hsZ9SqjgP2CUTP/Lfl1uTZgspsWWS15prpWYa7eGOTj24r53lhRJ563Lt7cQ==', 'politico.png', 'maconaria_22@macons.pt', 170);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cavaco Silva', 'cavaquinho', 'whirlpool:1000:Ru0cV0q9k+YmyLRMz8rhhE1RotI+WC/k:/Nnj7TVyOtVRGXT064fBpIjFq185oOGxMYORr/IGkT9Ja3FGAPo/vUS0xlsRuw6VQ5yQgpnqvzam/Ah0NQENoA==', 'cadaver.png', 'maconaria_33@macons.pt', 170);
 
 -- Tabela "Sondagem"
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (1, 'Onde realizar?', '2016-12-30', TRUE, 1);
