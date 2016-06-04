@@ -5,14 +5,14 @@ require_once($BASE_DIR . 'functions/users.php');
 
 redirectIfNotLoggedIn($BASE_URL);
 
-if (!isset($_POST['id'], $_POST['password'], $_POST['newPassword'], $_POST['newRepeatPassword'])) {
+if (!isset($_POST['idutilizador'], $_POST['password'], $_POST['newPassword'], $_POST['newRepeatPassword'])) {
     $_SESSION['error_messages'][] = 'Parameters Missing';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $BASE_URL . "pages/users/settings.php");
     exit;
 }
 
-$id = $_POST['id'];
+$idutilizador = $_POST['idutilizador'];
 $password = $_POST['password'];
 $newPassword = $_POST['newPassword'];
 $newRepeatPassword = $_POST['newRepeatPassword'];
@@ -22,7 +22,7 @@ $newRepeatPassword = $_POST['newRepeatPassword'];
 // Check if new == confirm
 $errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?passwordReply=";
 
-if ($id != $_SESSION['id']) {
+if ($idutilizador != $_SESSION['idutilizador']) {
     header($errorMessage . "1");
     exit();
 }
@@ -38,13 +38,12 @@ if ($newPasswordLength < 8 || $newPasswordLength > 100) {
     exit();
 }
 
-if (!validLoginDatabaseCheck($id, $password)) {
+if (!validLoginDatabaseCheck($idutilizador, $password)) {
     header($errorMessage . "3");
     exit();
 }
 
 $hashedNewPassword = create_hash($newPassword);
 
-$result = updatePassword($id, $hashedNewPassword);
-
+updatePassword($idutilizador, $hashedNewPassword);
 ?>

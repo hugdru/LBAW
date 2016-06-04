@@ -1,5 +1,6 @@
 <?php
-    include_once('../config/init.php');
+include_once('../config/init.php');
 
-    $smarty->display('home.tpl');
+$smarty->assign('currentPage', "home");
+$smarty->display('home.tpl');
 ?>

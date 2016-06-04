@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {include file='common/head.tpl'}
+    {include file='common/head.tpl' title="Explore Events"}
 </head>
 <body>
-{include file='common/navbar.tpl'}
+{include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
 
-<h1>My Events</h1>
-<p><small>View and manage the events you joined</small></p>
+<h1>Explore Events</h1>
+<p>
+    <small>Here's some public events that you may like</small>
+</p>
 
 <form role="search">
     <div class="input-group">
@@ -24,8 +26,16 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <a href="/?id=404" class="eventbox">
-        <h3 class="title">Subscribed Event 1</h3>
+        <a href="/?id=404"" class="eventbox">
+        <h3 class="title">Public Event 1</h3>
+        <p class="details">Porto, 32 January</p>
+        <p class="description">An example event, of no importance at all, without any random things to mention.</p>
+        </a>
+    </div>
+
+    <div class="col-sm-4">
+        <a href="/?id=404"" class="eventbox">
+        <h3 class="title">Public Event 2</h3>
         <p class="details">Porto, 32 January</p>
         <p class="description">An example event, of no importance at all, without any random things to mention.</p>
         </a>
@@ -33,17 +43,9 @@
 
     <div class="col-sm-4">
         <a href="/?id=404" class="eventbox">
-        <h3 class="title">Subscribed Event 2</h3>
-        <p class="details">Porto, 32 January</p>
-        <p class="description">An example event, of no importance at all, without any random things to mention.</p>
-        </a>
-    </div>
-
-    <div class="col-sm-4">
-        <a href="/?id=404" class="eventbox">
-        <h3 class="title">Subscribed Event 3</h3>
-        <p class="details">Porto, 32 January</p>
-        <p class="description">An example event, of no importance at all, without any random things to mention.</p>
+            <h3 class="title">Public Event 3</h3>
+            <p class="details">Porto, 32 January</p>
+            <p class="description">An example event, of no importance at all, without any random things to mention.</p>
         </a>
     </div>
 </div>
@@ -51,25 +53,25 @@
 <div class="row">
     <div class="col-sm-4">
         <a href="/?id=404" class="eventbox">
-        <h3 class="title">Subscribed Event 4</h3>
-        <p class="details">Porto, 32 January</p>
-        <p class="description">An example event, of no importance at all, without any random things to mention.</p>
+            <h3 class="title">Public Event 4</h3>
+            <p class="details">Porto, 32 January</p>
+            <p class="description">An example event, of no importance at all, without any random things to mention.</p>
         </a>
     </div>
 
     <div class="col-sm-4">
         <a href="/?id=404" class="eventbox">
-        <h3 class="title">Subscribed Event 5</h3>
-        <p class="details">Porto, 32 January</p>
-        <p class="description">An example event, of no importance at all, without any random things to mention.</p>
+            <h3 class="title">Public Event 5</h3>
+            <p class="details">Porto, 32 January</p>
+            <p class="description">An example event, of no importance at all, without any random things to mention.</p>
         </a>
     </div>
 
     <div class="col-sm-4">
         <a href="/?id=404" class="eventbox">
-        <h3 class="title">Subscribed Event 6</h3>
-        <p class="details">Porto, 32 January</p>
-        <p class="description">An example event, of no importance at all, without any random things to mention.</p>
+            <h3 class="title">Public Event 6</h3>
+            <p class="details">Porto, 32 January</p>
+            <p class="description">An example event, of no importance at all, without any random things to mention.</p>
         </a>
     </div>
 </div>

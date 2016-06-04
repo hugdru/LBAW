@@ -5,9 +5,10 @@ include_once($BASE_DIR . 'functions/users.php');
 
 redirectIfNotLoggedIn($BASE_URL . "pages/users/login.php");
 
+$smarty->assign('currentPage', "settings");
 $smarty->assign('actionUpdatePassword', $BASE_URL . "action/users/updatePassword.php");
 $smarty->assign('actionUpdatePasswordVars', array(
-        "id" => "id",
+        "idutilizador" => "idutilizador",
         "password" => "password",
         "newPassword" => "newPassword",
         "newRepeatPassword" => "newRepeatPassword"

@@ -4,7 +4,7 @@ function insertUser($nome, $username, $password, $email, $pais, $foto)
     global $conn;
     $query = "INSERT INTO Utilizador(nome, username, password, email, idPais, foto) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->execute([$nome, $username, $password, $email, $pais, $foto]);
+    return $stmt->execute([$nome, $username, $password, $email, $pais, $foto]);
 }
 
 function getUserByUsername($username)
@@ -13,27 +13,24 @@ function getUserByUsername($username)
     $query = "SELECT * FROM Utilizador WHERE username = ?";
     $stmt = $conn->prepare($query);
     $stmt->execute([$username]);
-
-    return $stmt->fetch(PDO::FETCH_OBJ);
+    return $stmt->fetch();
 }
 
-function getUserById($id)
+function getUserById($idutilizador)
 {
     global $conn;
-    $query = "SELECT * FROM Utilizador WHERE id = ?";
+    $query = "SELECT * FROM Utilizador WHERE idutilizador = ?";
     $stmt = $conn->prepare($query);
-    $stmt->execute([$id]);
-
-    return $stmt->fetch(PDO::FETCH_OBJ);
+    $stmt->execute([$idutilizador]);
+    return $stmt->fetch();
 }
 
 function usernameRegistered($username)
 {
     global $conn;
-    $query = "SELECT idUtilizador FROM Utilizador WHERE username = ?";
+    $query = "SELECT idutilizador FROM Utilizador WHERE username = ?";
     $stmt = $conn->prepare($query);
     $stmt->execute([$username]);
-
     return $stmt->fetch() == true;
 }
 
@@ -55,22 +52,20 @@ function checkIfEmailExists($email)
     return $stmt->fetch() == true;
 }
 
-function updatePassword($id, $password)
+function updatePassword($idutilizador, $password)
 {
     global $conn;
-    $query = "UPDATE utilizador SET password=? where id=?";
+    $query = "UPDATE utilizador SET password = ? WHERE idutilizador = ?";
     $stmt = $conn->prepare($query);
-    $stmt->execute([$password, $id]);
-    return 1;
+    return $stmt->execute([$password, $idutilizador]);
 }
 
 function getPhoto($id)
 {
     global $conn;
-    $query = "SELECT foto FROM Utilizador WHERE idUtilizador = ?";
+    $query = "SELECT foto FROM Utilizador WHERE idutilizador = ?";
     $stmt = $conn->prepare($query);
     $stmt->execute([$id]);
     return $stmt->fetch() == true;
 }
-
 ?>

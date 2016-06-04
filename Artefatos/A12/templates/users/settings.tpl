@@ -5,38 +5,33 @@
     <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
-{include file="common/navbar.tpl"}
+{include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file="common/content-top.tpl"}
 <!-- Content Start -->
-{if $passwordReply == 0}
+{if $passwordReply === 0}
 <div class="alert alert-success">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Password Update</strong> : Successful
 </div>
-{elseif $passwordReply == 1}
+{elseif $passwordReply === 1}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : You can only change your password
     </div>
-{elseif $passwordReply == 2}
+{elseif $passwordReply === 2}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : New Passwords Mistmatch
     </div>
-{elseif $passwordReply == 3}
+{elseif $passwordReply === 3}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : Original Password is not correct
     </div>
-{elseif $passwordReply == 4}
+{elseif $passwordReply === 4}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : New password should have between 8 and 100 characters
-    </div>
-{else}
-    <div class="alert alert-danger">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Bad password Reply</strong> : Action replied with an invalid value
     </div>
 {/if}
 
@@ -89,7 +84,7 @@
     <div class="col-sm-4">
         <form method="post" action="{$actionUpdatePassword}" role="form">
             <h3>Change Password</h3>
-            <input type="hidden" name="{$actionUpdatePasswordVars["id"]}" value="{$smarty.session.id}">
+            <input type="hidden" name="{$actionUpdatePasswordVars["idutilizador"]}" value="{$smarty.session.idutilizador}">
 
             <div class="form-group">
                 <label for="originalPassword">Current Password</label>
@@ -106,7 +101,7 @@
             <div class="form-group">
                 <label for="newRepeatPassword">New Password (Repeat)</label>
                 <input type="password" class="form-control" id="newRepeatPassword"
-                       name="{actionUpdatePasswordVars["newRepeatPassword"]}">
+                       name="{$actionUpdatePasswordVars["newRepeatPassword"]}">
             </div>
 
             <button type="submit" class="btn btn-primary">Save</button>

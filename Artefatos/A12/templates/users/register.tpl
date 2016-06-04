@@ -6,7 +6,7 @@
     <script src="{$BASE_URL}js/users/register.js"></script>
 </head>
 <body>
-{include file='common/navbar.tpl'}
+{include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
 

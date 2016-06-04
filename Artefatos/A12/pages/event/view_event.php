@@ -1,11 +1,8 @@
 <?php
-    include_once('../../config/init.php');
-    include_once($BASE_DIR .'database/users.php');
+include_once('../../config/init.php');
+include_once($BASE_DIR . 'database/users.php');
 
-$id = "event"; //This page's identifier
-$smarty->assign('id', $id);
-    $smarty->display('event/viewevent.tpl');
-
-    $title = "Event"; //Page title extension
-    $root = "..";  //Root location relative to this page
+// TODO Get the event info and then assign it to a smarty variable also support paging
+$smarty->assign('currentPage', "view_event");
+$smarty->display('event/view_event.tpl');
 ?>

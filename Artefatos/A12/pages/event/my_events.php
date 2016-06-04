@@ -1,21 +1,11 @@
 <?php
-    include_once('../../config/init.php');
-    include_once($BASE_DIR .'database/users.php');
+include_once('../../config/init.php');
+include_once($BASE_DIR . 'database/users.php');
 include_once($BASE_DIR . 'functions/users.php');
-//Yet another Gnomo.fe.up.pt fix
-//Fixes session default location being unaccessable.
-session_save_path("../../_system/");
 
+redirectIfNotLoggedIn($BASE_URL . "pages/users/login.php");
 
-isLoggedIn($BASE_URL . "pages/users/login.php");
-
-    $id = "myevents"; //This page's identifier
-$smarty->assign('id', $id);
-
-
-    $smarty->display('event/myevents.tpl');
-
-    
-    $title = "My Events"; //Page title extension
-    $root = "..";  //Root location relative to this page
+// TODO Get the user events and then assign them to a smarty variable also support paging
+$smarty->assign('currentPage', "my_events");
+$smarty->display('event/my_events.tpl');
 ?>

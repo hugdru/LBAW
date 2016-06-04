@@ -1,14 +1,8 @@
 <?php
-    include_once('../../config/init.php');
-    include_once($BASE_DIR .'database/users.php');
+include_once('../../config/init.php');
 
-$id = "about"; //This page's identifier
-$smarty->assign('id', $id);
-
-    $smarty->display('docs/about.tpl');
-
-    /*$title = "About"; //Page title extension
-    $root = "..";  //Root location relative to this page*/
+$smarty->assign('currentPage', "about");
+$smarty->display('docs/about.tpl');
 ?>
 
 

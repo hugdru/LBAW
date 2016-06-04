@@ -7,7 +7,7 @@ if (validLoginSessionCheck()) {
     exit();
 }
 
-if (!$_POST['username'] || !$_POST['password']) {
+if (!isset($_POST['username'], $_POST['password'])) {
     $_SESSION['error_messages'][] = 'Invalid login';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $_SERVER['HTTP_REFERER']);

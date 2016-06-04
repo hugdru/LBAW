@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
-{include file='common/navbar.tpl'}
+{include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
 <div class="row">

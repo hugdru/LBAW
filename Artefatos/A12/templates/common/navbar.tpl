@@ -12,27 +12,27 @@
 
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="nav navbar-nav">
-                <li {if $id=="myevents" } class="active" {/if}>
+                <li {if $currentPage=="my_events" } class="active" {/if}>
                     <a href="{$BASE_URL}pages/event/my_events.php">My Events</a>
                 </li>
-                <li {if $id=="explore"} class="active" {/if}>
+                <li {if $currentPage=="explore_events"} class="active" {/if}>
                     <a href="{$BASE_URL}pages/event/explore_events.php">Explore</a>
                 </li>
-                <li {if $id=="create"} class="active" {/if} >
+                <li {if $currentPage=="create_event"} class="active" {/if} >
                     <a href="{$BASE_URL}pages/event/create_event.php">Create</a>
                 </li>
             </ul>
 
 
             <ul class="nav navbar-nav navbar-right">
-                {if !isset($USERNAME)}
-                    {if $id=="register"}
+                {if !isset($smarty.session.username)}
+                    {if $currentPage=="register"}
                         <li class="active">
                             {else}
                         <li><a href='{$BASE_URL}pages/users/register.php'>Register</a></li>
                     {/if}
 
-                    {if $id=="login"}
+                    {if $currentPage=="login"}
                         <li class="active">
                             {else}
                         <li><a href='{$BASE_URL}pages/users/login.php'>Login</a></li>
@@ -41,7 +41,7 @@
                     <li class='dropdown'>
                         <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true'
                            aria-expanded='false'>
-                            <img class='img-circle avatar-nav' src='{$BASE_URL}{$FOTO}'>{$USERNAME}<span
+                            <img class='img-circle avatar-nav' src='{$BASE_URL}{$smarty.session.foto}'>{$smarty.session.username}<span
                                     class='caret'></span>
                         </a>
                         <ul class='dropdown-menu'>

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
-{include file="common/navbar.tpl"}
+{include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file="common/content-top.tpl"}
 <!-- Content Start -->
 
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="{$actionVars['username']}">
+            <input type="password" class="form-control" id="password" name="{$actionVars['password']}">
         </div>
         <div class="checkbox">
             <label><input type="checkbox"> Remember me</label>
