@@ -12,15 +12,17 @@
 
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="nav navbar-nav">
-                <li {if $currentPage=="my_events" } class="active" {/if}>
-                    <a href="{$BASE_URL}pages/event/my_events.php">My Events</a>
-                </li>
                 <li {if $currentPage=="explore_events"} class="active" {/if}>
                     <a href="{$BASE_URL}pages/event/explore_events.php">Explore</a>
                 </li>
-                <li {if $currentPage=="create_event"} class="active" {/if} >
-                    <a href="{$BASE_URL}pages/event/create_event.php">Create</a>
-                </li>
+                {if isset($smarty.session.username)}
+                    <li {if $currentPage=="my_events" } class="active" {/if}>
+                        <a href="{$BASE_URL}pages/event/my_events.php">My Events</a>
+                    </li>
+                    <li {if $currentPage=="create_event"} class="active" {/if} >
+                        <a href="{$BASE_URL}pages/event/create_event.php">Create</a>
+                    </li>
+                {/if}
             </ul>
 
 
@@ -41,7 +43,8 @@
                     <li class='dropdown'>
                         <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true'
                            aria-expanded='false'>
-                            <img class='img-circle avatar-nav' src='{$BASE_URL}{$smarty.session.foto}'>{$smarty.session.username}<span
+                            <img class='img-circle avatar-nav'
+                                 src='{$BASE_URL}{$smarty.session.foto}'>{$smarty.session.username}<span
                                     class='caret'></span>
                         </a>
                         <ul class='dropdown-menu'>
