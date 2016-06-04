@@ -5,7 +5,6 @@ function secure_session_start($cookie_path)
     $secure = true;
     $httpOnly = true;
 
-    // Avoids session fixation attacks by preventing passing session ids in urls
     if (ini_set('session.use_only_cookies', 1) === false) {
         echo "Can't use only cookies";
         exit();

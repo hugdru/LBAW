@@ -4,7 +4,7 @@ include_once('secureSession.php');
 
 secure_session_start("/~lbaw1522");
 
-error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
+error_reporting(E_ERROR | E_WARNING);
 
 $BASE_DIR = '/opt/lbaw/lbaw1522/public_html/final/';
 $BASE_URL = '/~lbaw1522/final/';
@@ -13,7 +13,7 @@ $conn = new PDO('pgsql:host=dbm.fe.up.pt;dbname=lbaw1522', 'lbaw1522', 'snJa!*cB
 $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$conn->exec('SET SCHEMA \'final\''); //FIXME?
+$conn->exec('SET SCHEMA \'final\'');
 
 include_once($BASE_DIR . 'lib/smarty/Smarty.class.php');
 
