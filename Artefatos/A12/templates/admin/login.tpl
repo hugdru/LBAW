@@ -15,7 +15,7 @@
 {/if}
 
 <div class="accountfield">
-    <h1>Login</h1>
+    <h1 style="padding: 0px; margin: 0px; margin-bottom: 20px;">Login</h1>
 
     <form action="{$action}" method="post" role="form">
         <div class="form-group">
@@ -26,7 +26,13 @@
             <label for="pwd">Password</label>
             <input name="admin_password" type="password" class="form-control" id="pwd">
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        
+        <div class="btn-group" style="width: 100%">
+            <button type="submit" style="width: 80%" class="btn btn-primary">Login</button>
+            <a class="btn btn-primary" style="width: 20%" href="{$BASE_URL}" title="Return to Eventbook">
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            </a>
+        </div>
     </form>
 </div>
 
