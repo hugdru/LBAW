@@ -1,24 +1,28 @@
 <?php
-  include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/users.php');  
+require_once('../../config/init.php');
+require_once($BASE_DIR . 'functions/users.php');
 
-  if (!$_POST['username'] || !$_POST['password']) {
+if (validLoginSessionCheck()) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
+
+if (!$_POST['username'] || !$_POST['password']) {
     $_SESSION['error_messages'][] = 'Invalid login';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit;
-  }
+    exit();
+}
 
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  
-  if (isLoginCorrect($username, $password)) {
-    $_SESSION['username'] = $username;
-    
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+if (login($username, $password)) {
     $_SESSION['success_messages'][] = 'Login successful';
     header('Location: ' . $BASE_URL . "pages/event/explore_events.php");
-  } else {
+} else {
     $_SESSION['error_messages'][] = 'Login failed';
     header('Location: ' . $_SERVER['HTTP_REFERER']);
-  }
+}
+exit();
 ?>

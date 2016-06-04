@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {include file='common/head.tpl'}
+    {include file='common/head.tpl' title="profile"}
     <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
@@ -10,10 +10,10 @@
 <!-- Content Start -->
 <div class="row">
     <div id="profile-imgbox" class="col-md-4">
-        <img class="img-responsive img-circle" style="min-width: 100%" src="{$BASE_URL}{$FOTO}" />
+        <img class="img-responsive img-circle" style="min-width: 100%" src="{$BASE_URL}{$marty.session.foto}"/>
     </div>
     <div id="profile-detailbox" class="col-md-8">
-        <h2>{$USERNAME}</h2>
+        <h2>{$smarty.session.username}</h2>
         <p id="desc">Hello, i'm a test user for EventBook</p>
 
         <label for="region"> <i class="glyphicon glyphicon-map-marker"></i> Location</label>

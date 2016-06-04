@@ -14,7 +14,7 @@
 </div>
 {/if}
 
-<div class="accountfield">
+<div class="accountField">
     <h1>Login</h1>
 
     <form action="{$action}" method="post" role="form">

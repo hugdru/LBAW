@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {include file="common/head.tpl"}
+    {include file="common/head.tpl" title="settings"}
     <link rel="stylesheet" href="{$BASE_URL}css/home.css">
 </head>
 <body>
 {include file="common/navbar.tpl"}
 {include file="common/content-top.tpl"}
 <!-- Content Start -->
-{if $passpop == -1}
-<div class="alert alert-danger">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Password Update Error</strong> : New Passwords Mistmatch
-</div>
-{elseif $passpop == -2}    
-<div class="alert alert-danger">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Password Update Error</strong> : Original Password is not correct
-</div>    
-{elseif $passpop == 1}
+{if $passwordReply == 0}
 <div class="alert alert-success">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Password Update</strong> : Sucessfull
-</div>  
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Password Update</strong> : Successful
+</div>
+{elseif $passwordReply == 1}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Password Update Error</strong> : You can only change your password
+    </div>
+{elseif $passwordReply == 2}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Password Update Error</strong> : New Passwords Mistmatch
+    </div>
+{elseif $passwordReply == 3}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Password Update Error</strong> : Original Password is not correct
+    </div>
+{elseif $passwordReply == 4}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Password Update Error</strong> : New password should have between 8 and 100 characters
+    </div>
+{else}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Bad password Reply</strong> : Action replied with an invalid value
+    </div>
 {/if}
-
-
 
 <h1>Settings</h1>
 
@@ -74,23 +87,26 @@
     </div>
 
     <div class="col-sm-4">
-        <form method="post" action="{$action_update_password}"role="form">
+        <form method="post" action="{$actionUpdatePassword}" role="form">
             <h3>Change Password</h3>
-            <input type="hidden" name="updt_username" value="{$USERNAME}">
-            
+            <input type="hidden" name="{$actionUpdatePasswordVars["id"]}" value="{$smarty.session.id}">
+
             <div class="form-group">
-                <label for="pwd1">Current Password</label>
-                <input type="password" class="form-control" id="pwd1" name="updt_original_password">
+                <label for="originalPassword">Current Password</label>
+                <input type="password" class="form-control" id="originalPassword"
+                       name="{$actionUpdatePasswordVars["password"]}">
             </div>
 
             <div class="form-group">
-                <label for="pwd2">New Password</label>
-                <input type="password" class="form-control" id="pwd2" name="updt_new_password">
+                <label for="newPassword">New Password</label>
+                <input type="password" class="form-control" id="newPassword"
+                       name="{$actionUpdatePasswordVars["newPassword"]}">
             </div>
 
             <div class="form-group">
-                <label for="pwd3">New Password (Repeat)</label>
-                <input type="password" class="form-control" id="pwd3" name="updt_confirm_new_password">
+                <label for="newRepeatPassword">New Password (Repeat)</label>
+                <input type="password" class="form-control" id="newRepeatPassword"
+                       name="{actionUpdatePasswordVars["newRepeatPassword"]}">
             </div>
 
             <button type="submit" class="btn btn-primary">Save</button>

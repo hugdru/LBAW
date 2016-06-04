@@ -1,73 +1,76 @@
 <?php
-    function createUser($nome, $username, $password, $email, $pais, $foto){
-        global $conn;
-        $query = "INSERT INTO Utilizador(nome, username, password, email, idPais, foto) VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($query);
-        $stmt->execute([$nome, $username, sha1($password), $email, $pais, $foto]);
+function insertUser($nome, $username, $password, $email, $pais, $foto)
+{
+    global $conn;
+    $query = "INSERT INTO Utilizador(nome, username, password, email, idPais, foto) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$nome, $username, $password, $email, $pais, $foto]);
+}
 
-    }
+function getUserByUsername($username)
+{
+    global $conn;
+    $query = "SELECT * FROM Utilizador WHERE username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$username]);
 
-    function isLoginCorrect($username, $password) {
-        global $conn;
-        $query = "SELECT * FROM Utilizador WHERE username = ? AND password = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->execute([$username, sha1($password)]);
-        
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
-        if ($result) {
-            foreach ($result as $field => $value) {
-                if ($field === 'password')
-                    continue;
-                $_SESSION[$field] = $value;
-            }
-            return true;
-        }
-        return false;
-    }
-    
-    function usernameRegistered($username) {
-        global $conn;
-        $query = "SELECT idUtilizador FROM Utilizador WHERE username = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->execute([$username]);
-        
-        return $stmt->fetch() == true;    
-    }
-    
-    function accountAlreadyExists($username) {
-        global $conn;
-        $query = "SELECT username FROM Utilizador WHERE username = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->execute([$username]);
-        return $stmt->fetch() == true;
-    }
-    
-    //Error Codes: -1 New Passwords mismatch, -2 Authentication failure, 1 Sucess
-    function updatePassword($username, $original_password, $new_password, $confirm_new_password)
-    {
-        // Check if new == confirm
-        if ($new_password != $confirm_new_password) {
-            return -1;
-        }
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
 
-        // Check if user credentials verify
-        if (!isLoginCorrect($username, $original_password)) {
-            return -2;
-        }
+function getUserById($id)
+{
+    global $conn;
+    $query = "SELECT * FROM Utilizador WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$id]);
 
-        // Proceed with changes
-        global $conn;
-        $query = "UPDATE utilizador SET password=? where username=?";
-        $stmt = $conn->prepare($query);
-        $stmt->execute([sha1($new_password), $username]);
-        return 1;
-    }
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
 
-    function getPhoto($id){
-        global $conn;
-        $query = "SELECT foto FROM Utilizador WHERE idUtilizador = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->execute([$id]);
-        return $stmt->fetch() == true;
-    }
+function usernameRegistered($username)
+{
+    global $conn;
+    $query = "SELECT idUtilizador FROM Utilizador WHERE username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$username]);
+
+    return $stmt->fetch() == true;
+}
+
+function checkIfUsernameExists($username)
+{
+    global $conn;
+    $query = "SELECT username FROM Utilizador WHERE username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$username]);
+    return $stmt->fetch() == true;
+}
+
+function checkIfEmailExists($email)
+{
+    global $conn;
+    $query = "SELECT email FROM Utilizador WHERE email = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$email]);
+    return $stmt->fetch() == true;
+}
+
+function updatePassword($id, $password)
+{
+    global $conn;
+    $query = "UPDATE utilizador SET password=? where id=?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$password, $id]);
+    return 1;
+}
+
+function getPhoto($id)
+{
+    global $conn;
+    $query = "SELECT foto FROM Utilizador WHERE idUtilizador = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$id]);
+    return $stmt->fetch() == true;
+}
+
 ?>

@@ -24,7 +24,7 @@ CREATE TABLE Pais(
 CREATE TABLE Utilizador(
   idUtilizador SERIAL PRIMARY KEY,
   nome TEXT NOT NULL,
-  username VARCHAR(100) UNIQUE NOT NULL,
+  username VARCHAR(16) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL CHECK( LENGTH(password) >= 8),
   foto TEXT,
   email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* '^[^\s@]+@[^\s@]+\.[^\s@.]+$'),
@@ -107,9 +107,9 @@ CREATE TABLE ComentarioVoto(
 
 CREATE TABLE Administrador(
   idAdministrador SERIAL PRIMARY KEY,
-  username VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(100) NOT NULL CHECK( LENGTH(password) >= 8),
-  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* '^[^\s@]+@[^\s@]+\.[^\s@.]+$')
+  username VARCHAR(100) UNIQUE NOT NULL CHECK (username ~* '^[A-Za-z][A-Za-z0-9\.\-_]{2,15}$'),
+  password VARCHAR(100) NOT NULL CHECK (LENGTH(password) >= 8),
+  email VARCHAR(100) UNIQUE NOT NULL CHECK (email ~* '^[^\s@]+@[^\s@]+\.[^\s@.]+$')
 );
 
 CREATE TABLE Album(

@@ -1,21 +1,50 @@
 <?php
-  include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/users.php');  
+require_once('../../config/init.php');
+require_once($BASE_DIR . 'database/users.php');
+require_once($BASE_DIR . 'functions/users.php');
 
-  if (!$_POST['updt_username'] || !$_POST['updt_original_password'] 
-          || !$_POST['updt_new_password'] || !$_POST['updt_confirm_new_password']) {
+redirectIfNotLoggedIn($BASE_URL);
+
+if (!isset($_POST['id'], $_POST['password'], $_POST['newPassword'], $_POST['newRepeatPassword'])) {
     $_SESSION['error_messages'][] = 'Parameters Missing';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $BASE_URL . "pages/users/settings.php");
     exit;
-  }
+}
 
-  $updt_username = $_POST['updt_username'];
-  $updt_password_original = $_POST['updt_original_password'];
-  $updt_password_new = $_POST['updt_new_password'];
-  $updt_password_confirm_new = $_POST['updt_confirm_new_password'];
-  
-  $result = updatePassword($updt_username, $updt_password_original, $updt_password_new, $updt_password_confirm_new);
+$id = $_POST['id'];
+$password = $_POST['password'];
+$newPassword = $_POST['newPassword'];
+$newRepeatPassword = $_POST['newRepeatPassword'];
 
-  header('Location: ' . $BASE_URL . "pages/users/settings.php" . "?pwr=" . $result);
+// 0 Success, 1 New Passwords mismatch, 2 Authentication failure
+
+// Check if new == confirm
+$errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?passwordReply=";
+
+if ($id != $_SESSION['id']) {
+    header($errorMessage . "1");
+    exit();
+}
+
+if ($newPassword != $newRepeatPassword) {
+    header($errorMessage . "2");
+    exit();
+}
+
+$newPasswordLength = strlen($newPassword);
+if ($newPasswordLength < 8 || $newPasswordLength > 100) {
+    header($errorMessage . "4");
+    exit();
+}
+
+if (!validLoginDatabaseCheck($id, $password)) {
+    header($errorMessage . "3");
+    exit();
+}
+
+$hashedNewPassword = create_hash($newPassword);
+
+$result = updatePassword($id, $hashedNewPassword);
+
 ?>
