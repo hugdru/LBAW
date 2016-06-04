@@ -1,3 +1,232 @@
+﻿DROP SCHEMA IF EXISTS final CASCADE;
+CREATE SCHEMA final;
+SET SCHEMA 'final';
+
+-- CREATE TABLE
+CREATE DOMAIN DMClassificacao AS Integer CHECK( VALUE <= 5 AND VALUE >= 0);
+
+CREATE TABLE Evento (
+  idEvento SERIAL PRIMARY KEY,
+  titulo VARCHAR(100) NOT NULL,
+  capa TEXT,
+  descricao TEXT,
+  localizacao TEXT NOT NULL,
+  dataInicio TIMESTAMP NOT NULL CHECK (dataInicio >= CURRENT_TIMESTAMP),
+  duracao INTEGER NOT NULL,
+  publico BOOLEAN DEFAULT TRUE NOT NULL
+);
+
+CREATE TABLE Pais(
+  idPais SERIAL PRIMARY KEY,
+  nome TEXT NOT NULL
+);
+
+CREATE TABLE Utilizador(
+  idUtilizador SERIAL PRIMARY KEY,
+  nome TEXT NOT NULL,
+  username VARCHAR(100) UNIQUE NOT NULL,
+  password VARCHAR(100) NOT NULL CHECK( LENGTH(password) >= 8),
+  foto TEXT,
+  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* '^[^\s@]+@[^\s@]+\.[^\s@.]+$'),
+  idPais INTEGER NOT NULL REFERENCES Pais(idPais) ON DELETE SET NULL
+);
+
+CREATE TABLE Sondagem(
+  idSondagem SERIAL PRIMARY KEY,
+  descricao TEXT,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
+  escolhaMultipla BOOLEAN DEFAULT FALSE NOT NULL,
+  idEvento INTEGER NOT NULL REFERENCES Evento(idEvento) ON DELETE CASCADE
+);
+
+CREATE TABLE Opcao(
+  idOpcao SERIAL PRIMARY KEY,
+  descricao TEXT NOT NULL,
+  idSondagem INTEGER NOT NULL REFERENCES Sondagem(idSondagem) ON DELETE CASCADE
+);
+
+CREATE TABLE Comentario(
+  idComentario SERIAL PRIMARY KEY,
+  texto TEXT NOT NULL,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
+  idComentador INTEGER NOT NULL REFERENCES Utilizador(idUtilizador) ON DELETE CASCADE,
+  idEvento INTEGER NOT NULL REFERENCES Evento(idEvento) ON DELETE CASCADE,
+  idComentarioPai INTEGER REFERENCES Comentario(idComentario) ON DELETE CASCADE
+);
+
+CREATE TABLE Seguidor(
+  idSeguidor INTEGER REFERENCES Utilizador(idUtilizador),
+  idSeguido INTEGER REFERENCES Utilizador(idUtilizador),
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
+  PRIMARY KEY(idSeguidor, idSeguido)
+);
+
+CREATE TABLE Notificacao(
+  idNotificacao SERIAL PRIMARY KEY,
+  idNotificado INTEGER NOT NULL REFERENCES Utilizador(idUtilizador),
+  descricao TEXT NOT NULL,
+  link TEXT NOT NULL,
+  lida BOOLEAN NOT NULL,
+  idNotificante INTEGER NOT NULL REFERENCES Utilizador(idUtilizador)
+);
+
+CREATE TABLE Participacao(
+  idEvento INTEGER REFERENCES Evento(idEvento) ON DELETE CASCADE,
+  idParticipante INTEGER REFERENCES Utilizador(idUtilizador) ON DELETE CASCADE,
+  classificacao DMClassificacao,
+  comentario TEXT,
+  PRIMARY KEY(idEvento, idParticipante)
+);
+
+CREATE TABLE Convite(
+  idEvento INTEGER REFERENCES Evento(idEvento) ON DELETE CASCADE,
+  idConvidado INTEGER REFERENCES Utilizador(idUtilizador) ON DELETE CASCADE,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
+  resposta BOOLEAN,
+  PRIMARY KEY(idEvento, idConvidado)
+);
+
+CREATE TABLE Anfitriao(
+  idEvento INTEGER REFERENCES Evento(idEvento) ON DELETE CASCADE,
+  idAnfitriao INTEGER REFERENCES Utilizador(idUtilizador) ON DELETE CASCADE,
+  PRIMARY KEY(idEvento, idAnfitriao)
+);
+
+CREATE TABLE UtilizadorOpcao(
+  idUtilizador INTEGER REFERENCES Utilizador(idUtilizador) ON DELETE CASCADE,
+  idOpcao INTEGER REFERENCES Opcao(idOpcao) ON DELETE CASCADE,
+  PRIMARY KEY(idUtilizador, idOpcao)
+);
+
+CREATE TABLE ComentarioVoto(
+  idComentario INTEGER REFERENCES Comentario(idComentario) ON DELETE CASCADE,
+  idVotante INTEGER REFERENCES Utilizador(idUtilizador),
+  positivo BOOLEAN NOT NULL,
+  PRIMARY KEY(idComentario, idVotante)
+);
+
+CREATE TABLE Administrador(
+  idAdministrador SERIAL PRIMARY KEY,
+  username VARCHAR(100) UNIQUE NOT NULL,
+  password VARCHAR(100) NOT NULL CHECK( LENGTH(password) >= 8),
+  email VARCHAR(100) UNIQUE NOT NULL CHECK ( email ~* '^[^\s@]+@[^\s@]+\.[^\s@.]+$')
+);
+
+CREATE TABLE Album(
+  idAlbum SERIAL PRIMARY KEY,
+  nome TEXT NOT NULL,
+  descricao TEXT,
+  idEvento INTEGER NOT NULL REFERENCES Evento(idEvento) ON DELETE CASCADE
+);
+
+CREATE TABLE Imagem(
+  idImagem SERIAL PRIMARY KEY,
+  caminho TEXT NOT NULL,
+  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
+  idAlbum INTEGER NOT NULL REFERENCES Album(idAlbum) ON DELETE CASCADE
+);
+-- END OF CREATE TABLE
+
+-- FUNCTIONS
+-- Check if event is completed
+CREATE FUNCTION check_event_complete(INTEGER) RETURNS BOOLEAN AS $$
+BEGIN
+  RETURN EXISTS (
+    SELECT idEvento, dataInicio, duracao
+    FROM Evento
+    WHERE
+      idEvento = $1 AND
+      dataInicio + (duracao * INTERVAL '1 second') >= CURRENT_TIMESTAMP
+  );
+END;
+$$ LANGUAGE plpgsql;
+
+-- Check if user participated in event
+CREATE FUNCTION check_participation(INTEGER) RETURNS BOOLEAN AS $$
+BEGIN
+  RETURN EXISTS (
+    SELECT Evento.idEvento, idParticipante
+    FROM Evento
+    JOIN Participacao ON Evento.idEvento = Participacao.idEvento
+    WHERE Participacao.idParticipante = $1
+  );
+END;
+$$ LANGUAGE plpgsql;
+
+-- Check if user can vote in the comment
+CREATE FUNCTION check_vote(INTEGER, INTEGER) RETURNS BOOLEAN AS $$
+BEGIN
+  RETURN EXISTS (
+    SELECT IdComentario, IdComentador
+    FROM Comentario
+    WHERE
+      Comentario.IdComentario = $1 AND
+      Comentario.IdComentador = $2
+  );
+END;
+$$ LANGUAGE plpgsql;
+-- END OF FUNCTIONS
+
+-- TRIGGERS
+-- Prevent Rating if user did not participate or the event is not completed
+CREATE FUNCTION check_insert_participation() RETURNS TRIGGER AS $$
+BEGIN
+  IF (New.classificacao != NULL || New.comentario != NULL) THEN
+    RAISE EXCEPTION 'Only previously existing participants can vote';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION check_can_rate() RETURNS TRIGGER AS $$
+BEGIN
+  IF NOT check_participation(New.idParticipante) THEN
+      RAISE EXCEPTION 'Current user did not participate in the event';
+  END IF;
+  IF NOT check_event_complete(New.idEvento) THEN
+    RAISE EXCEPTION 'Event is not complete yet';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER can_rate BEFORE INSERT ON Participacao
+FOR EACH ROW
+EXECUTE PROCEDURE check_insert_participation();
+
+CREATE TRIGGER can_participate BEFORE UPDATE ON Participacao
+FOR EACH ROW
+EXECUTE PROCEDURE check_can_rate();
+
+-- Prevent Users from following themselves
+CREATE FUNCTION trigger_canFollow() RETURNS TRIGGER AS $$
+BEGIN
+  IF (New.IdSeguidor = New.IdSeguido) THEN
+      RAISE EXCEPTION 'Users cannot follow themselves';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER CanFollow BEFORE INSERT ON Seguidor
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_canFollow();
+
+-- Prevent Users from voting on their own comments
+CREATE FUNCTION trigger_canVote() RETURNS TRIGGER AS $$
+BEGIN
+  IF check_vote(New.IdComentario, New.IdVotante) THEN
+    RAISE EXCEPTION 'Users cannot vote on their own comments';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER CanVote BEFORE INSERT ON ComentarioVoto
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_canVote();
+-- END OF TRIGGERS
+
 -- INSERTS
 -- Reset Serial Sequences to 1
 ALTER SEQUENCE pais_idpais_seq RESTART WITH 1;
@@ -5,7 +234,6 @@ ALTER SEQUENCE utilizador_idutilizador_seq RESTART WITH 1;
 ALTER SEQUENCE comentario_idcomentario_seq RESTART WITH 1;
 
 -- Tabela "Pais"
-
 INSERT INTO pais (nome) VALUES ('Afghanistan');
 INSERT INTO pais (nome) VALUES ('Albania');
 INSERT INTO pais (nome) VALUES ('Algeria');
@@ -265,18 +493,16 @@ INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, 
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (3, 'CARL COX', 'carlcox.jpg', 'Bailarico', 'Viana', '2016-11-19', 150, FALSE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (4, 'champions league', 'benfica.jpg', 'futebol', 'Lisboa', '2016-10-29', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (5, 'alfandega', 'fiesta.jpg', 'Dançar', 'Caminha', '2016-08-22', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (6, 'matador', 'matador.jpg', 'da-lhe bues', 'Pacha', '2016-07-23', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (6, 'matador', 'matador.jpg', 'da-lhe bues', 'Pacha', '2016-08-23', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (7, 'neopop', 'bensims.jpg', 'melhor festival', 'Viana', '2016-08-07', 150, FALSE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (8, 'LBAW', 'sergionunes.jpg', 'A10', 'Porto', '2016-10-14', 150, FALSE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (9, 'IART', 'touras.jpg', 'Biometria', 'Biblioteca FMUP', '2016-12-10', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (10, 'COMP', 'maranhao.jpg', 'MATDSL', 'Biblioteca FEUP', '2016-11-12', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (11, 'PPIN', 'firmino.jpg', 'Comunicacao', 'Queijos', '2016-07-21', 150, TRUE);
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (11, 'PPIN', 'firmino.jpg', 'Comunicacao', 'Queijos', '2016-06-21', 150, TRUE);
 INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (12, 'SDIS', 'souto.jpg', 'multicast', 'FEUP', '2016-07-11', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (13, 'euro league', 'portugal.jpg', 'futebol', 'Porto', '2016-06-05', 150, TRUE);
-
+INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (13, 'euro league', 'portugal.jpg', 'futebol', 'Porto', '2016-07-05', 150, TRUE);
 
 -- Tabela "Utilizador"
-
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Xavi', 'diogodometro', 'lbaw1522', 'metro.jpg', 'diogoxavier95@hotmail.com', 177);
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Diogo', 'avc', 'schwein123', 'schwein.jpg', 'avc@hotmail.com', 1);
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Hugo', 'drumond', 'fruhstuck', 'drumond.jpg', 'drumond@hotmail.com', 6);
@@ -291,7 +517,6 @@ INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('
 
 
 -- Tabela "Sondagem"
-
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (1, 'Onde realizar?', '2016-12-30', TRUE, 1);
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (2, 'Prog Rock or Epic?', '2016-07-06', FALSE, 2);
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (3, 'Musica preferida?', '2016-11-21', FALSE, 3);
@@ -305,9 +530,7 @@ INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VA
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (11, 'Enuncia os signos de linguagem nao verbal que mais gostas', '2016-07-23', TRUE, 11);
 INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (12, 'Qual é o teu protocolo de transferencia de dados preferido?', '2016-07-17', FALSE, 12);
 
-
 -- Tabela "Opcao"
-
 INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (1, 'Queijos', 1);
 INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (2, 'B003', 1);
 INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (3, 'B330', 1);
@@ -336,24 +559,20 @@ INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (25, 'TCP', 12);
 INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (26, 'UDP', 12);
 
 -- Tabela "Comentario"
-
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (1, 'LoLOlOLolOloLol', '2016-05-01', 3, 1, NULL);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (2, 'bruce fucking lee', '2016-05-01', 3, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (3, 'jackie jan > bruce lee', '2016-5-4', 2, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4, 'ahahahah que riso', '2016-5-4', 2, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (5, 'eargasm', '2016-5-4', 1, 2, NULL);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (6, 'boa cena', '2016-5-12', 2, 2, 5);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (7, 'adoro adoro adoro', '2016-5-19', 2, 2, 5);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (8, 'que grandes sons!!', '2016-5-20', 1, 2, 5);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (9, 'quatrocentos e vinte', '2016-5-12', 1, 3, NULL);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (10, 'oh yes oh yes', '2016-4-29', 2, 3, 9);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (11, 'fantastic fantastic', '2016-4-30', 2, 3, 9);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (12, 'hahahhaah i love you', '2016-5-9', 1, 3, 9);
-
-
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (1, 'LoLOlOLolOloLol', '2016-07-01', 3, 1, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (2, 'bruce fucking lee', '2016-08-01', 3, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (3, 'jackie jan > bruce lee', '2016-06-24', 2, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4, 'ahahahah que riso', '2016-08-11', 2, 1, 1);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (5, 'eargasm', '2016-07-12', 1, 2, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (6, 'boa cena', '2016-07-30', 2, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (7, 'adoro adoro adoro', '2016-08-19', 2, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (8, 'que grandes sons!!', '2016-07-20', 1, 2, 5);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (9, 'quatrocentos e vinte', '2016-08-12', 1, 3, NULL);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (10, 'oh yes oh yes', '2016-09-29', 2, 3, 9);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (11, 'fantastic fantastic', '2016-08-30', 2, 3, 9);
+INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (12, 'hahahhaah i love you', '2016-09-19', 1, 3, 9);
 
 -- Tabela "Seguidor"
-
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 1, '2016-06-23');
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (3, 1, '2016-06-18');
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 3, '2016-06-20');
@@ -368,7 +587,6 @@ INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (8, 7, '2016-10-10');
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (6, 5, '2016-10-24');
 
 -- Tabela "Participacao"
-
 INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (2, 2, 5, 'Adorei!');
 INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (1, 3, 3, 'Nem me aqueceu nem arrefeceu!');
 INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (3, 1, 5, 'RECOMENDO VIVAMENTE!');
@@ -382,7 +600,6 @@ INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) V
 INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (10, 4, 4, 'Uma das cadeiras mais interessantes do MIEIC!');
 
 -- Tabela "Convite"
-
 INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (1, 2, '2017-01-10', TRUE);
 INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (1, 3, '2017-01-11', TRUE);
 INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (2, 1, '2016-07-08', TRUE);
@@ -397,7 +614,6 @@ INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (6, 6, '2016-
 INSERT INTO convite (IdEvento, IdConvidado, data, resposta) VALUES (6, 8, '2016-07-31', TRUE);
 
 -- Tabela "Anfitriao"
-
 INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (1, 7);
 INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (2, 5);
 INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (3, 1);
@@ -411,9 +627,7 @@ INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (10, 2);
 INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (10, 1);
 INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (10, 3);
 
-
 -- Tabela "UtilizadorOpcao"
-
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (1, 5);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (1, 7);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (2, 2);
@@ -428,16 +642,14 @@ INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (6, 12);
 INSERT INTO utilizadoropcao (IdUtilizador, IdOpcao) VALUES (8, 8);
 
 -- Tabela "ComentarioVoto"
-
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (1, 2, TRUE);
-INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (1, 3, FALSE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (2, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 3, FALSE);
-INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (3, 1, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (4, 3, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (5, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (6, 1, FALSE);
+INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (6, 3, FALSE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (7, 1, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (8, 2, TRUE);
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (9, 2, FALSE);
@@ -446,7 +658,6 @@ INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (11, 1, TR
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (12, 2, TRUE);
 
 -- Tabela "Album"
-
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(1, 'First Session', 'Brainstorming and Meetup', 1);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(2, 'Second Session', 'Games', 1);
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(3, 'Third Session', 'Bye bye' , 1);
@@ -461,7 +672,6 @@ INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(11, 'Material apoi
 INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(12, 'Neopop all days', 'As melhores fotos desta ediçao', 7);
 
 -- Tabela "Imagem"
-
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-12-30', 1);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session2.jpg', '2017-01-14', 2);
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session3.jpg', '2017-01-15', 3);
@@ -475,8 +685,27 @@ INSERT INTO imagem(caminho, data, idAlbum) VALUES('alberto.jpg', '2016-11-29', 6
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('gertrudes.jpg', '2016-11-24', 6);
 
 -- Tabela "Administrador
-
 INSERT INTO Administrador (username, email, password) VALUES ('theboss', 'theboss@gg.bb', 'queriasbatatasfrias');
 INSERT INTO Administrador(username, email, password) VALUES('magical', 'unicorn@blue.sky', '12314nanananana');
 INSERT INTO Administrador(username, email, password) VALUES('major', 'majorbeast@gmail.com', 'majorcontrollingthezone');
 -- END OF INSERTS
+
+-- INDEXES
+-- Index for login
+CREATE UNIQUE INDEX
+utilizador_username_index ON Utilizador(username);
+
+-- Index for login
+CREATE UNIQUE INDEX
+utilizador_email_index ON Utilizador(email);
+
+-- Full text search indexes for Evento, these are always used together
+CREATE INDEX fts_evento_index
+ON Evento
+USING
+gin((
+    setweight(to_tsvector('english', titulo),'A') ||
+    setweight(to_tsvector('english', descricao), 'B') ||
+    setweight(to_tsvector('english', localizacao), 'B')
+));
+-- END OF INDEXES
