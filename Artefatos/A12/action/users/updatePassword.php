@@ -46,4 +46,7 @@ if (!validLoginDatabaseCheck($idutilizador, $password)) {
 $hashedNewPassword = create_hash($newPassword);
 
 updatePassword($idutilizador, $hashedNewPassword);
+
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+exit();
 ?>
