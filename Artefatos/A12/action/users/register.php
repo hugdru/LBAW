@@ -41,9 +41,17 @@
         }
     }
     
+    if($_POST["facebook_photo"]){
+        $foto = $_POST["facebook_photo"];
+        $fotopath = "images/" . $username . '.jpg';
+   
+        copy($foto, $BASE_DIR . $fotopath);
+    }
+    
     createUser($nome, $username, $password, $email, $pais, $fotopath);
     $_SESSION["username"] = $username;
     $_SESSION["name"] = $nome;
+    $_SESSION["foto"] = $fotopath;
 
     header("Location: $BASE_URL");
 ?>
