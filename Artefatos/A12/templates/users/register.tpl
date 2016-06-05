@@ -18,7 +18,7 @@
             <label for="name" style="width: 100%">
                 Name
                 <a class="pull-right btn btn-default btn-xs" href="{$fblink}"><img
-                            style="height: 1.5em; vertical-align: top;" src="{$BASE_URL}images/facebook.png"> Import
+                            style="height: 1.5em; vertical-align: top;" src="{$BASE_URL}data/default/facebook.png"> Import
                     data from Facebook</a>
             </label>
             <input name="nome" type="text" class="form-control" id="name" {if $name}value="{$name}"{/if}>

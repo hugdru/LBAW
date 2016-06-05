@@ -13,7 +13,7 @@ $smarty->assign('actionVars',
         "file" => "capa",
         "description" => "descricao",
         "location" => "localizacao",
-        "date" => "data",
+        "date" => "dataInicio",
         "duration" => "duracao",
         "public" => "publico",
         "csrf" => "csrf"

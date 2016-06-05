@@ -11,10 +11,10 @@
 
 <h1>Create Event</h1>
 
-<form role="form" onsubmit="return handleForm();" >
+<form role="form" id="create_event_form" action="{$action}" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Event Title</label>
-        <input type="text" class="form-control" id="title" name="{$actionVars['title']} required">
+        <input type="text" class="form-control" id="title" name="{$actionVars['title']}" required>
     </div>
 
     <div class="form-group">
@@ -54,13 +54,18 @@
     </div>
 
     <div class="form-group">
+        <label id="location_label" for="duration">Duration</label>
+        <input name="{$actionVars['duration']}" type="number" class="form-control" id="duration" required> minutes
+    </div>
+
+    <div class="form-group">
         <label for="description">Description</label>
-        <textarea style="min-height: 200px; resize: none;" class="form-control" id="description" name="{$actionVars['description']}"></textarea>
+        <textarea style="min-height: 200px; resize: none;" class="form-control" id="description" name="{$actionVars['description']}" required></textarea>
     </div>
 
     <div class="form-group">
         <label id="location_label" for="location">Location</label>
-        <input name="{$actionVars['location']}" type="text" class="form-control" id="location">
+        <input name="{$actionVars['location']}" type="text" class="form-control" id="location" required>
     </div>
 
     <div class="poll-submit">

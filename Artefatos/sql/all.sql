@@ -229,9 +229,15 @@ EXECUTE PROCEDURE trigger_canVote();
 
 -- INSERTS
 -- Reset Serial Sequences to 1
-ALTER SEQUENCE pais_idpais_seq RESTART WITH 1;
+ALTER SEQUENCE evento_idevento_seq RESTART WITH 1;
 ALTER SEQUENCE utilizador_idutilizador_seq RESTART WITH 1;
+ALTER SEQUENCE sondagem_idsondagem_seq RESTART WITH 1;
+ALTER SEQUENCE opcao_idopcao_seq RESTART WITH 1;
 ALTER SEQUENCE comentario_idcomentario_seq RESTART WITH 1;
+ALTER SEQUENCE pais_idpais_seq RESTART WITH 1;
+ALTER SEQUENCE administrador_idadministrador_seq RESTART WITH 1;
+ALTER SEQUENCE album_idalbum_seq RESTART WITH 1;
+ALTER SEQUENCE imagem_idimagem_seq RESTART WITH 1;
 
 -- Tabela "Pais"
 INSERT INTO pais (nome) VALUES ('Afghanistan');
@@ -488,88 +494,88 @@ INSERT INTO pais (nome) VALUES ('Zimbabwe');
 
 -- Tabela "Evento"
 
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (1, 'Be better, be', 'badjoras.jpg', 'water my friend Bruce Lee', 'FEUP', '2016-12-29', 60, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (2, 'The Great Artists', 'progrockepicmusic.jpg', 'The best Prog Rock and Epic Music', 'Viana', '2016-07-05', 180, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (3, 'CARL COX', 'carlcox.jpg', 'Bailarico', 'Viana', '2016-11-19', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (4, 'champions league', 'benfica.jpg', 'futebol', 'Lisboa', '2016-10-29', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (5, 'alfandega', 'fiesta.jpg', 'Dançar', 'Caminha', '2016-08-22', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (6, 'matador', 'matador.jpg', 'da-lhe bues', 'Pacha', '2016-08-23', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (7, 'neopop', 'bensims.jpg', 'melhor festival', 'Viana', '2016-08-07', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (8, 'LBAW', 'sergionunes.jpg', 'A10', 'Porto', '2016-10-14', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (9, 'IART', 'touras.jpg', 'Biometria', 'Biblioteca FMUP', '2016-12-10', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (10, 'COMP', 'maranhao.jpg', 'MATDSL', 'Biblioteca FEUP', '2016-11-12', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (11, 'PPIN', 'firmino.jpg', 'Comunicacao', 'Queijos', '2016-06-21', 150, TRUE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (12, 'SDIS', 'souto.jpg', 'multicast', 'FEUP', '2016-07-11', 150, FALSE);
-INSERT INTO evento (idEvento, titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (13, 'euro league', 'portugal.jpg', 'futebol', 'Porto', '2016-07-05', 150, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('Be better, be', 'data/default/capa.jpg', 'water my friend Bruce Lee', 'FEUP', '2016-12-29', 60, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('The Great Artists', 'data/default/capa.jpg', 'The best Prog Rock and Epic Music', 'Viana', '2016-07-05', 180, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('CARL COX', 'data/default/capa.jpg', 'Bailarico', 'Viana', '2016-11-19', 150, FALSE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('champions league', 'data/default/capa.jpg', 'futebol', 'Lisboa', '2016-10-29', 150, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('alfandega', 'data/default/capa.jpg', 'Dançar', 'Caminha', '2016-08-22', 150, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('matador', 'data/default/capa.jpg', 'da-lhe bues', 'Pacha', '2016-08-23', 150, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('neopop', 'data/default/capa.jpg', 'melhor festival', 'Viana', '2016-08-07', 150, FALSE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('LBAW', 'data/default/capa.jpg', 'A10', 'Porto', '2016-10-14', 150, FALSE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('IART', 'data/default/capa.jpg', 'Biometria', 'Biblioteca FMUP', '2016-12-10', 150, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('COMP', 'data/default/capa.jpg', 'MATDSL', 'Biblioteca FEUP', '2016-11-12', 150, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('PPIN', 'data/default/capa.jpg', 'Comunicacao', 'Queijos', '2016-06-21', 150, TRUE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('SDIS', 'data/default/capa.jpg', 'multicast', 'FEUP', '2016-07-11', 150, FALSE);
+INSERT INTO evento (titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES ('euro league', 'data/default/capa.jpg', 'futebol', 'Porto', '2016-07-05', 150, TRUE);
 
 -- Tabela "Utilizador"
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Xavi', 'diogodometro', 'whirlpool:1000:MH5KiDFBw3T2NY0ZFULwwG09ZWwwdSyN:v1OCQAtowGxwpucDp2r9deUjQ617t6Fzq+DSWH5yaOhPAgjDxlm9lySoO9YKjcKxdBR0g0HuiiZ1Ro0QRqDHew==', 'metro.jpg', 'diogoxavier95@hotmail.com', 177);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Diogo', 'avc', 'whirlpool:1000:IxTEkfT0DwQkBbcdat2Y2a+DZFHbLaDn:0Z/Y7+Z3UD8grt4S3n1XiiFYBr5w/srcaEjAAO2/3TBxF7XhYkE2DuRvnSvCax7tz0dSLmVeqA+kG59SR5Qu9g==', 'schwein.jpg', 'avc@hotmail.com', 1);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Hugo', 'drumond', 'whirlpool:1000:ijlhOZCh7o6X9ySJ7pHqNeR4u8uvTnIO:fc/BYd3NXyN07f32u4sQO/tybbmORT8rZj/FhW2f2Bp0pDx3w4AaHBl0fkSf0tzNcIy2EotssIsw0NXw1U0MIA==', 'drumond.jpg', 'drumond@hotmail.com', 6);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Joao Fernandes', 'faker', 'whirlpool:1000:N6qDDFLOA2HO346NLaaPduYSZskytTGG:i1VFYerbAPmsmGxOweFCV9bpIpwdSSeSnHhGgsh37SV0bqe5YGptyWI8pWey9J4tLqnzH+Mr0RCBjekmJatAKA==', 'pig.jpg', 'joao_zinho@hotmail.com', 150);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Antonio Pina', 'pinnoy', 'whirlpool:1000:GlmCvmrkFGUacElyi1K7BJcIxBIVEBDz:w4o591MDJfj6X/z9cfFfj+9XE1IkkInTCP/Qcd2HGp33oZWumPtTqCOIc/K6pbQ+FGOJ3OLVlKv1uYGOk+eH1A==', 'self.jpg', 'p1n4@hotmail.com', 12);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Carina', 'carinafonteseca', 'whirlpool:1000:TrS6B0ylD8LtV2UakbTCBubbgmZHSsoM:gS7lol/9mHrK3EjF6jB2mCm5EjG8t7ZnRRXCVQFA815IV6ed4zsowKlty4+174Nwz5Npf1dWDtiEJRqVgxE9YQ==', 'alema.jpg', 'cursos@fe.up.pt', 21);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Barack Obama', 'blackhouse', 'whirlpool:1000:Kg/b79D44EJuOY+dCglMX2vfpnVTp0x0:n7XX03Tbf8xPkopP0RPrXhGw4J7DAt0t0urlHo2QpVEwVmOayyM4iRdZQ+SrSS6Y6F+W43/CKn6rtPZ9tnQLKA==', 'bo.jpg', 'BarackObama@whitehouse.us', 74);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Jose Mourinho', 'zemoura', 'whirlpool:1000:d0Jd0rQoB7n3y8f3t+IzveDrbUyhHuLx:etpCkKxNzrWaUyIal+DPBPl4wA7V3Ad/Jk0K9hvzdJp6kM9OzxhAMZRpX3AneR8HD1LvybuKMN98e+FoFcW6Cw==', 'mou.jpg', 'mou@mou.pt', 1);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cristiano Ronaldo', 'cris85', 'whirlpool:1000:ucvPMf5Qklg9wx99itefPuSG70+E34PT:WXqSYxcP6tuU8nSpeQtI8ulJafIEBxbcD/0UUZpqVmifqkbjS99JzZY7gBoUYUX7LaylP2uim69vIF7JqrVYgA==', 'ballondor.jpg', 'ganhomaisquetu@ganhobues.com', 142);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('José Sócrates', 'josesocas', 'whirlpool:1000:G5m4Db/9mTf2ecDqJ+JFMft+eAqFo4+y:EyPkUdwzjIvmj0nM+LS8kX5823hsZ9SqjgP2CUTP/Lfl1uTZgspsWWS15prpWYa7eGOTj24r53lhRJ563Lt7cQ==', 'politico.png', 'maconaria_22@macons.pt', 170);
-INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cavaco Silva', 'cavaquinho', 'whirlpool:1000:Ru0cV0q9k+YmyLRMz8rhhE1RotI+WC/k:/Nnj7TVyOtVRGXT064fBpIjFq185oOGxMYORr/IGkT9Ja3FGAPo/vUS0xlsRuw6VQ5yQgpnqvzam/Ah0NQENoA==', 'cadaver.png', 'maconaria_33@macons.pt', 170);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Xavi', 'diogodometro', 'whirlpool:1000:MH5KiDFBw3T2NY0ZFULwwG09ZWwwdSyN:v1OCQAtowGxwpucDp2r9deUjQ617t6Fzq+DSWH5yaOhPAgjDxlm9lySoO9YKjcKxdBR0g0HuiiZ1Ro0QRqDHew==', 'data/default/foto.png', 'diogoxavier95@hotmail.com', 177);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Diogo', 'avc', 'whirlpool:1000:IxTEkfT0DwQkBbcdat2Y2a+DZFHbLaDn:0Z/Y7+Z3UD8grt4S3n1XiiFYBr5w/srcaEjAAO2/3TBxF7XhYkE2DuRvnSvCax7tz0dSLmVeqA+kG59SR5Qu9g==', 'data/default/foto.png', 'avc@hotmail.com', 1);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Hugo', 'drumond', 'whirlpool:1000:ijlhOZCh7o6X9ySJ7pHqNeR4u8uvTnIO:fc/BYd3NXyN07f32u4sQO/tybbmORT8rZj/FhW2f2Bp0pDx3w4AaHBl0fkSf0tzNcIy2EotssIsw0NXw1U0MIA==', 'data/default/foto.png', 'drumond@hotmail.com', 6);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Joao Fernandes', 'faker', 'whirlpool:1000:N6qDDFLOA2HO346NLaaPduYSZskytTGG:i1VFYerbAPmsmGxOweFCV9bpIpwdSSeSnHhGgsh37SV0bqe5YGptyWI8pWey9J4tLqnzH+Mr0RCBjekmJatAKA==', 'data/default/foto.png', 'joao_zinho@hotmail.com', 150);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Antonio Pina', 'pinnoy', 'whirlpool:1000:GlmCvmrkFGUacElyi1K7BJcIxBIVEBDz:w4o591MDJfj6X/z9cfFfj+9XE1IkkInTCP/Qcd2HGp33oZWumPtTqCOIc/K6pbQ+FGOJ3OLVlKv1uYGOk+eH1A==', 'data/default/foto.png', 'p1n4@hotmail.com', 12);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Carina', 'carinafonteseca', 'whirlpool:1000:TrS6B0ylD8LtV2UakbTCBubbgmZHSsoM:gS7lol/9mHrK3EjF6jB2mCm5EjG8t7ZnRRXCVQFA815IV6ed4zsowKlty4+174Nwz5Npf1dWDtiEJRqVgxE9YQ==', 'data/default/foto.png', 'cursos@fe.up.pt', 21);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Barack Obama', 'blackhouse', 'whirlpool:1000:Kg/b79D44EJuOY+dCglMX2vfpnVTp0x0:n7XX03Tbf8xPkopP0RPrXhGw4J7DAt0t0urlHo2QpVEwVmOayyM4iRdZQ+SrSS6Y6F+W43/CKn6rtPZ9tnQLKA==', 'data/default/foto.png', 'BarackObama@whitehouse.us', 74);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Jose Mourinho', 'zemoura', 'whirlpool:1000:d0Jd0rQoB7n3y8f3t+IzveDrbUyhHuLx:etpCkKxNzrWaUyIal+DPBPl4wA7V3Ad/Jk0K9hvzdJp6kM9OzxhAMZRpX3AneR8HD1LvybuKMN98e+FoFcW6Cw==', 'data/default/foto.png', 'mou@mou.pt', 1);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cristiano Ronaldo', 'cris85', 'whirlpool:1000:ucvPMf5Qklg9wx99itefPuSG70+E34PT:WXqSYxcP6tuU8nSpeQtI8ulJafIEBxbcD/0UUZpqVmifqkbjS99JzZY7gBoUYUX7LaylP2uim69vIF7JqrVYgA==', 'data/default/foto.png', 'ganhomaisquetu@ganhobues.com', 142);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('José Sócrates', 'josesocas', 'whirlpool:1000:G5m4Db/9mTf2ecDqJ+JFMft+eAqFo4+y:EyPkUdwzjIvmj0nM+LS8kX5823hsZ9SqjgP2CUTP/Lfl1uTZgspsWWS15prpWYa7eGOTj24r53lhRJ563Lt7cQ==', 'data/default/foto.png', 'maconaria_22@macons.pt', 170);
+INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cavaco Silva', 'cavaquinho', 'whirlpool:1000:Ru0cV0q9k+YmyLRMz8rhhE1RotI+WC/k:/Nnj7TVyOtVRGXT064fBpIjFq185oOGxMYORr/IGkT9Ja3FGAPo/vUS0xlsRuw6VQ5yQgpnqvzam/Ah0NQENoA==', 'data/default/foto.png', 'maconaria_33@macons.pt', 170);
 
 -- Tabela "Sondagem"
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (1, 'Onde realizar?', '2016-12-30', TRUE, 1);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (2, 'Prog Rock or Epic?', '2016-07-06', FALSE, 2);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (3, 'Musica preferida?', '2016-11-21', FALSE, 3);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (4, 'Vencedor?', '2017-10-31', FALSE, 4);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (5, 'Interessado em que festa?', '2016-08-25', TRUE, 5);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (6, 'Musica preferida de Matador?', '2016-07-25', FALSE, 6);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (7, 'Artista que mais gostaste de ver ver no neostage?', '2016-08-10', FALSE, 7);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (8, 'Qual é a tua linguagem de programaçao web preferida?', '2016-10-19', FALSE, 8);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (9, 'Qual é o teu algoritmo best-first preferido?', '2016-12-01', FALSE, 9);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (10, 'Qual é a fase do compilador preferida?', '2016-11-17', FALSE, 10);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (11, 'Enuncia os signos de linguagem nao verbal que mais gostas', '2016-07-23', TRUE, 11);
-INSERT INTO sondagem (idSondagem, descricao, data, escolhaMultipla, IdEvento) VALUES (12, 'Qual é o teu protocolo de transferencia de dados preferido?', '2016-07-17', FALSE, 12);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Onde realizar?', '2016-12-30', TRUE, 1);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Prog Rock or Epic?', '2016-07-06', FALSE, 2);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Musica preferida?', '2016-11-21', FALSE, 3);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Vencedor?', '2017-10-31', FALSE, 4);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Interessado em que festa?', '2016-08-25', TRUE, 5);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Musica preferida de Matador?', '2016-07-25', FALSE, 6);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Artista que mais gostaste de ver ver no neostage?', '2016-08-10', FALSE, 7);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Qual é a tua linguagem de programaçao web preferida?', '2016-10-19', FALSE, 8);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Qual é o teu algoritmo best-first preferido?', '2016-12-01', FALSE, 9);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Qual é a fase do compilador preferida?', '2016-11-17', FALSE, 10);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Enuncia os signos de linguagem nao verbal que mais gostas', '2016-07-23', TRUE, 11);
+INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Qual é o teu protocolo de transferencia de dados preferido?', '2016-07-17', FALSE, 12);
 
 -- Tabela "Opcao"
-INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (1, 'Queijos', 1);
-INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (2, 'B003', 1);
-INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (3, 'B330', 1);
-INSERT INTO opcao (idOpcao, descricao, IdSondagem) VALUES (4, 'Biblioteca', 1);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (5, 'Prog Rock', 2);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (6, 'Epic', 2);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (7, 'Jaguar', 3);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (8, 'Fantasee', 3);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (9, 'Bayern', 4);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (10, 'Real Madrid', 4);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (11, 'ISEP finos a 20 centimos', 5);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (12, 'Fim de ano', 5);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (13, 'Da hustle', 6);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (14, 'Klay', 6);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (15, 'Maya Jane Coles', 7);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (16, 'Richie Hawtin', 7);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (17, 'PHP', 8);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (18, 'Javascript', 8);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (19, 'A*', 9);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (20, 'Uniform Cost - Branch & Bound', 9);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (21, 'Analise semantica', 10);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (22, 'Analise lexical', 10);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (23, 'Sorriso', 11);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (24, 'Gestos', 11);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (25, 'TCP', 12);
-INSERT INTO opcao (idOpcao, descricao, idSondagem) VALUES (26, 'UDP', 12);
+INSERT INTO opcao (descricao, IdSondagem) VALUES ('Queijos', 1);
+INSERT INTO opcao (descricao, IdSondagem) VALUES ('B003', 1);
+INSERT INTO opcao (descricao, IdSondagem) VALUES ('B330', 1);
+INSERT INTO opcao (descricao, IdSondagem) VALUES ('Biblioteca', 1);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Prog Rock', 2);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Epic', 2);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Jaguar', 3);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Fantasee', 3);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Bayern', 4);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Real Madrid', 4);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('ISEP finos a 20 centimos', 5);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Fim de ano', 5);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Da hustle', 6);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Klay', 6);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Maya Jane Coles', 7);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Richie Hawtin', 7);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('PHP', 8);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Javascript', 8);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('A*', 9);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Uniform Cost - Branch & Bound', 9);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Analise semantica', 10);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Analise lexical', 10);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Sorriso', 11);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('Gestos', 11);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('TCP', 12);
+INSERT INTO opcao (descricao, idSondagem) VALUES ('UDP', 12);
 
 -- Tabela "Comentario"
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (1, 'LoLOlOLolOloLol', '2016-07-01', 3, 1, NULL);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (2, 'bruce fucking lee', '2016-08-01', 3, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (3, 'jackie jan > bruce lee', '2016-06-24', 2, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (4, 'ahahahah que riso', '2016-08-11', 2, 1, 1);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (5, 'eargasm', '2016-07-12', 1, 2, NULL);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (6, 'boa cena', '2016-07-30', 2, 2, 5);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (7, 'adoro adoro adoro', '2016-08-19', 2, 2, 5);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (8, 'que grandes sons!!', '2016-07-20', 1, 2, 5);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (9, 'quatrocentos e vinte', '2016-08-12', 1, 3, NULL);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (10, 'oh yes oh yes', '2016-09-29', 2, 3, 9);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (11, 'fantastic fantastic', '2016-08-30', 2, 3, 9);
-INSERT INTO comentario (IdComentario, texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES (12, 'hahahhaah i love you', '2016-09-19', 1, 3, 9);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('LoLOlOLolOloLol', '2016-07-01', 3, 1, NULL);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('bruce fucking lee', '2016-08-01', 3, 1, 1);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('jackie jan > bruce lee', '2016-06-24', 2, 1, 1);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('ahahahah que riso', '2016-08-11', 2, 1, 1);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('eargasm', '2016-07-12', 1, 2, NULL);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('boa cena', '2016-07-30', 2, 2, 5);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('adoro adoro adoro', '2016-08-19', 2, 2, 5);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('que grandes sons!!', '2016-07-20', 1, 2, 5);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('quatrocentos e vinte', '2016-08-12', 1, 3, NULL);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('oh yes oh yes', '2016-09-29', 2, 3, 9);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('fantastic fantastic', '2016-08-30', 2, 3, 9);
+INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('hahahhaah i love you', '2016-09-19', 1, 3, 9);
 
 -- Tabela "Seguidor"
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 1, '2016-06-23');
@@ -657,18 +663,18 @@ INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (11, 1, TR
 INSERT INTO comentariovoto (IdComentario, IdVotante, positivo) VALUES (12, 2, TRUE);
 
 -- Tabela "Album"
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(1, 'First Session', 'Brainstorming and Meetup', 1);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(2, 'Second Session', 'Games', 1);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(3, 'Third Session', 'Bye bye' , 1);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(4, 'Progressive Rock', 'Pink Floyd, Led Zeppelin, King Crimson, Camel', 2);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(5, 'Epic Music',  'Hans Zimmer, Thomas Bergersen, Audiomachine, Two Steps From Hell', 2);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(6, 'Malucos', 'Os loucos da festa', 3);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(7, 'Final Milao', 'Highlights', 4);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(8, 'Segundo dia neopop', 'Matador, pan pot, etc..', 6);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(9, 'Artefactos', 'Exemplos dos diversos artefatos' , 8);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(10, 'ISEP - finos a 20 centimos', 'Melhores momentos deste festão', 5);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(11, 'Material apoio',  'Screenshots para resolver bug do bootstrapping duma network', 12);
-INSERT INTO album (idAlbum, nome, descricao, idEvento) VALUES(12, 'Neopop all days', 'As melhores fotos desta ediçao', 7);
+INSERT INTO album (nome, descricao, idEvento) VALUES('First Session', 'Brainstorming and Meetup', 1);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Second Session', 'Games', 1);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Third Session', 'Bye bye' , 1);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Progressive Rock', 'Pink Floyd, Led Zeppelin, King Crimson, Camel', 2);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Epic Music',  'Hans Zimmer, Thomas Bergersen, Audiomachine, Two Steps From Hell', 2);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Malucos', 'Os loucos da festa', 3);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Final Milao', 'Highlights', 4);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Segundo dia neopop', 'Matador, pan pot, etc..', 6);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Artefactos', 'Exemplos dos diversos artefatos' , 8);
+INSERT INTO album (nome, descricao, idEvento) VALUES('ISEP - finos a 20 centimos', 'Melhores momentos deste festão', 5);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Material apoio',  'Screenshots para resolver bug do bootstrapping duma network', 12);
+INSERT INTO album (nome, descricao, idEvento) VALUES('Neopop all days', 'As melhores fotos desta ediçao', 7);
 
 -- Tabela "Imagem"
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('session1.jpg', '2016-12-30', 1);
@@ -684,7 +690,7 @@ INSERT INTO imagem(caminho, data, idAlbum) VALUES('alberto.jpg', '2016-11-29', 6
 INSERT INTO imagem(caminho, data, idAlbum) VALUES('gertrudes.jpg', '2016-11-24', 6);
 
 -- Tabela "Administrador
-INSERT INTO Administrador (username, email, password) VALUES ('theboss', 'theboss@gg.bb', 'queriasbatatasfrias');
+INSERT INTO Administrador(username, email, password) VALUES('theboss', 'theboss@gg.bb', 'queriasbatatasfrias');
 INSERT INTO Administrador(username, email, password) VALUES('magical', 'unicorn@blue.sky', '12314nanananana');
 INSERT INTO Administrador(username, email, password) VALUES('major', 'majorbeast@gmail.com', 'majorcontrollingthezone');
 -- END OF INSERTS
