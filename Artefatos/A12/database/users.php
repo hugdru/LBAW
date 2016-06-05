@@ -73,8 +73,7 @@ function getPhoto($id)
 function getCountryList()
 {
     global $conn;
-
-    $query = "SELECT idpais,nome FROM pais ORDER BY idpais ASC";
+    $query = "SELECT idpais, nome FROM pais ORDER BY idpais ASC";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     return $stmt->fetchAll();

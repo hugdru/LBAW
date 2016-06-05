@@ -35,9 +35,9 @@ $fblink = htmlspecialchars($loginUrl);
 
 $smarty->assign('fblink', $fblink);
 
-$list = getCountryList();
+$countryList = getCountryList();
 
-$smarty->assign('list', $list);
+$smarty->assign('countryList', $countryList);
 
 if ($_GET["name"] && $_GET["email"] && $_GET["id"]) {
     $smarty->assign('name', $_GET["name"]);

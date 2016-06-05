@@ -26,22 +26,22 @@
 
         <div id="username_group" class="form-group">
             <label id="username_label" for="username">Username</label>
-            <input name="username" type="text" class="form-control" id="username">
+            <input name="{$actionVars['username']}" type="text" class="form-control" id="username">
         </div>
 
         <div class="form-group">
-            <label for="eml">Email Address</label>
-            <input name="email" type="email" class="form-control" id="email" {if $email}value="{$email}"{/if}>
+            <label for="email">Email Address</label>
+            <input name="{$actionVars['email']}" type="email" class="form-control" id="email" {if $email}value="{$email}"{/if}>
         </div>
 
         <div class="form-group password_group">
-            <label for="pwd1" id="password_label">Password</label>
-            <input name="password" type="password" class="form-control" id="password">
+            <label for="password" id="password_label">Password</label>
+            <input name="{$actionVars['password']}" type="password" class="form-control" id="password">
         </div>
 
         <div class="form-group password_group">
-            <label for="pwd2">Password (Repeat)</label>
-            <input name="repeat_password" type="password" class="form-control" id="passwordRepeat">
+            <label for="passwordRepeat">Password (Repeat)</label>
+            <input name="{$actionVars['passwordRepeat']}" type="password" class="form-control" id="passwordRepeat">
         </div>
 
         <div class="form-group">
@@ -56,12 +56,12 @@
 
         <div class="form-group">
             <label for="country">Your country:</label>
-            <select name="pais" id="country" class="form-control">
-                {foreach from=$list item='item'}
-                    {if $item['idpais'] eq 180}
-                        <option selected="selected" value='{$item["idpais"]}'>{$item["nome"]}</option>
+            <select name="{$actionVars['country']}" id="country" class="form-control">
+                {foreach from=$countryList item='country'}
+                    {if $country['idpais'] eq 180}
+                        <option selected="selected" value='{$country["idpais"]}'>{$country["nome"]}</option>
                     {else}
-                        <option value='{$item["idpais"]}'>{$item["nome"]}</option>
+                        <option value='{$country["idpais"]}'>{$country["nome"]}</option>
                     {/if}
                 {/foreach}
             </select>

@@ -82,7 +82,6 @@ if ($_FILES['file']) {
 if ($_POST["facebook_photo"]) {
     $url = $_POST["facebook_photo"];
     $foto = "images/" . $username . '.jpg';
-
     copy($url, $BASE_DIR . $foto);
 }
 
