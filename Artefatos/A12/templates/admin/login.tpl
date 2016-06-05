@@ -8,10 +8,10 @@
 
 <!-- Content Start -->
 {if $alert eq true}
-<div class="alert alert-danger">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Login Failed</strong> : {$alert_message}
-</div>
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Login Failed</strong> : {$alert_message}
+    </div>
 {/if}
 
 <div class="accountField">
@@ -26,7 +26,7 @@
             <label for="pwd">Password</label>
             <input name="admin_password" type="password" class="form-control" id="pwd">
         </div>
-        
+
         <div class="btn-group" style="width: 100%">
             <button type="submit" style="width: 80%" class="btn btn-primary">Login</button>
             <a class="btn btn-primary" style="width: 20%" href="{$BASE_URL}" title="Return to Eventbook">

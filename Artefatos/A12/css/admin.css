@@ -1,15 +1,15 @@
-.panel_title{
+.panel_title {
     font-size: 1.5em;
 }
 
-.panel_options{
+.panel_options {
     margin-top: 25px;
 }
 
-.panel_list{
+.panel_list {
     margin-top: 25px;
 }
 
-tbody > tr:hover{
+tbody > tr:hover {
     background-color: rgb(241, 241, 241);
 }

@@ -11,13 +11,15 @@
 <!-- Content Start -->
 
 <div class="accountField">
-    <h1 style="padding: 0px; margin: 0px; margin-bottom: 20px">Register Account</h1> 
+    <h1 style="padding: 0px; margin: 0px; margin-bottom: 20px">Register Account</h1>
 
     <form role="form" action="{$action}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name" style="width: 100%">
                 Name
-                <a class="pull-right btn btn-default btn-xs" href="{$fblink}"><img style="height: 1.5em; vertical-align: top;" src="{$BASE_URL}images/facebook.png"> Import data from Facebook</a>
+                <a class="pull-right btn btn-default btn-xs" href="{$fblink}"><img
+                            style="height: 1.5em; vertical-align: top;" src="{$BASE_URL}images/facebook.png"> Import
+                    data from Facebook</a>
             </label>
             <input name="nome" type="text" class="form-control" id="name" {if $name}value="{$name}"{/if}>
         </div>
@@ -53,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            <label for="country">Your country:</label>                    
+            <label for="country">Your country:</label>
             <select name="pais" id="country" class="form-control">
                 {foreach from=$list item='item'}
                     {if $item['idpais'] eq 180}
@@ -65,7 +67,7 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Register</button>                
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
     </form>
 </div>
 

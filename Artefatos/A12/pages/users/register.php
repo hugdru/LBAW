@@ -39,7 +39,7 @@ $list = getCountryList();
 
 $smarty->assign('list', $list);
 
-if($_GET["name"] && $_GET["email"] && $_GET["id"]){
+if ($_GET["name"] && $_GET["email"] && $_GET["id"]) {
     $smarty->assign('name', $_GET["name"]);
     $smarty->assign('email', $_GET["email"]);
 
