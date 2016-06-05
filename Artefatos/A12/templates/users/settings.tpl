@@ -39,11 +39,23 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <form role="form">
-            <h3>Profile: Picture</h3>
+        <form method="post" action="{$actionUpdatePhoto}" role="form">
+            <h3>Change Picture</h3>
+            <input type="hidden" name="{$actionUpdatePhotoVars["idutilizador"]}"
+                   value="{$smarty.session.idutilizador}">
+
             <div class="form-group">
-                <input type="file" class="form-control-static">
+                <label for="currentPicture">Current Picture</label>
+                <img class="img-responsive img-circle" style="min-width: 100%" src="{$BASE_URL}{$smarty.session.foto}"/>
             </div>
+
+            <div class="form-group">
+                <label for="newPicture">New Picture</label>
+                <div class="form-group">
+                    <input type="file" class="form-control-static">
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>

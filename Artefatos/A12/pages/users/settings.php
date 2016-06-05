@@ -14,6 +14,16 @@ $smarty->assign('actionUpdatePasswordVars', array(
         "newRepeatPassword" => "newRepeatPassword"
     )
 );
+
+$smarty->assign('actionUpdatePhoto', $BASE_URL . "action/users/updatePhoto.php");
+
+$smarty->assign('actionUpdatePhotoVars', array(
+    "idutilizador" => "idutilizador",
+        "photo" => "photo",
+        "newPhoto" => "newPhoto"
+)
+);
+
 $smarty->assign('passwordReply', $_GET["passwordReply"]);
 
 $smarty->display('users/settings.tpl');

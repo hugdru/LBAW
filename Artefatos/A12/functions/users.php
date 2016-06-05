@@ -29,7 +29,12 @@ function login($username, $password)
                 if ($field === 'password') {
                     continue;
                 }
-                $_SESSION[$field] = $value;
+                if ($field === "idpais"){
+                    $_SESSION["idpais"] = getCountryById($value);
+                }
+                else {
+                    $_SESSION[$field] = $value;
+                }
             }
             session_regenerate_id(true);
             return true;

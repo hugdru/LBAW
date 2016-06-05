@@ -11,7 +11,8 @@ $smarty->assign('actionVars', array(
         "passwordRepeat" => "repeat_password",
         "email" => "email",
         "country" => "pais",
-        "file" => "file"
+        "file" => "file",
+        "datacriacao" => "datacriacao"
     )
 );
 
