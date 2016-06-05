@@ -10,50 +10,62 @@
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
 
-
 <div class="accountField">
-    <h1>Register Account</h1>
+    <h1 style="padding: 0px; margin: 0px; margin-bottom: 20px">Register Account</h1> 
 
     <form role="form" action="{$action}" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="name">Name</label>
-            <input name="{$actionVars['name']}" type="text" class="form-control" id="name">
+            <label for="name" style="width: 100%">
+                Name
+                <a class="pull-right btn btn-default btn-xs" href="{$fblink}"><img style="height: 1.5em; vertical-align: top;" src="{$BASE_URL}images/facebook.png"> Import data from Facebook</a>
+            </label>
+            <input name="nome" type="text" class="form-control" id="name" {if $name}value="{$name}"{/if}>
         </div>
 
         <div id="username_group" class="form-group">
             <label id="username_label" for="username">Username</label>
-            <input name="{$actionVars['username']}" type="text" class="form-control" id="username">
+            <input name="username" type="text" class="form-control" id="username">
         </div>
 
         <div class="form-group">
             <label for="eml">Email Address</label>
-            <input name="{$actionVars['email']}" type="email" class="form-control" id="email">
+            <input name="email" type="email" class="form-control" id="email" {if $email}value="{$email}"{/if}>
         </div>
 
         <div class="form-group password_group">
             <label for="pwd1" id="password_label">Password</label>
-            <input name="{$actionVars['password']}" type="password" class="form-control" id="password">
+            <input name="password" type="password" class="form-control" id="password">
         </div>
 
         <div class="form-group password_group">
             <label for="pwd2">Password (Repeat)</label>
-            <input name="{$actionVars['passwordRepeat']}" type="password" class="form-control" id="passwordRepeat">
+            <input name="repeat_password" type="password" class="form-control" id="passwordRepeat">
         </div>
 
         <div class="form-group">
             <label for="file">Profile photo</label>
-            <input type="file" name="{$actionVars['file']}" placeholder="Optional">
+            {if $photo}
+                <input type="hidden" name="facebook_photo" value="{$photo}">
+                <img class="img-circle" style="width: 100px; height: 100px" src="{$photo}">
+            {else}
+                <input type="file" name="file" placeholder="Optional">
+            {/if}
         </div>
 
         <div class="form-group">
-            <label for="country">Your country:</label>
-            <select name="{$actionVars['country']}" id="country" class="form-control">
-                <option value="180">Portugal</option>
-                <option value="10">Country ID:10</option>
+            <label for="country">Your country:</label>                    
+            <select name="pais" id="country" class="form-control">
+                {foreach from=$list item='item'}
+                    {if $item['idpais'] eq 180}
+                        <option selected="selected" value='{$item["idpais"]}'>{$item["nome"]}</option>
+                    {else}
+                        <option value='{$item["idpais"]}'>{$item["nome"]}</option>
+                    {/if}
+                {/foreach}
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary btn-block">Register</button>                
     </form>
 </div>
 

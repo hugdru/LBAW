@@ -9,3 +9,7 @@
 .panel_list{
     margin-top: 25px;
 }
+
+tbody > tr:hover{
+    background-color: rgb(241, 241, 241);
+}

@@ -10,7 +10,7 @@
 <!-- Content Start -->
 <div class="row">
     <div id="profile-imgbox" class="col-md-4">
-        <img class="img-responsive img-circle" style="min-width: 100%" src="{$BASE_URL}{$marty.session.foto}"/>
+        <img class="img-responsive img-circle" style="min-width: 100%" src="{$BASE_URL}{$smarty.session.foto}"/>
     </div>
     <div id="profile-detailbox" class="col-md-8">
         <h2>{$smarty.session.username}</h2>
