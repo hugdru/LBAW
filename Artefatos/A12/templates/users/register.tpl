@@ -31,18 +31,18 @@
         </div>
 
         <div class="form-group password_group">
-            <label for="pwd1" id="password_label">Password</label>
+            <label for="password" id="password_label">Password</label>
             <input name="{$actionVars['password']}" type="password" class="form-control" id="password">
         </div>
 
         <div class="form-group password_group">
-            <label for="pwd2">Password (Repeat)</label>
+            <label for="passwordRepeat">Password (Repeat)</label>
             <input name="{$actionVars['passwordRepeat']}" type="password" class="form-control" id="passwordRepeat">
         </div>
 
         <div class="form-group">
             <label for="file">Profile photo</label>
-            <input type="file" name="{$actionVars['file']}" placeholder="Optional">
+            <input type="file" name="{$actionVars['file']}" placeholder="Optional" id="file">
         </div>
 
         <div class="form-group">
