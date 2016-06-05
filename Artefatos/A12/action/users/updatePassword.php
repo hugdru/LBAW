@@ -19,7 +19,6 @@ $newRepeatPassword = $_POST['newRepeatPassword'];
 
 // 0 Success, 1 New Passwords mismatch, 2 Authentication failure
 
-// Check if new == confirm
 $errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?passwordReply=";
 
 if ($idutilizador != $_SESSION['idutilizador']) {

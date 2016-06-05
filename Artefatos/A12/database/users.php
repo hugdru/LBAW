@@ -4,7 +4,18 @@ function insertUser($nome, $username, $password, $email, $pais, $foto)
     global $conn;
     $query = "INSERT INTO Utilizador(nome, username, password, email, idPais, foto) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    return $stmt->execute([$nome, $username, $password, $email, $pais, $foto]);
+    if ($stmt->execute([$nome, $username, $password, $email, $pais, $foto]) === false) {
+        return false;
+    } else {
+        return $conn->lastInsertId("utilizador_idutilizador_seq");
+    }
+}
+
+function updateUserPhoto($idutilizador, $imagePath) {
+    global $conn;
+    $update = "UPDATE utilizador SET foto = ? WHERE idutilizador = ?";
+    $stmt = $conn->prepare($update);
+    return $stmt->execute(array($imagePath, $idutilizador)) !== false;
 }
 
 function getUserByUsername($username)

@@ -19,3 +19,5 @@ templates_c
 !.htaccess
 extra/postgresdb/
 /Artefatos/A12/nbproject/
+/Artefatos/A12/data/event/
+/Artefatos/A12/data/users/

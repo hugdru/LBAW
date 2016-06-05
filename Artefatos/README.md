@@ -1,36 +1,36 @@
-#### A9 ####
-  * (DONE) Juntar Módulos 2 e 3
-  * Juntar recursos todos do Módulo 4 nma só pag
-  * (DONE) Mudar grupo VISITANTE para PUBLICO
-  * (DONE) IMPORTANTE: Acrescentar tabelas para páginas de ação. Cada ação prática no site é composta por uma página de vista (interface) e uma página de ação (sem interface), cada uma delas deve ter uma tabela
-  * (DONE) IMPORTANTE: Ver que ações devem ser feitas por AJAX e acrescentar respetiva resposta JSON (ação de classificar, votar; pedido para saber se há novos comentários, pesquisas)
-  * (DONE) Ver tabela de edição de perfil
+# LBAW1522
 
-##### TODO (A7): #####
-  * Indexes nas chaves estrangeiras nas tabelas mais usadas com hash -----> chaves externas no idevento de comentarios, albuns e sondagens
-  * Estudo da carga de sistema por tabela, previsão de carga; (nome da relação | tabela) | tamanho (esperado | estimado) | justificação --------> ORDEM DE GRANDEZA EM POTENCIAS DE 10
-  * Rever trigger de partcipação/classificação
+## TODO's
+
+ Items to verify or prepare in the development and presentation of the final product.
+
+    Implement user management.
+    Implement support for mobile devices.
+    Implement an information search system using the full-text search features of PostgreSQL.
+    Implementing online assistance (e.g. help online) in the product.
+    Ensure isolation of various system layers (SQL, PHP, and HTML/CSS/JSON) with technologies such as PDO and Smarty.
+    Implement an architecture to handle internal errors.
+    Use AJAX in web pages.
+    Validate data entered by the user in forms using HTML5.
+    Validate data entered by the user in forms using JavaScript.
+    Validate data entered by the user in forms using PHP.
+    Implement access control.
+    Check the HTML and CSS using the W3C validation tools.
+    Check the accessibility of interfaces using automated tools.
+    Check the usability of the product based on lists of common web usability problems.
+    Remove test and development comments from source code.
+    Remove temporary or unused files from the delivered source code.
+    Include the source code in a single .zip file attached in the wiki page of the product.
+    Include a list of features in the product wiki page, indicating the implementation status of each feature (as a percentage).
+    Display the URL of the product on the wiki page.
+    Include product access credentials (with different levels of permissions) on the wiki page.
+    Prepare and include in the wiki page a promotional video of the product (5 minutes maximum).
+    Remove test data from the database.
+    Populate the database with good (realistic) examples.
+    Preparing script for product demonstratio
 
 
-#### (DONE) A11 ####
-* Cada instrução SQL [SQLXXX] deve ser representada por uma tabela: L1 - Nome. Ex: "SQL101 - Login"; L2 - Descrição; L3 - Código/Instrução/transação SQL; L4 - Referência para o recurso que utiliza a instrução/transação.
-* TRANSAÇÕES: são conjuntos de instruções SQL que só fazem sentido como um todo. Não podem ser interrompidas a meio.
-* Identificar as transações necessárias para o site e explorar isso exaustivamente
-* Identificar o nível de isolamento para cada ação
-
-##### (DONE) Lista de transações #####
-* Aceitar convite: Apaga a entrada do convite e cria a entrada da participação e cria a entrada de notificação
-* N1: Criação de evento para subscritores do user
-* N2: Participação de evento para anfitriões do evento
-* N3: Participação de evento para subscritores do user
-* N4: Receção de convite
-* N5: Comentar evento para anfitriões do evento
-* N6: Comentário-resposta para o comentador do comentário-pai
-* N7: Alerta de pedido para seguir
-* N8: Alerta de pedido para seguir aceite
-
-
-### TODO ###
+#### TODO
 ---------- REVISAO PROFESSOR -----------
 * Editar Perfil
 * Imagem

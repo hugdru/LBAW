@@ -2,14 +2,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Libraries -->
-<link rel="stylesheet" href="{$BASE_URL}lib/bootstrap/css/bootstrap.css">
-<script src="{$BASE_URL}lib/bootstrap/js/jquery-1.12.1.js">
-    //JQuery is included before Bootstrap, to prevent issues.
-</script>
-<script src="{$BASE_URL}lib/bootstrap/js/bootstrap.js">
-    //The Bootstrap Framework
-</script>
+<script type="text/javascript" src="{$BASE_URL}lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="{$BASE_URL}lib/moment/moment.min.js"></script>
+<script type="text/javascript" src="{$BASE_URL}lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{$BASE_URL}lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 
+<link rel="stylesheet" href="{$BASE_URL}lib/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="{$BASE_URL}lib/bootstrap/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="{$BASE_URL}lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
 
 <!-- Application -->
 <link rel="stylesheet" href="{$BASE_URL}css/main.css">

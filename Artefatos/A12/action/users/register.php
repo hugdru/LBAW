@@ -66,27 +66,79 @@ if (checkIfEmailExists($email)) {
     exit();
 }
 
-$foto = "images/avatar_default.png";
-if ($_FILES['file']) {
-    $postFoto = $_FILES['file'];
+// FILE HANDLING
+$imagePath = "data/default/foto.png";
+$imageFilename = null;
+$fotoFile = $_FILES['file'];
+$fotoExists = $fotoFile && $fotoFile['tmp_name'] !== "";
+if ($fotoExists) {
+    if (!isset($fotoFile['error']) || is_array($fotoFile['error'])) {
+        throw new RuntimeException('Invalid parameters.');
+    }
 
-    if (getimagesize($postFoto["tmp_name"]) !== false) {
-        $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+    switch ($fotoFile['error']) {
+        case UPLOAD_ERR_OK:
+            break;
+        case UPLOAD_ERR_NO_FILE:
+            throw new RuntimeException('No file sent.');
+        case UPLOAD_ERR_INI_SIZE:
+        case UPLOAD_ERR_FORM_SIZE:
+            throw new RuntimeException('Exceeded filesize limit.');
+        default:
+            throw new RuntimeException('Unknown errors.');
+    }
 
-        $foto = "images/" . $username . '.' . $ext;
+    if ($fotoFile['size'] > 1000000) {
+        throw new RuntimeException('Exceeded filesize limit.');
+    }
 
-        move_uploaded_file($_FILES["file"]["tmp_name"], $BASE_DIR . $foto);
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $ext = array_search(
+        $finfo->file($fotoFile['tmp_name']),
+        array(
+            'jpg' => 'image/jpeg',
+            'png' => 'image/png',
+            'gif' => 'image/gif',
+        ),
+        true
+    );
+
+    if ($ext === false) {
+        throw new RuntimeException('Invalid file format.');
+    } else {
+        $imageFilename = sha1_file($fotoFile['tmp_name']) . "." . $ext;
     }
 }
+// END OF FILE HANDLING
 
-if ($_POST["facebook_photo"]) {
-    $url = $_POST["facebook_photo"];
-    $foto = "images/" . $username . '.jpg';
-    copy($url, $BASE_DIR . $foto);
-}
+// TODO FIX
+//if ($_POST["facebook_photo"]) {
+//    $url = $_POST["facebook_photo"];
+//    $foto = $BASE_URL . "images/" . $username . '.jpg';
+//    copy($url, $BASE_DIR . $foto);
+//}
 
 $hashedPassword = create_hash($password);
-insertUser($nome, $username, $hashedPassword, $email, $pais, $foto);
+$idutilizador = insertUser($nome, $username, $hashedPassword, $email, $pais, $imagePath);
+if ($idutilizador !== false) {
+    if ($fotoExists) {
+        $imageDir = "data/users/" . $idutilizador . "/";
+        if (!is_dir($BASE_DIR . $imageDir)) {
+            mkdir($BASE_DIR . $imageDir, 0711, true);
+        }
+        $imagePath = $imageDir . $imageFilename;
+        if (updateUserPhoto($idutilizador, $imagePath) === false) {
+            throw new RuntimeException('Failed to insert image path on database.');
+        };
+        if (!move_uploaded_file($fotoFile['tmp_name'], $BASE_DIR . $imagePath)) {
+            throw new RuntimeException('Failed to move uploaded file.');
+        }
+    }
+} else {
+    $_SESSION['error_messages'][] = 'Failed to create Utilizador';
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 
 if (login($username, $password)) {
     $_SESSION['success_messages'][] = 'Login successful';

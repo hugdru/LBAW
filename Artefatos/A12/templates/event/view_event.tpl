@@ -54,7 +54,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}data/default/foto.png'>
                 <p>Peter Commenter</p>
             </div>
         </td>
@@ -69,7 +69,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}data/default/foto.png'>
                 <p>Professor Prototipe</p>
             </div>
         </td>
@@ -86,7 +86,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}data/default/foto.png'>
                 <p>May Pockets</p>
             </div>
         </td>
@@ -102,7 +102,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}data/default/foto.png'>
                 <p>Mr Mister</p>
             </div>
         </td>
@@ -118,7 +118,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='{$BASE_URL}images/avatar_default.png'>
+                <img class='img-circle avatar' src='{$BASE_URL}data/default/foto.png'>
                 <p>Example Guy</p>
             </div>
         </td>
