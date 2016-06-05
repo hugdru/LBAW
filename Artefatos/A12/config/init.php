@@ -9,8 +9,7 @@ error_reporting(E_ERROR | E_WARNING);
 $BASE_DIR = '/opt/lbaw/lbaw1522/public_html/final/';
 $BASE_URL = '/~lbaw1522/final/';
 
-//Facebook Secrets (DO NOT SHOW THESE TO YOUR MOTHER)
-$FACEBOOK_APP_ID = '144439699302501';
+g$FACEBOOK_APP_ID = '144439699302501';
 $FACEBOOK_APP_SECRET = 'db03211a6c451296935ed61d2de6fd6e';
 
 $conn = new PDO('pgsql:host=dbm.fe.up.pt;dbname=lbaw1522', 'lbaw1522', 'snJa!*cBqPJ');
