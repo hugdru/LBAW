@@ -9,10 +9,10 @@
 {include file="common/content-top.tpl"}
 <!-- Content Start -->
 {if $passwordReply === 0}
-<div class="alert alert-success">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Password Update</strong> : Successful
-</div>
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Password Update</strong> : Successful
+    </div>
 {elseif $passwordReply === 1}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -84,7 +84,8 @@
     <div class="col-sm-4">
         <form method="post" action="{$actionUpdatePassword}" role="form">
             <h3>Change Password</h3>
-            <input type="hidden" name="{$actionUpdatePasswordVars["idutilizador"]}" value="{$smarty.session.idutilizador}">
+            <input type="hidden" name="{$actionUpdatePasswordVars["idutilizador"]}"
+                   value="{$smarty.session.idutilizador}">
 
             <div class="form-group">
                 <label for="originalPassword">Current Password</label>

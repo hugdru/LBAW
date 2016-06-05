@@ -28,9 +28,12 @@
         <p id="hosts">Esteves Promotor, Manel Moderador</p>
         <label for="description"><i class="glyphicon glyphicon-comment"></i> Description</label>
         <p id="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio ipsum, dapibus vel hendrerit eu, rhoncus a nisi.
-            Donec quis dolor non lectus pretium faucibus in et risus. Quisque in est metus. In ullamcorper dapibus fermentum.
-            Sed tincidunt metus a ipsum dictum, eu hendrerit nunc ultricies. Sed et enim in nibh fringilla ullamcorper tempus nec felis.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio ipsum, dapibus vel hendrerit eu, rhoncus a
+            nisi.
+            Donec quis dolor non lectus pretium faucibus in et risus. Quisque in est metus. In ullamcorper dapibus
+            fermentum.
+            Sed tincidunt metus a ipsum dictum, eu hendrerit nunc ultricies. Sed et enim in nibh fringilla ullamcorper
+            tempus nec felis.
             Phasellus porttitor sit amet ligula in luctus. Sed hendrerit arcu ac velit laoreet lacinia.
         </p>
         <div class="row">
@@ -73,7 +76,9 @@
         <td>
             <div class="comment">
                 <strong class="visible-xs">Professor Prototipe</strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam convallis nec lectus id congue. Ut at velit lectus. Suspendisse feugiat ante in nibh dignissim, et consequat neque commodo. Sed at erat eget mauris facilisis sagittis ut quis lorem. Nam eu.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam convallis nec lectus id congue. Ut at
+                velit lectus. Suspendisse feugiat ante in nibh dignissim, et consequat neque commodo. Sed at erat eget
+                mauris facilisis sagittis ut quis lorem. Nam eu.
             </div>
         </td>
     </tr>
@@ -88,7 +93,8 @@
         <td>
             <div class="comment">
                 <strong class="visible-xs">May Pockets</strong>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget justo magna. Praesent pellentesque dignissim felis, nec rutrum libero aliquam pulvinar. In hac habitasse platea.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget justo magna. Praesent pellentesque
+                dignissim felis, nec rutrum libero aliquam pulvinar. In hac habitasse platea.
             </div>
         </td>
     </tr>
@@ -127,7 +133,9 @@
     <tr>
         <td colspan="2" class="text-right">
             <p><textarea style="min-height: 100px;" class="form-control" placeholder="New Comment..."></textarea></p>
-            <p><button class="btn btn-primary">Post</button></p>
+            <p>
+                <button class="btn btn-primary">Post</button>
+            </p>
         </td>
     </tr>
 
