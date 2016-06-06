@@ -10,8 +10,3 @@ textarea{
     min-height: 100px;
     resize: none;
 }
-
-.btn-pull{
-    position: absolute;
-    bottom: 0px;
-}
