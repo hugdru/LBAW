@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <label for="timeanddate"> <i class="glyphicon glyphicon-time"></i> Time & Date</label>
-                <p id="timeanddate">{$event.datainicio|escape:'html'|date_format}</p>
+                <p id="timeanddate">{$event.datainicio|escape:'html'|date_format:"%H:%M, %A, %B %e, %Y"}</p>
             </div>
             <div class="col-sm-6">
                 <label for="location"><i class="glyphicon glyphicon-map-marker"></i> Location</label>
@@ -63,6 +63,7 @@
     </tr>
     {/foreach}
 
+    {if isset($smarty.session.username)}
     <!-- POST COMMENT AREA -->
     <tr>
         <td colspan="2" class="text-right">
@@ -72,6 +73,7 @@
             </p>
         </td>
     </tr>
+    {/if}
 
 </table>
 <!-- Content Finish -->

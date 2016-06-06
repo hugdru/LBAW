@@ -1,26 +1,26 @@
 <?php
 include_once('../../config/init.php');
 include_once($BASE_DIR . 'database/event.php');
-
-// TODO Get the event info and then assign it to a smarty variable also support paging
+include_once($BASE_DIR . 'functions/users.php');
 
 $id_event = $_GET['id'];
 
 $event = getEventById($id_event);
+
+if(!$event){
+    $_SESSION['error_messages'][] = 'Event ID not found!';
+    header('Location: '. $BASE_URL . 'pages/404.php', true, 301);
+    exit();
+}
+
 $comments_section = getCommentsSection($id_event);
 $albums =getPhotosAlbums($id_event);
 $poll = getEventPoll($id_event);
 $poll_results = getPollResults($id_event);
 $numpart = getParticipantsNumber($id_event);
 
-if(!$event){
-    http_response_code(404);
-    header('Location: '. $BASE_URL . 'pages/404.php', true, 301);
-    die();
-}
 
 //var_dump($event); exit;
-
 
 
 $smarty->assign('event', $event);
