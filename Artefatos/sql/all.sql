@@ -27,6 +27,7 @@ CREATE TABLE Utilizador(
   username VARCHAR(16) UNIQUE NOT NULL CHECK (username ~* '^[A-Za-z][A-Za-z0-9\.\-_]{2,15}$'),
   password TEXT NOT NULL CHECK (LENGTH(password) >= 8),
   foto TEXT,
+  descricao TEXT DEFAULT 'Hello, i\'m a test user for EventBook',
   datacriacao DATE NOT NULL DEFAULT(current_date),
   email VARCHAR(100) UNIQUE NOT NULL CHECK (email ~* '^[^\s@]+@[^\s@]+\.[^\s@.]+$'),
   idPais INTEGER NOT NULL REFERENCES Pais(idPais) ON DELETE SET NULL
