@@ -23,6 +23,13 @@ $smarty->assign('actionUpdatePhotoVars', array(
     )
 );
 
+$smarty->assign('countryList', getCountryList());
+$smarty->assign('actionUpdateCountry', $BASE_URL . "action/users/updateCountry.php");
+$smarty->assign('actionUpdateCountryVars', array(
+        "newCountry" => "newCountry"
+    )
+);
+
 $smarty->assign('actionUpdateDescription', $BASE_URL . "action/users/updateDescription.php");
 $smarty->assign('actionUpdateDescriptionVars', array(
         "oldDescription" => "oldDescription",
@@ -36,7 +43,7 @@ $smarty->assign('actionUpdateEmailVars', array(
     )
 );
 
-
+$smarty->assign('countryReply', $_GET["countryReply"]);
 $smarty->assign('passwordReply', $_GET["passwordReply"]);
 $smarty->assign('pictureReply', $_GET["pictureReply"]);
 $smarty->assign('descriptionReply', $_GET["descriptionReply"]);

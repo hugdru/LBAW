@@ -66,6 +66,13 @@
     </div>
 {/if}
 
+{if $countryReply === "0"}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Region Update</strong> : Successful
+    </div>
+{/if}
+
 
 <h1>Settings</h1>
 
@@ -104,10 +111,18 @@
     </div>
 
     <div class="col-sm-4">
-        <form role="form">
+        <form role="form" action="{$actionUpdateCountry}" method="post">
             <h3>Profile: Region</h3>
             <div class="form-group">
-                <input type="text" class="form-control" id="rgn" value="Portugal">
+                <select name="{$actionUpdateCountryVars['newCountry']}" id="country" class="form-control">
+                    {foreach from=$countryList item='country'}
+                        {if $country['idpais'] eq $smarty.session.idpais}
+                            <option selected="selected" value='{$country["idpais"]}'>{$country["nome"]}</option>
+                        {else}
+                            <option value='{$country["idpais"]}'>{$country["nome"]}</option>
+                        {/if}
+                    {/foreach}
+                </select>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Save</button>
         </form>

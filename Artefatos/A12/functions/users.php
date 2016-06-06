@@ -30,7 +30,8 @@ function login($username, $password)
                     continue;
                 }
                 if ($field === "idpais"){
-                    $_SESSION["idpais"] = getCountryById($value);
+                    $_SESSION["idpais"] = $value;
+                    $_SESSION["pais"] = getCountryById($value);
                 }
                 else {
                     $_SESSION[$field] = $value;
