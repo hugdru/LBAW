@@ -121,4 +121,12 @@ function getHosts($event_id)
     $stmt->execute(array($event_id));
     return $stmt->fetchAll();
 }
+
+function addUserToHosts($idutilizador, $idevento){
+    global $conn;
+    $query = "INSERT INTO Anfitriao(idevento,idanfitriao) VALUES(?,?)";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$idevento, $idutilizador]);
+    return $stmt->fetch();
+}
 ?>

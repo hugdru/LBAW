@@ -15,7 +15,6 @@ if (!isset($_FILES['newPhoto'])) {
 $newPhoto = $_FILES['newPhoto'];
 
 // 0 Success, 1 Picture not chosen, 2 Picture size exceeded
-
 $errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?pictureReply=";
 
 // FILE HANDLING
@@ -87,7 +86,7 @@ $imageDir = "data/users/" . $_SESSION["idutilizador"] . "/";
 if (file_exists($BASE_DIR . $_SESSION['foto'])) {
     $deleted = unlink($BASE_DIR . $_SESSION['foto']);
     if (!$deleted) {
-        throw new RuntimeException("asdasd");
+        throw new RuntimeException("Could not delete filesystem");
     }
 }
 $_SESSION['foto'] = $imagePath;

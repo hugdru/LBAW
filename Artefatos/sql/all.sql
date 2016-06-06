@@ -716,3 +716,4 @@ gin((
     setweight(to_tsvector('english', localizacao), 'B')
 ));
 -- END OF INDEXES
+

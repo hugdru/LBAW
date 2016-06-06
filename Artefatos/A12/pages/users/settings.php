@@ -23,16 +23,24 @@ $smarty->assign('actionUpdatePhotoVars', array(
     )
 );
 
-$smarty->assign('actionUpdateDescription', $BASE_URL . "action/users/updateDescriptions.php");
+$smarty->assign('actionUpdateDescription', $BASE_URL . "action/users/updateDescription.php");
 $smarty->assign('actionUpdateDescriptionVars', array(
         "oldDescription" => "oldDescription",
         "newDescription" => "newDescription"
     )
 );
 
+$smarty->assign('actionUpdateEmail', $BASE_URL . "action/users/updateEmail.php");
+$smarty->assign('actionUpdateEmailVars', array(
+        "newEmail" => "newEmail"
+    )
+);
+
 
 $smarty->assign('passwordReply', $_GET["passwordReply"]);
 $smarty->assign('pictureReply', $_GET["pictureReply"]);
+$smarty->assign('descriptionReply', $_GET["descriptionReply"]);
+$smarty->assign('emailReply', $_GET["emailReply"]);
 
 $smarty->display('users/settings.tpl');
 ?>

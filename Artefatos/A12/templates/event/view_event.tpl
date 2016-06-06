@@ -11,7 +11,7 @@
 <div class="row">
     <div id="event-imgbox" class="col-md-4">
         <h2>{$event.titulo|escape:'html'}</h2>
-        <img src="{$BASE_URL}{$event.capa}">
+        <img src="{$BASE_URL}{$event.capa}" class="img-thumbnail" alt="Capa" width="450" height="400">
     </div>
     <div id="event-detailbox" class="col-md-8">
         <h2>Details</h2>

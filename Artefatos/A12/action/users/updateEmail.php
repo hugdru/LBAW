@@ -6,7 +6,7 @@ require_once($BASE_DIR . 'functions/users.php');
 
 redirectIfNotLoggedIn($BASE_URL);
 
-if (!isset($_POST['newDescription'])) {
+if (!isset($_POST['newEmail'])) {
     $_SESSION['error_messages'][] = 'Parameters Missing';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $BASE_URL . "pages/users/settings.php");
@@ -14,15 +14,18 @@ if (!isset($_POST['newDescription'])) {
 }
 
 // 0 Success
-$errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?descriptionReply=";
 
-$newDescription = $_POST['newDescription'];
+$errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?emailReply=";
 
-if (updateDescription($_SESSION["idutilizador"], $newDescription))
-    $_SESSION["descricao"] = $newDescription;
+$newEmail = $_POST['newEmail'];
+
+if (updateEmail($_SESSION["idutilizador"], $newEmail))
+    $_SESSION["email"] = $newEmail;
 
 header($errorMessage . "0");
 exit();
 
+
+?>
 
 ?>

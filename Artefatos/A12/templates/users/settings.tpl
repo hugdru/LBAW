@@ -52,6 +52,20 @@
     </div>
 {/if}
 
+{if $descriptionReply === "0"}
+<div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Description Update</strong> : Successful
+</div>
+{/if}
+
+{if $emailReply === "0"}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Email Update</strong> : Successful
+    </div>
+{/if}
+
 
 <h1>Settings</h1>
 
@@ -82,7 +96,7 @@
         <form method="post" action="{$actionUpdateDescription}" role="form" enctype="multipart/form-data">
             <h3>Profile: Description</h3>
             <div class="form-group">
-                <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}" placeholder="{$smarty.session.descricao}"></textarea>
+                <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}">{$smarty.session.descricao}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
@@ -101,11 +115,11 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <form role="form">
+        <form method="post" action="{$actionUpdateEmail}" role="form" enctype="multipart/form-data">
             <h3>Change Email Address</h3>
             <div class="form-group">
                 <label for="eml">Email Address</label>
-                <input type="email" class="form-control" id="eml" value="someone@somewhere.whom">
+                <input type="email" class="form-control" id="eml" name="{$actionUpdateEmailVars["newEmail"]}" value="{$smarty.session.email}">
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>

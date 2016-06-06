@@ -110,6 +110,19 @@ function updatePhoto($idutilizador, $foto){
     return $stmt->execute([$foto, $idutilizador]);
 }
 
+function updateDescription($idutilizador, $descricao){
+    global $conn;
+    $query = "UPDATE utilizador SET descricao = ? WHERE idutilizador = ?";
+    $stmt = $conn->prepare($query);
+    return $stmt->execute([$descricao, $idutilizador]);
+}
 
+
+function updateEmail($idutilizador, $email){
+    global $conn;
+    $query = "UPDATE utilizador SET email = ? WHERE idutilizador = ?";
+    $stmt = $conn->prepare($query);
+    return $stmt->execute([$email, $idutilizador]);
+}
 
 ?>
