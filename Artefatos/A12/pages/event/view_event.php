@@ -18,9 +18,10 @@ $albums =getPhotosAlbums($id_event);
 $poll = getEventPoll($id_event);
 $poll_results = getPollResults($id_event);
 $numpart = getParticipantsNumber($id_event);
+$hosts = getHosts($id_event);
 
 
-//var_dump($event); exit;
+//var_dump($hosts); exit;
 
 
 $smarty->assign('event', $event);
@@ -29,6 +30,7 @@ $smarty->assign('media', $albums);
 $smarty->assign('poll', $poll);
 $smarty->assign('poll_results', $poll_results);
 $smarty->assign('number_part', $numpart);
+$smarty->assign('hosts', $hosts);
 $smarty->assign('currentPage', "view_event");
 $smarty->display('event/view_event.tpl');
 ?>

@@ -26,7 +26,7 @@
             </div>
         </div>
         <label for="hosts"> <i class="glyphicon glyphicon-user"></i> Host(s)</label>
-        <p id="hosts">Esteves Promotor, Manel Moderador</p>
+        <p id="hosts">{for $i=0 to $hosts|@count-1}{$hosts[$i]["nome"]|escape:'html'}{if $i != $hosts|@count-1}, {/if}{/for}</p>
         <label for="description"><i class="glyphicon glyphicon-comment"></i> Description</label>
         <p id="description">
             {$event.descricao|escape:'html'}
