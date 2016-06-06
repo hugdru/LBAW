@@ -108,4 +108,17 @@ function getParticipantsNumber($event_id)
     $stmt->execute(array($event_id));
     return $stmt->fetchColumn();
 }
+
+function getHosts($event_id)
+{
+    global $conn;
+    $stmt = $conn->prepare(
+        "SELECT Utilizador.nome FROM Utilizador
+        INNER JOIN Anfitriao
+        ON Utilizador.idUtilizador = Anfitriao.idAnfitriao
+        WHERE Anfitriao.idEvento = ?"
+    );
+    $stmt->execute(array($event_id));
+    return $stmt->fetchAll();
+}
 ?>
