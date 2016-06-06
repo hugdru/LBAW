@@ -2,7 +2,7 @@
 <html>
 <head>
     {include file="common/head.tpl" title="settings"}
-    <link rel="stylesheet" href="{$BASE_URL}css/home.css">
+    <link rel="stylesheet" href="{$BASE_URL}css/settings.css">
 </head>
 <body>
 {include file='common/navbar.tpl' currentPage="$currentPage"}
@@ -70,7 +70,7 @@
 <h1>Settings</h1>
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-height-pivot">
         <form method="post" action="{$actionUpdatePhoto}" role="form" enctype="multipart/form-data">
             <h3>Change Picture</h3>
             <input type="hidden" name="{$actionUpdatePhotoVars["idutilizador"]}"
@@ -78,7 +78,7 @@
 
             <div class="form-group">
                 <label for="currentPicture">Current Picture</label>
-                <img class="img-responsive img-circle" style="min-width: 100%" src="{$BASE_URL}{$smarty.session.foto}"/>
+                <img class="img-circle st-profile-img center-block" src="{$BASE_URL}{$smarty.session.foto}"/>
             </div>
 
             <div class="form-group">
@@ -92,40 +92,41 @@
         </form>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-height">
         <form method="post" action="{$actionUpdateDescription}" role="form" enctype="multipart/form-data">
             <h3>Profile: Description</h3>
             <div class="form-group">
-                <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}">{$smarty.session.descricao}</textarea>
+                <textarea class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}">{$smarty.session.descricao}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+
+            <button type="submit" class="btn btn-primary btn-pull">Save</button>
         </form>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-height">
         <form role="form">
             <h3>Profile: Region</h3>
             <div class="form-group">
                 <input type="text" class="form-control" id="rgn" value="Portugal">
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-pull">Save</button>
         </form>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-height">
         <form method="post" action="{$actionUpdateEmail}" role="form" enctype="multipart/form-data">
             <h3>Change Email Address</h3>
             <div class="form-group">
                 <label for="eml">Email Address</label>
                 <input type="email" class="form-control" id="eml" name="{$actionUpdateEmailVars["newEmail"]}" value="{$smarty.session.email}">
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-pull">Save</button>
         </form>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-height">
         <form method="post" action="{$actionUpdatePassword}" role="form">
             <h3>Change Password</h3>
             <input type="hidden" name="{$actionUpdatePasswordVars["idutilizador"]}"
@@ -149,11 +150,11 @@
                        name="{$actionUpdatePasswordVars["newRepeatPassword"]}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-pull">Save</button>
         </form>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-height">
         <form role="form">
             <h3>Notification Preferences</h3>
             <div class="form-group">
@@ -168,10 +169,20 @@
                     <label><input type="checkbox" value="">EventBook has recommended events for me</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-pull">Save</button>
         </form>
     </div>
 </div>
+            
+<script>
+    $(window).ready(function(){
+        $('.col-height').height($('.col-height-pivot').height());
+    });
+    
+    $(window).resize(function(){
+        $('.col-height').height($('.col-height-pivot').height());
+    });
+</script>
 
 <!-- Content Finish -->
 {include file="common/content-bottom.tpl"}

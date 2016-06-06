@@ -1,0 +1,17 @@
+.st-profile-img{
+    display: block;
+    box-shadow: 0px 0px 2px black;
+    
+    width: 20vmin;
+    height: 20vmin;
+}
+
+textarea{
+    min-height: 100px;
+    resize: none;
+}
+
+.btn-pull{
+    position: absolute;
+    bottom: 0px;
+}
