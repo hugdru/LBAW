@@ -8,38 +8,56 @@
 {include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file="common/content-top.tpl"}
 <!-- Content Start -->
-{if $passwordReply === 0}
+{if $passwordReply === "0"}
     <div class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update</strong> : Successful
     </div>
-{elseif $passwordReply === 1}
+{elseif $passwordReply === "1"}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : You can only change your password
     </div>
-{elseif $passwordReply === 2}
+{elseif $passwordReply === "2"}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : New Passwords Mistmatch
     </div>
-{elseif $passwordReply === 3}
+{elseif $passwordReply === "3"}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : Original Password is not correct
     </div>
-{elseif $passwordReply === 4}
+{elseif $passwordReply === "4"}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : New password should have between 8 and 100 characters
     </div>
 {/if}
 
+{if $pictureReply === "0"}
+<div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Picture Update</strong> : Successful
+</div>
+{elseif $pictureReply === "1"}
+<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Picture Update Error</strong> : You have to choose the picture
+</div>
+{elseif $pictureReply === "2"}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Picture Update Error</strong> : Picture size not valid. Upload files only with size under 10Mb
+    </div>
+{/if}
+
+
 <h1>Settings</h1>
 
 <div class="row">
     <div class="col-sm-4">
-        <form method="post" action="{$actionUpdatePhoto}" role="form">
+        <form method="post" action="{$actionUpdatePhoto}" role="form" enctype="multipart/form-data">
             <h3>Change Picture</h3>
             <input type="hidden" name="{$actionUpdatePhotoVars["idutilizador"]}"
                    value="{$smarty.session.idutilizador}">
@@ -52,7 +70,7 @@
             <div class="form-group">
                 <label for="newPicture">New Picture</label>
                 <div class="form-group">
-                    <input type="file" class="form-control-static">
+                    <input type="file" name="{$actionUpdatePhotoVars["newPhoto"]}" id="newPicture">
                 </div>
             </div>
 
@@ -61,10 +79,10 @@
     </div>
 
     <div class="col-sm-4">
-        <form role="form">
+        <form method="post" action="{$actionUpdateDescription}" role="form" enctype="multipart/form-data">
             <h3>Profile: Description</h3>
             <div class="form-group">
-                <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc">Hello, i'm a test user for EventBook</textarea>
+                <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}" placeholder="{$smarty.session.descricao}"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>

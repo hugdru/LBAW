@@ -16,15 +16,23 @@ $smarty->assign('actionUpdatePasswordVars', array(
 );
 
 $smarty->assign('actionUpdatePhoto', $BASE_URL . "action/users/updatePhoto.php");
-
 $smarty->assign('actionUpdatePhotoVars', array(
-    "idutilizador" => "idutilizador",
+        "idutilizador" => "idutilizador",
         "photo" => "photo",
         "newPhoto" => "newPhoto"
-)
+    )
 );
 
+$smarty->assign('actionUpdateDescription', $BASE_URL . "action/users/updateDescriptions.php");
+$smarty->assign('actionUpdateDescriptionVars', array(
+        "oldDescription" => "oldDescription",
+        "newDescription" => "newDescription"
+    )
+);
+
+
 $smarty->assign('passwordReply', $_GET["passwordReply"]);
+$smarty->assign('pictureReply', $_GET["pictureReply"]);
 
 $smarty->display('users/settings.tpl');
 ?>

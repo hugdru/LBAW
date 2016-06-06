@@ -103,12 +103,13 @@ function getCountryById($idPais){
         return false;
 }
 
-function updatePhoto($idUtilizador, $foto){
+function updatePhoto($idutilizador, $foto){
     global $conn;
     $query = "UPDATE utilizador SET foto = ? WHERE idutilizador = ?";
     $stmt = $conn->prepare($query);
-    return $stmt->execute([$foto, $idUtilizador]);
-
+    return $stmt->execute([$foto, $idutilizador]);
 }
+
+
 
 ?>

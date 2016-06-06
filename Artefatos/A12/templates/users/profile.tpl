@@ -14,7 +14,7 @@
     </div>
     <div id="profile-detailbox" class="col-md-8">
         <h2>{$smarty.session.nome}</h2>
-        <p id="desc">Hello, i'm a test user for EventBook</p>
+        <p id="desc">{$smarty.session.descricao}</p>
 
         <label for="region"> <i class="glyphicon glyphicon-map-marker"></i> Country</label>
         <p id="region">{$smarty.session.idpais}</p>

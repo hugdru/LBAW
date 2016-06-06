@@ -8,7 +8,7 @@
 {include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
-{if !isset($USERNAME)}
+{if !isset($smarty.session.username)}
     <h1>Welcome</h1>
     <p>Eventbook allows you to create and share events for any occasion!</p>
     <p>Creating an account is easy! And it only takes a minute or two.</p>
