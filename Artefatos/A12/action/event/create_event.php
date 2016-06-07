@@ -87,6 +87,7 @@ if ($capaExists) {
     }
 }
 
+
 $idEvento = insertEvent($titulo, $imagePath, $descricao, $localizacao, $dataInicio, $duracao, $publico, $_SESSION['idutilizador']);
 
 if ($idEvento !== false) {
