@@ -37,6 +37,19 @@
         <p id="stats">Events: Joined {$user["joins"]}, Hosted {$user["hosts"]}</p>
     </div>
 </div>
+{if $other}
+{if !$follows}
+    <div class="row">
+    <div class="going">
+        <form method="post" action="{$BASE_URL}action/users/followUser.php" role="form" enctype="multipart/form-data">
+            <input type="hidden" name="{$actionFollowUser["idSeguidor"]}" value="{$user.idutilizador}">
+            <input type="hidden" name="{$actionFollowUser["idSeguido"]}" value="{$ownId}">
+            <button type="submit" class="btn btn-success glyphicon glyphicon-bell"> Follow</button>
+        </form>
+    </div>
+</div>
+{/if}
+{/if}
         
 <!-- Content Finish -->
 {include file='common/content-bottom.tpl'}

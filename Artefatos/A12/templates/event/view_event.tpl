@@ -98,9 +98,7 @@
     </div>
 {else}
     <label for="intention">Register to join this event!</label>
-    <div id="edit-event">
-        <a type="button" role="button" href="{$BASE_URL}pages/users/register.php'" class="btn btn-primary" >Register</a>
-    </div>
+    <a type="button" role="button" href="{$BASE_URL}pages/users/register.php'" class="btn btn-primary" >Register</a>
 {/if}
 </div>
 <h2><i class="glyphicon glyphicon-comment"></i> Comments</h2>

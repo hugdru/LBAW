@@ -169,4 +169,25 @@ function getHostedEventsByUser($idutilizador){
         return false;
 }
 
+function followUser($idSeguidor, $idSeguido)
+{
+    global $conn;
+    
+    $stmt = $conn->prepare("INSERT INTO Seguidor(idSeguidor, idSeguido, DATA) VALUES (?, ?, CURRENT_TIMESTAMP)");
+    if ($stmt->execute(array($idSeguidor, $idSeguido)) === false) {
+        return false;
+    }
+    return true;
+}
+
+function isFollowing($idSeguidor, $idSeguido)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM Seguidor
+                            WHERE idSeguidor = ? AND idSeguido = ?");
+    return $stmt->fetch();
+}
+
+
 ?>

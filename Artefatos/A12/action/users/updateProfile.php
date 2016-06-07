@@ -12,8 +12,7 @@ if (!isset($_POST['csrf'])) {
     exit();
 }
 
-if (!isset($_POST['idutilizador'], $_POST['password'], $_POST['newPassword'], $_POST['newRepeatPassword']) && !isset($_POST["newEmail"])
-&& !isset($_POST["newDescription"]) && !isset($_FILES["newPhoto"])) {
+if (!isset($_POST['idutilizador'], $_POST['password'], $_POST['newPassword'], $_POST['newRepeatPassword'], $_POST["newEmail"], $_POST["newDescription"], $_FILES["newPhoto"])) {
     $_SESSION['error_messages'][] = 'Parameters Missing';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $BASE_URL . "pages/users/settings.php");
@@ -27,22 +26,6 @@ $updatePhoto = false;
 $updatePassword = false;
 $updateDescription = false;
 
-/*var_dump($_POST["password"]);
-echo "<br>";
-var_dump($_POST["newPassword"]);
-echo "<br>";
-var_dump($_POST["newRepeatPassword"]);
-echo "<br>";
-var_dump($_POST["newDescription"]);
-echo "<br>";
-var_dump($_POST["newEmail"]);
-echo "<br>";*/
-//var_dump($_FILES["newPhoto"]);
-//echo "<br>";
-//var_dump($_POST["newEmail"]);
-//exit;
-/*echo isset($_POST["password"]);
-exit;*/
 
 if (!empty($_POST['idutilizador']) && !empty($_POST['password']) && !empty($_POST['newPassword']) && !empty($_POST['newRepeatPassword'])) {
     $updatePassword = true;
