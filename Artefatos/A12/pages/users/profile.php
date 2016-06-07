@@ -3,6 +3,7 @@
 include_once('../../config/init.php');
 include_once($BASE_DIR . 'functions/users.php');
 include_once($BASE_DIR . 'database/event.php');
+include_once($BASE_DIR . 'database/users.php');
 
 redirectIfNotLoggedIn($BASE_URL . "pages/users/login.php");
 
@@ -21,6 +22,8 @@ if($_GET["id"]){
     $smarty->assign("user", $user);
 }
 
+
+$smarty->assign('settings', $BASE_URL . 'pages/users/settings.php');
 $smarty->assign('currentPage', "profile");
 $smarty->display('users/profile.tpl');
 

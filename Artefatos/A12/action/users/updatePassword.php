@@ -23,28 +23,30 @@ $password = $_POST['password'];
 $newPassword = $_POST['newPassword'];
 $newRepeatPassword = $_POST['newRepeatPassword'];
 
-// 0 Success, 1 New Passwords mismatch, 2 Authentication failure
-
-$errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?passwordReply=";
+$redirect = 'Location: ' . $BASE_URL . "pages/users/settings.php";
 
 if ($idutilizador != $_SESSION['idutilizador']) {
-    header($errorMessage . "1");
+    $_SESSION['error_messages'][] = 'ERROR - Password update: You can only change your password';
+    header($redirect);
     exit();
 }
 
 if ($newPassword != $newRepeatPassword) {
-    header($errorMessage . "2");
+    $_SESSION['error_messages'][] = 'ERROR - Password update: New passwords mismatch';
+    header($redirect);
     exit();
 }
 
 $newPasswordLength = strlen($newPassword);
 if ($newPasswordLength < 8 || $newPasswordLength > 100) {
-    header($errorMessage . "4");
+    $_SESSION['error_messages'][] = 'ERROR - Password update: New password should have between 8 and 100 characters';
+    header($redirect);
     exit();
 }
 
 if (!validLoginDatabaseCheck($idutilizador, $password)) {
-    header($errorMessage . "3");
+    $_SESSION['error_messages'][] = 'ERROR - Password update: Original password is incorrect';
+    header($redirect);
     exit();
 }
 
@@ -54,6 +56,7 @@ if (updatePassword($idutilizador, $hashedNewPassword) === false) {
     throw new RuntimeException('Failed to move uploaded file.');
 }
 
-header($errorMessage . "0");
+$_SESSION['success_messages'][] = 'Password updated successfully';
+header($redirect);
 exit();
 ?>

@@ -9,9 +9,12 @@ $smarty->assign("idevent", $id_event);
 
 $event = getEventById($id_event);
 
+
+
+
 if(!$event){
-    $_SESSION['error_messages'][] = 'Event ID not found!';
-    header('Location: '. $BASE_URL . 'pages/404.php', true, 301);
+    $_SESSION['error_messages'][] = 'Event ID not found';
+    header('Location: '. $BASE_URL . 'pages/404.php');
     exit();
 }
 
@@ -22,19 +25,27 @@ $albums =getPhotosAlbums($id_event);
 $poll = getEventPoll($id_event);
 $poll_results = getPollResults($id_event);
 $numpart = getParticipantsNumber($id_event);
+$participants = getParticipants($id_event);
 $hosts = getHosts($id_event);
 
 
-//var_dump($hosts); exit;
 
-$smarty->assign('actionComment', $BASE_URL . "action/users/insertComment.php");
-$smarty->assign('actionCommentVars', array(
-        "idEvent" => "idEvent",
-        "newComment" => "newComment"
-    )
-);
+$is_host = false;
+foreach ($hosts as $host){
+    if($host['username'] === $_SESSION['username']){
+        $is_host = true;
+    }
+}
 
-$smarty->assign('commentReply', $_GET["commentReply"]);
+$is_participant = false;
+foreach ($participants as $participant){
+    if($participant['username'] === $_SESSION['username']){
+        $is_participant = true;
+    }
+}
+
+//var_dump($is_participant); exit;
+
 
 
 $smarty->assign('event', $event);
@@ -44,6 +55,19 @@ $smarty->assign('poll', $poll);
 $smarty->assign('poll_results', $poll_results);
 $smarty->assign('number_part', $numpart);
 $smarty->assign('hosts', $hosts);
+$smarty->assign('is_host', $is_host);
+$smarty->assign('participants', $participants);
+$smarty->assign('is_participant', $is_participant);
+
+$smarty->assign('actionComment', $BASE_URL . "action/event/insertComment.php");
+$smarty->assign('actionCommentVars', array(
+        "idEvent" => "idEvent",
+        "newComment" => "newComment"
+    )
+);
+$smarty->assign('commentReply', $_GET["commentReply"]);
+
+
 $smarty->assign('currentPage', "view_event");
 $smarty->display('event/view_event.tpl');
 ?>

@@ -14,8 +14,7 @@ if (!isset($_FILES['newPhoto'])) {
 
 $newPhoto = $_FILES['newPhoto'];
 
-// 0 Success, 1 Picture not chosen, 2 Picture size exceeded
-$errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?pictureReply=";
+$redirect = 'Location: ' . $BASE_URL . "pages/users/settings.php";
 
 // FILE HANDLING
 
@@ -40,7 +39,8 @@ if ($fotoExists) {
     }
 
     if ($fotoFile['size'] > 10000000) {
-        header($errorMessage . "2");
+        $_SESSION['error_messages'][] = 'ERROR - Photo update: Picture size not valid. Upload files only with size under 10Mb';
+        header($redirect);
         exit();
         //throw new RuntimeException('Exceeded filesize limit.');
     }
@@ -62,7 +62,8 @@ if ($fotoExists) {
         $imageFilename = sha1_file($fotoFile['tmp_name']) . "." . $ext;
     }
 } else {
-    header($errorMessage . "1");
+    $_SESSION['error_messages'][] = 'ERROR - Photo update: You must choose a photo';
+    header($redirect);
     exit();
 }
 // END OF FILE HANDLING
@@ -91,7 +92,8 @@ if (file_exists($BASE_DIR . $_SESSION['foto'])) {
 }
 $_SESSION['foto'] = $imagePath;
 
-header($errorMessage . "0");
+$_SESSION['success_messages'][] = 'Photo updated successfully';
+header($redirect);
 exit();
 
 ?>

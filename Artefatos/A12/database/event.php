@@ -1,13 +1,25 @@
 <?php
-function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico)
+function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador)
 {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO Evento(titulo, capa, descricao, localizacao, datainicio, duracao, publico) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $conn->beginTransaction();
+    $stmt = $conn->prepare("INSERT INTO Evento(titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (?, ?, ?, ?, ?, ?, ?)");
     if ($stmt->execute(array($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico)) === false) {
         return false;
-    } else {
-        return $conn->lastInsertId("evento_idevento_seq");
     }
+    $newID = $conn->lastInsertId("evento_idevento_seq");
+    
+    $stmt = $conn->prepare("INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (?, ?)");
+    if ($stmt->execute(array($newID, $idUtilizador)) === false) {
+        return false;
+    }
+
+    $stmt = $conn->prepare("INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (?, ?, NULL, NULL)");
+    if ($stmt->execute(array($newID, $idUtilizador)) === false) {
+        return false;
+    }
+    $conn->commit();
+    return $conn->lastInsertId("evento_idevento_seq");
 }
 
 function updateEventPhoto($idevento, $imagePath)
@@ -69,25 +81,14 @@ function getEventByID($id)
     return $stmt->fetch();
 }
 
-function getCommentsSection($event_id)
-{
+function getCommentsSection($event_id){
     global $conn;
-    $stmt = $conn->prepare(
-        "SELECT Results.idComentario, Results.idComentador, Results.username, Results.foto, Results.texto, Results.datacomentario, Results.idComentarioPai,
-          json_object_agg(Results.positivo, json_build_object('voters', Results.voters, 'votes', Results.count)) AS votes
-        FROM (
-          SELECT Comentario.idComentario, Comentario.idComentador, (SELECT Utilizador.username FROM Utilizador WHERE Utilizador.idUtilizador = Comentario.idComentario)
-            AS username, (SELECT Utilizador.foto FROM Utilizador WHERE Utilizador.idUtilizador = Comentario.idComentario) AS foto,
-            Comentario.texto, Comentario.datacomentario, json_agg(json_build_object('id', Utilizador.idUtilizador, 'username', Utilizador.username))
-            AS voters, Comentario.idComentarioPai, positivo, COUNT(positivo) AS COUNT
-          FROM Comentario
-          JOIN ComentarioVoto ON ComentarioVoto.idComentario = Comentario.idComentario
-          JOIN Utilizador ON Utilizador.idUtilizador = ComentarioVoto.idVotante
-          WHERE Comentario.idEvento = ?
-          GROUP BY Comentario.idComentario, ComentarioVoto.Positivo
-        ) AS Results
-        GROUP BY Results.idComentario, Results.idComentador, Results.username, Results.foto, Results.texto, Results.datacomentario, Results.idComentarioPai;"
-    );
+    $query = "SELECT idComentario, texto, dataComentario, idComentador, idComentarioPai, Utilizador.username, Utilizador.foto
+	              FROM Comentario
+	              JOIN Utilizador ON Utilizador.idUtilizador = Comentario.idComentador
+	              WHERE Comentario.idEvento = ?
+	              ORDER BY dataComentario DESC";
+    $stmt = $conn->prepare($query);
     $stmt->execute(array($event_id));
     return $stmt->fetchAll();
 }
@@ -137,17 +138,25 @@ function getPollResults($event_id)
     return $stmt->fetchAll();
 }
 
+function getParticipants($event_id)
+{
+    global $conn;
+    $stmt = $conn->prepare(
+        "SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
+        FROM Participacao
+        JOIN Utilizador ON Participacao.IdParticipante = Utilizador.idUtilizador
+        WHERE Participacao.idEvento = ?;"
+    );
+    $stmt->execute(array($event_id));
+    return $stmt->fetchAll();
+}
+
 function getParticipantsNumber($event_id)
 {
     global $conn;
     $stmt = $conn->prepare(
-        "SELECT COUNT(*) FROM
-        (
-          SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
-          FROM Participacao
-          JOIN Utilizador ON Participacao.IdParticipante = Utilizador.idUtilizador
-          WHERE Participacao.idEvento = ?
-        ) AS NumPart;"
+        "SELECT COUNT(idParticipante) AS Participant FROM Participacao
+        WHERE idEvento=?;"
     );
     $stmt->execute(array($event_id));
     return $stmt->fetchColumn();
@@ -157,7 +166,7 @@ function getHosts($event_id)
 {
     global $conn;
     $stmt = $conn->prepare(
-        "SELECT Utilizador.nome FROM Utilizador
+        "SELECT Utilizador.nome, Utilizador.username FROM Utilizador
         INNER JOIN Anfitriao
         ON Utilizador.idUtilizador = Anfitriao.idAnfitriao
         WHERE Anfitriao.idEvento = ?"
@@ -173,34 +182,6 @@ function addUserToHosts($idutilizador, $idevento){
     $stmt = $conn->prepare($query);
     $stmt->execute([$idevento, $idutilizador]);
     return $stmt->fetch();
-}
-
-function getJoinedEventsByUser($idutilizador){
-    global $conn;
-
-    $query = "SELECT COUNT(idparticipante) AS participationsById FROM participacao WHERE idparticipante = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->execute([$idutilizador]);
-    $row = $stmt->fetch();
-    if ($row){
-        return $row["participationsbyid"];
-    }
-    else
-        return false;
-}
-
-function getHostedEventsByUser($idutilizador){
-    global $conn;
-
-    $query = "SELECT COUNT(idanfitriao) AS hostsById FROM anfitriao WHERE idanfitriao = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->execute([$idutilizador]);
-    $row = $stmt->fetch();
-    if ($row){
-        return $row["hostsbyid"];
-    }
-    else
-        return false;
 }
 
 function insertComment($texto, $idcomentador, $idevento){

@@ -9,13 +9,6 @@
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
 
-{if $commentReply === "0"}
-<div class="alert alert-success">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Comment added</strong> : Success
-</div>
-{/if}
-
 <div class="row">
     <div id="event-imgbox" class="col-md-4">
         <h2>{$event.titulo|escape:'html'}</h2>
@@ -42,7 +35,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <label for="attenders"><i class="glyphicon glyphicon-user"></i> Participants</label>
-                <p id="attenders">200 People have joined this event <a href="#">(List)</a></p>
+                <p id="attenders">{$number_part} People have joined this event <a href="#">(List)</a></p>
             </div>
             <div class="col-sm-6">
                 <label for="share"><i class="glyphicon glyphicon-link"></i> Share</label>

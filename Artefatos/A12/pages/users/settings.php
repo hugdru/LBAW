@@ -26,11 +26,6 @@ $smarty->assign('actionUpdatePhotoVars', array(
 );
 
 $smarty->assign('countryList', getCountryList());
-$smarty->assign('actionUpdateCountry', $BASE_URL . "action/users/updateCountry.php");
-$smarty->assign('actionUpdateCountryVars', array(
-        "newCountry" => "newCountry"
-    )
-);
 
 $smarty->assign('actionUpdateDescription', $BASE_URL . "action/users/updateDescription.php");
 $smarty->assign('actionUpdateDescriptionVars', array(

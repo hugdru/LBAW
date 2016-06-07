@@ -13,19 +13,14 @@ if (!isset($_POST['newEmail'])) {
     exit;
 }
 
-// 0 Success
-
-$errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?emailReply=";
-
 $newEmail = $_POST['newEmail'];
 
 if (updateEmail($_SESSION["idutilizador"], $newEmail))
     $_SESSION["email"] = $newEmail;
 
-header($errorMessage . "0");
+$_SESSION['success_messages'][] = 'Email updated successfully';
+header('Location: ' . $BASE_URL . "pages/users/settings.php");
 exit();
 
-
-?>
 
 ?>
