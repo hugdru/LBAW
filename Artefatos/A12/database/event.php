@@ -177,7 +177,6 @@ function getHosts($event_id)
 
 function addUserToHosts($idutilizador, $idevento){
     global $conn;
-
     $query = "INSERT INTO Anfitriao(idevento,idanfitriao) VALUES(?,?)";
     $stmt = $conn->prepare($query);
     $stmt->execute([$idevento, $idutilizador]);
@@ -186,10 +185,17 @@ function addUserToHosts($idutilizador, $idevento){
 
 function insertComment($texto, $idcomentador, $idevento){
     global $conn;
-
     $query = "INSERT INTO Comentario(texto, idcomentador, idevento) VALUES(?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->execute([$texto, $idcomentador, $idevento]);
+    return $stmt->fetch() !== false;
+}
+
+function insertParticipation($idevento, $idutilizador){
+    global $conn;
+    $query = "INSERT INTO Participacao(IdEvento, IdParticipante, classificacao, comentario) VALUES (?, ?, NULL, NULL)";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$idevento, $idutilizador]);
     return $stmt->fetch() !== false;
 }
 
