@@ -10,3 +10,5 @@ textarea{
     min-height: 100px;
     resize: none;
 }
+
+#save {width:200px; margin-left: 350px; margin-bottom: 1%;}
