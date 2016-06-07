@@ -762,7 +762,7 @@ BEGIN
     FROM Event_view_fts
     WHERE
 idEvento in (
-  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr) and
+  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr union select anfitriao.idevento from anfitriao where anfitriao.idanfitriao = idutilizadorrr) and
       Event_view_fts.document @@ plainto_tsquery(texto)
     ORDER BY ts_rank(Event_view_fts.document, plainto_tsquery(texto)) DESC) AS search;
     return result;
@@ -777,7 +777,7 @@ SELECT json_agg(row_to_json(search)) INTO result
 FROM (
   SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio FROM Evento
 WHERE idEvento in (
-  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union all select convite.idevento from convite where convite.idconvidado = idutilizadorrr)
+  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr union select anfitriao.idevento from anfitriao where anfitriao.idanfitriao = idutilizadorrr)
 ) AS search;
 return result;
 END;
@@ -877,7 +877,7 @@ INNER JOIN
   GROUP BY idEvento
 ) P ON E.idEvento = P.idEvento
 WHERE E.idEvento in (
-  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr)
+  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr union select anfitriao.idevento from anfitriao where anfitriao.idanfitriao = idutilizadorrr)
 ORDER BY Numero_de_Participantes DESC) AS search;
 return result;
 END;
@@ -887,7 +887,7 @@ CREATE FUNCTION can_view_event(idUtilizadorrr integer, idEventooo integer) retur
 BEGIN
   return exists (
     SELECT * FROM
-    (select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr) AS search
+    (select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr union select anfitriao.idevento from anfitriao where anfitriao.idanfitriao = idutilizadorrr) AS search
     WHERE idevento = idEventooo
   );
 END;

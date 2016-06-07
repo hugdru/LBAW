@@ -12,23 +12,24 @@ if (!isset($_GET['id'])) {
 $id_event = $_GET['id'];
 
 $event = getEventById($id_event);
-if (!validLoginSessionCheck() && $event['publico'] === false) {
-    $_SESSION['error_messages'][] = 'Please login to see this private event';
-    header('Location: '. $BASE_URL . 'pages/404.php');
-    exit();
-}
-
-if (!can_view($_SESSION['idutilizador'], $id_event)) {
-    $_SESSION['error_messages'][] = 'You can\' access this private event';
-    header('Location: '. $BASE_URL . 'pages/404.php');
-    exit();
-};
 
 if(!$event){
     $_SESSION['error_messages'][] = 'Event ID not found';
     header('Location: '. $BASE_URL . 'pages/404.php');
     exit();
 }
+
+if (!$_SESSION['idutilizador'] && $event['publico'] === false) {
+    $_SESSION['error_messages'][] = 'Please login to see this private event';
+    header('Location: '. $BASE_URL . 'pages/404.php');
+    exit();
+}
+
+if ($_SESSION['idutilizador'] && !can_view($_SESSION['idutilizador'], $id_event)) {
+    $_SESSION['error_messages'][] = 'You can\'t access this private event';
+    header('Location: '. $BASE_URL . 'pages/404.php');
+    exit();
+};
 
 $comments_section = getCommentsSection($id_event);
 $albums =getPhotosAlbums($id_event);
