@@ -103,12 +103,33 @@ function getCountryById($idPais){
         return false;
 }
 
-function updatePhoto($idUtilizador, $foto){
+function updatePhoto($idutilizador, $foto){
     global $conn;
     $query = "UPDATE utilizador SET foto = ? WHERE idutilizador = ?";
     $stmt = $conn->prepare($query);
-    return $stmt->execute([$foto, $idUtilizador]);
+    return $stmt->execute([$foto, $idutilizador]);
+}
 
+function updateDescription($idutilizador, $descricao){
+    global $conn;
+    $query = "UPDATE utilizador SET descricao = ? WHERE idutilizador = ?";
+    $stmt = $conn->prepare($query);
+    return $stmt->execute([$descricao, $idutilizador]);
+}
+
+
+function updateEmail($idutilizador, $email){
+    global $conn;
+    $query = "UPDATE utilizador SET email = ? WHERE idutilizador = ?";
+    $stmt = $conn->prepare($query);
+    return $stmt->execute([$email, $idutilizador]);
+}
+
+function updateCountry($idutilizador, $idpais){
+    global $conn;
+    $query = "UPDATE utilizador SET idpais = ? WHERE idutilizador = ?";
+    $stmt = $conn->prepare($query);
+    return $stmt->execute([$idpais, $idutilizador]);
 }
 
 ?>

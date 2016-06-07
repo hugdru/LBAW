@@ -18,15 +18,38 @@ $smarty->assign('actionUpdatePasswordVars',
 );
 
 $smarty->assign('actionUpdatePhoto', $BASE_URL . "action/users/updatePhoto.php");
-
 $smarty->assign('actionUpdatePhotoVars', array(
-    "idutilizador" => "idutilizador",
+        "idutilizador" => "idutilizador",
         "photo" => "photo",
         "newPhoto" => "newPhoto"
-)
+    )
 );
 
+$smarty->assign('countryList', getCountryList());
+$smarty->assign('actionUpdateCountry', $BASE_URL . "action/users/updateCountry.php");
+$smarty->assign('actionUpdateCountryVars', array(
+        "newCountry" => "newCountry"
+    )
+);
+
+$smarty->assign('actionUpdateDescription', $BASE_URL . "action/users/updateDescription.php");
+$smarty->assign('actionUpdateDescriptionVars', array(
+        "oldDescription" => "oldDescription",
+        "newDescription" => "newDescription"
+    )
+);
+
+$smarty->assign('actionUpdateEmail', $BASE_URL . "action/users/updateEmail.php");
+$smarty->assign('actionUpdateEmailVars', array(
+        "newEmail" => "newEmail"
+    )
+);
+
+$smarty->assign('countryReply', $_GET["countryReply"]);
 $smarty->assign('passwordReply', $_GET["passwordReply"]);
+$smarty->assign('pictureReply', $_GET["pictureReply"]);
+$smarty->assign('descriptionReply', $_GET["descriptionReply"]);
+$smarty->assign('emailReply', $_GET["emailReply"]);
 
 $smarty->display('users/settings.tpl');
 ?>

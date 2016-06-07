@@ -88,6 +88,7 @@ if ($capaExists) {
 }
 
 $idEvento = insertEvent($titulo, $imagePath, $descricao, $localizacao, $dataInicio, $duracao, $publico);
+addUserToHosts($_SESSION["idutilizador"], $idEvento);
 if ($idEvento !== false) {
     if ($capaExists) {
         $imageDir = "data/event/" . $idEvento . "/";

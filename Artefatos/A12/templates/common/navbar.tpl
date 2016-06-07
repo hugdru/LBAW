@@ -1,25 +1,27 @@
 <nav id="menu" class="navbar navbar-inverse navbar-fixed-top">
     {if isset($smarty.session.username)}
     <script type="text/javascript">
-        window.onload = function() {
-            document.getElementById("logout").onclick=function() {
-                var inputCsrf = document.createElement("input");
-                inputCsrf.setAttribute("type", "hidden");
-                inputCsrf.setAttribute("name", "csrf");
-                inputCsrf.setAttribute("value", "{$smarty.session.csrf_token}");
+        function logout(){
+            var inputCsrf = document.createElement("input");
+            inputCsrf.setAttribute("type", "hidden");
+            inputCsrf.setAttribute("name", "csrf");
+            inputCsrf.setAttribute("value", "{$smarty.session.csrf_token}");
 
-                var logoutForm = document.createElement("form");
-                logoutForm.action = '{$BASE_URL}action/users/logout.php';
-                logoutForm.target = "_self";
-                logoutForm.method = "POST";
+            var logoutForm = document.createElement("form");
+            logoutForm.action = '{$BASE_URL}action/users/logout.php';
+            logoutForm.target = "_self";
+            logoutForm.method = "POST";
 
-                logoutForm.appendChild(inputCsrf);
-                logoutForm.submit();
-                return false;
-            }
+            var body = document.body;
+            
+            body.appendChild(logoutForm);
+            logoutForm.appendChild(inputCsrf);
+            logoutForm.submit();
+            return false;
         }
     </script>
     {/if}
+    
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -72,7 +74,7 @@
                             <li><a href='{$BASE_URL}pages/users/profile.php'>Profile</a></li>
                             <li><a href='{$BASE_URL}pages/users/settings.php'>Settings</a></li>
                             <li role='separator' class='divider'></li>
-                            <li><a id="logout">Logout</a></li>
+                            <li><a onclick="logout();" id="logout" href="#">Logout</a></li>
                         </ul>
                     </li>
                 {/if}
