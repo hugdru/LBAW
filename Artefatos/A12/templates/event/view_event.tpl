@@ -8,6 +8,14 @@
 {include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
+
+{if $commentReply === "0"}
+<div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Comment added</strong> : Success
+</div>
+{/if}
+
 <div class="row">
     <div id="event-imgbox" class="col-md-4">
         <h2>{$event.titulo|escape:'html'}</h2>
@@ -66,11 +74,24 @@
     {if isset($smarty.session.username)}
     <!-- POST COMMENT AREA -->
     <tr>
-        <td colspan="2" class="text-right">
-            <p><textarea style="min-height: 100px;" class="form-control" placeholder="New Comment..."></textarea></p>
+        <td colspan="2" class="text-right" style="width: 1000px">
+            <form method="post" action="{$actionComment}" role="form" enctype="multipart/form-data">
+                <input type="hidden" name="{$actionCommentVars["idEvent"]}"
+                       value="{$idevent}">
+                <p><textarea style="min-height: 100px;" class="form-control" name="{$actionCommentVars["newComment"]}" placeholder="New Comment..."></textarea></p>
+                <p>
+                    <button class="btn btn-primary">Post</button>
+                </p>
+                <!--<div class="form-group">
+                    <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}">{$smarty.session.descricao}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button class="btn btn-primary">Post</button>-->
+            </form>
+            <!--<p><textarea style="min-height: 100px;" class="form-control" placeholder="New Comment..."></textarea></p>
             <p>
                 <button class="btn btn-primary">Post</button>
-            </p>
+            </p>-->
         </td>
     </tr>
     {/if}

@@ -5,6 +5,8 @@ include_once($BASE_DIR . 'functions/users.php');
 
 $id_event = $_GET['id'];
 
+$smarty->assign("idevent", $id_event);
+
 $event = getEventById($id_event);
 
 if(!$event){
@@ -12,6 +14,8 @@ if(!$event){
     header('Location: '. $BASE_URL . 'pages/404.php', true, 301);
     exit();
 }
+
+
 
 $comments_section = getCommentsSection($id_event);
 $albums =getPhotosAlbums($id_event);
@@ -22,6 +26,15 @@ $hosts = getHosts($id_event);
 
 
 //var_dump($hosts); exit;
+
+$smarty->assign('actionComment', $BASE_URL . "action/users/insertComment.php");
+$smarty->assign('actionCommentVars', array(
+        "idEvent" => "idEvent",
+        "newComment" => "newComment"
+    )
+);
+
+$smarty->assign('commentReply', $_GET["commentReply"]);
 
 
 $smarty->assign('event', $event);

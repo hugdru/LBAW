@@ -30,7 +30,7 @@
 
         <label for="since"> <i class="glyphicon glyphicon-stats"></i> Statistics</label>
         <!-- CONTAR EVENTOS JOINED E EVENTOS HOSTED PARA DISPLAY (SQL) -->
-        <p id="since">Events: Joined 50, Hosted 10</p>
+        <p id="since">Events: Joined {$joins}, Hosted {$hosts}</p>
     </div>
 </div>
 
