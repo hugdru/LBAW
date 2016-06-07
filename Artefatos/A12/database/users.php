@@ -45,6 +45,15 @@ function usernameRegistered($username)
     return $stmt->fetch() == true;
 }
 
+function emailRegistered($email)
+{
+    global $conn;
+    $query = "SELECT idutilizador FROM Utilizador WHERE email = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$email]);
+    return $stmt->fetch() == true;
+}
+
 function checkIfUsernameExists($username)
 {
     global $conn;
