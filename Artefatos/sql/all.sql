@@ -755,7 +755,52 @@ DECLARE
   result character varying;
 BEGIN
 SELECT json_agg(row_to_json(search)) INTO result
-FROM (SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio FROM final.Evento) AS search;
+FROM (SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio FROM Evento) AS search;
+return result;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE VIEW Event_view_user_fts AS
+SELECT  Evento.idEvento as idEvento,
+        Evento.titulo as titulo,
+        Evento.descricao as descricao,
+        Evento.capa as capa,
+        Evento.localizacao as localizacao,
+        Evento.dataInicio as dataInicio,
+        Anfitriao.idAnfitriao as idAnfitriao,
+        setweight(to_tsvector('english', Evento.titulo), 'A') ||
+        setweight(to_tsvector('english', COALESCE(Evento.descricao, '')), 'B') ||
+        setweight(to_tsvector('simple', Evento.localizacao), 'C') AS Document
+FROM Evento
+JOIN Anfitriao ON Anfitriao.idEvento = Evento.idEvento
+GROUP BY Evento.idEvento, Anfitriao.idAnfitriao;
+
+CREATE FUNCTION get_my_events(idUtilizadorrr integer, texto character varying) RETURNS json AS $$
+DECLARE
+  result character varying;
+BEGIN
+  SELECT json_agg(row_to_json(search)) INTO result
+  FROM
+  (SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio
+FROM Event_view_user_fts
+WHERE
+  document @@ plainto_tsquery(texto) AND
+  idAnfitriao = idUtilizadorrr
+ORDER BY ts_rank(Event_view_user_fts.document, plainto_tsquery(texto)) DESC) as search;
+return result;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION get_my_events_simple(idUtilizadorrr integer) RETURNS json AS $$
+DECLARE
+  result character varying;
+BEGIN
+SELECT json_agg(row_to_json(search)) INTO result
+FROM (
+  SELECT Evento.idEvento, titulo, descricao, capa, localizacao, dataInicio
+  FROM Evento
+  JOIN Anfitriao ON Anfitriao.idEvento = Evento.idEvento
+  WHERE Anfitriao.idAnfitriao = idUtilizadorrr) AS search;
 return result;
 END;
 $$ LANGUAGE plpgsql;
