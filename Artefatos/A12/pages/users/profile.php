@@ -22,6 +22,8 @@ if($_GET["id"]){
     $smarty->assign("user", $user);
 }
 
+
+$smarty->assign('settings', $BASE_URL . 'pages/users/settings.php');
 $smarty->assign('currentPage', "profile");
 $smarty->display('users/profile.tpl');
 
