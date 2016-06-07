@@ -46,7 +46,7 @@
         <p id="region">{$smarty.session.descricao}</p>
 
         <label for="region"> <i class="glyphicon glyphicon-map-marker"></i> Country</label>
-        <p id="region">{$smarty.session.pais}</p>
+        <p id="region">{$smarty.session.idpais}</p>
 
         <label for="since"> <i class="glyphicon glyphicon-time"></i> Member Since</label>
         <p id="since">{$smarty.session.datacriacao}</p>
@@ -57,7 +57,7 @@
 
         <label for="since"> <i class="glyphicon glyphicon-stats"></i> Statistics</label>
         <!-- CONTAR EVENTOS JOINED E EVENTOS HOSTED PARA DISPLAY (SQL) -->
-        <p id="since">Events: Joined 50, Hosted 10</p>
+        <p id="since">Events: Joined {$joins}, Hosted {$hosts}</p>
     </div>
 </div>
 {/if}

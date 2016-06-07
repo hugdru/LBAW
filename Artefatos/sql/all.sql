@@ -50,7 +50,8 @@ CREATE TABLE Opcao(
 CREATE TABLE Comentario(
   idComentario SERIAL PRIMARY KEY,
   texto TEXT NOT NULL,
-  "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
+  --"data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),--
+  datacomentario DATE NOT NULL DEFAULT(current_date),
   idComentador INTEGER NOT NULL REFERENCES Utilizador(idUtilizador) ON DELETE CASCADE,
   idEvento INTEGER NOT NULL REFERENCES Evento(idEvento) ON DELETE CASCADE,
   idComentarioPai INTEGER REFERENCES Comentario(idComentario) ON DELETE CASCADE
@@ -566,18 +567,18 @@ INSERT INTO opcao (descricao, idSondagem) VALUES ('TCP', 12);
 INSERT INTO opcao (descricao, idSondagem) VALUES ('UDP', 12);
 
 -- Tabela "Comentario"
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('LoLOlOLolOloLol', '2016-07-01', 3, 1, NULL);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('bruce fucking lee', '2016-08-01', 3, 1, 1);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('jackie jan > bruce lee', '2016-06-24', 2, 1, 1);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('ahahahah que riso', '2016-08-11', 2, 1, 1);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('eargasm', '2016-07-12', 1, 2, NULL);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('boa cena', '2016-07-30', 2, 2, 5);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('adoro adoro adoro', '2016-08-19', 2, 2, 5);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('que grandes sons!!', '2016-07-20', 1, 2, 5);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('quatrocentos e vinte', '2016-08-12', 1, 3, NULL);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('oh yes oh yes', '2016-09-29', 2, 3, 9);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('fantastic fantastic', '2016-08-30', 2, 3, 9);
-INSERT INTO comentario (texto, data, IdComentador, IdEvento, IdComentarioPai) VALUES ('hahahhaah i love you', '2016-09-19', 1, 3, 9);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('LoLOlOLolOloLol', '2016-07-01', 3, 1, NULL);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('bruce fucking lee', '2016-08-01', 3, 1, 1);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('jackie jan > bruce lee', '2016-06-24', 2, 1, 1);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('ahahahah que riso', '2016-08-11', 2, 1, 1);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('eargasm', '2016-07-12', 1, 2, NULL);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('boa cena', '2016-07-30', 2, 2, 5);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('adoro adoro adoro', '2016-08-19', 2, 2, 5);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('que grandes sons!!', '2016-07-20', 1, 2, 5);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('quatrocentos e vinte', '2016-08-12', 1, 3, NULL);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('oh yes oh yes', '2016-09-29', 2, 3, 9);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('fantastic fantastic', '2016-08-30', 2, 3, 9);
+INSERT INTO comentario (texto, datacomentario, IdComentador, IdEvento, IdComentarioPai) VALUES ('hahahhaah i love you', '2016-09-19', 1, 3, 9);
 
 -- Tabela "Seguidor"
 INSERT INTO seguidor (IdSeguidor, IdSeguido, data) VALUES (2, 1, '2016-06-23');
