@@ -97,13 +97,8 @@ function getParticipantsNumber($event_id)
 {
     global $conn;
     $stmt = $conn->prepare(
-        "SELECT COUNT(*) FROM
-        (
-          SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
-          FROM Participacao
-          JOIN Utilizador ON Participacao.IdParticipante = Utilizador.idUtilizador
-          WHERE Participacao.idEvento = ?
-        ) AS NumPart;"
+        "SELECT COUNT(idParticipante) AS Participant FROM Participacao
+        WHERE idEvento=?;"
     );
     $stmt->execute(array($event_id));
     return $stmt->fetchColumn();
@@ -113,7 +108,7 @@ function getHosts($event_id)
 {
     global $conn;
     $stmt = $conn->prepare(
-        "SELECT Utilizador.nome FROM Utilizador
+        "SELECT Utilizador.nome, Utilizador.username FROM Utilizador
         INNER JOIN Anfitriao
         ON Utilizador.idUtilizador = Anfitriao.idAnfitriao
         WHERE Anfitriao.idEvento = ?"

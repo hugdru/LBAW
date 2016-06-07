@@ -8,8 +8,8 @@ $id_event = $_GET['id'];
 $event = getEventById($id_event);
 
 if(!$event){
-    $_SESSION['error_messages'][] = 'Event ID not found!';
-    header('Location: '. $BASE_URL . 'pages/404.php', true, 301);
+    $_SESSION['error_messages'][] = 'Event ID not found';
+    header('Location: '. $BASE_URL . 'pages/404.php');
     exit();
 }
 

@@ -83,5 +83,17 @@
 
     </div>
 </nav>
+{if isset($ERROR_MESSAGES)}
+    <div id="error_messages">
+    {foreach $ERROR_MESSAGES as $message}
+        <div class="alert alert-danger alert-dismissible" role="alert" id="registerStatus">
+            <button type="button" class="close" onclick="$('#registerStatus').fadeOut()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <center>{$message}</center>
+        </div>
+    {/foreach}
+    </div>
+{/if}
 
 
