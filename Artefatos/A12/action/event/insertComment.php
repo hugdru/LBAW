@@ -13,15 +13,13 @@ if (!isset($_POST['newComment'], $_POST['idEvent'])) {
     exit;
 }
 
-// 0 Success, 1 Failure
-$errorMessage = 'Location: ' . $BASE_URL . "pages/event/view_event.php?id=" . $_POST["idEvent"] . "&commentReply=";
-
 $idutilizador = $_SESSION["idutilizador"];
 $texto = $_POST['newComment'];
 $idevento = $_POST['idEvent'];
 
 if(insertComment($texto, $idutilizador, $idevento)){
-    header($errorMessage . "0");
+    $_SESSION['success_messages'][] = 'Your comment was posted successfully';
+    header('Location: ' . $BASE_URL . "pages/event/view_event.php?id=" . $_POST["idEvent"]);
     exit();
 }
 

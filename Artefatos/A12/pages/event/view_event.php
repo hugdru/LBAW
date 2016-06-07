@@ -36,7 +36,7 @@ foreach ($hosts as $host){
     }
 }
 
-//var_dump($hosts); exit;
+//var_dump($comments_section); exit;
 
 
 

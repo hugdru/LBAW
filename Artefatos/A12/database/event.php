@@ -72,17 +72,14 @@ function getEventByID($id)
 
 function getCommentsSection($event_id){
     global $conn;
-    $query = "SELECT row_to_json(comentarioResults)
-FROM (
-	SELECT idComentario, texto, dataComentario, idComentador, idComentarioPai, Utilizador.username, Utilizador.foto
-	FROM final.Comentario
-	JOIN final.Utilizador ON Utilizador.idUtilizador = Comentario.idComentador
-	WHERE Comentario.idEvento = ?
-	ORDER BY dataComentario DESC
-) AS comentarioResults";
+    $query = "SELECT idComentario, texto, dataComentario, idComentador, idComentarioPai, Utilizador.username, Utilizador.foto
+	              FROM Comentario
+	              JOIN Utilizador ON Utilizador.idUtilizador = Comentario.idComentador
+	              WHERE Comentario.idEvento = ?
+	              ORDER BY dataComentario DESC";
     $stmt = $conn->prepare($query);
     $stmt->execute(array($event_id));
-    $stmt->fetchAll();
+    return $stmt->fetchAll();
 }
 
 function getPhotosAlbums($event_id)
