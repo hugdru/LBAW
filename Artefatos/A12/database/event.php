@@ -1,5 +1,6 @@
 <?php
-function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador)
+
+function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador, $base)
 {
     global $conn;
     $conn->beginTransaction();
@@ -8,7 +9,7 @@ function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $dur
         return false;
     }
     $newID = $conn->lastInsertId("evento_idevento_seq");
-    
+
     $stmt = $conn->prepare("INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (?, ?)");
     if ($stmt->execute(array($newID, $idUtilizador)) === false) {
         return false;
@@ -18,8 +19,26 @@ function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $dur
     if ($stmt->execute(array($newID, $idUtilizador)) === false) {
         return false;
     }
+
+    $link = $base . "pages/event/view_event.php?id=" . $newID;
+    $textoNotif = "Um dos utilizadores que segues criou um novo evento";
+
+    $stmt = $conn->prepare("INSERT INTO Notificacao(idNotificado, descricao, link, lida, idNotificante)
+                            SELECT Seguidor.idSeguidor, ?, ?, FALSE, Seguidor.idSeguido FROM Seguidor
+                            WHERE Seguidor.idSeguido = ?");
+    if ($stmt->execute(array($textoNotif, $link, $idUtilizador)) === false) {
+        return false;
+    }
     $conn->commit();
-    return $conn->lastInsertId("evento_idevento_seq");
+    return $newID;
+}
+
+function can_view($idutilizador, $idevento) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT can_view_event(?, ?)");
+    $stmt->execute(array($idutilizador, $idevento));
+    $result = $stmt->fetch();
+    return $result['can_view_event'];
 }
 
 function updateEventPhoto($idevento, $imagePath)
@@ -53,6 +72,28 @@ function getTopEventsAuthenticated($idutilizador)
     return false;
 }
 
+function getEventsAuthenticated($idutilizador, $text) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_events_authenticated(?, ?)");
+    $stmt->execute(array($idutilizador, $text));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_events_authenticated"];
+    }
+    return false;
+}
+
+function getEventsSimpleAuthenticated($idutilizador) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_events_simple_authenticated(?)");
+    $stmt->execute(array($idutilizador));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_events_simple_authenticated"];
+    }
+    return false;
+}
+
 function getMyEvents($idutilizador, $texto) {
     global $conn;
     $stmt = $conn->prepare("SELECT get_my_events(?, ?)");
@@ -75,24 +116,24 @@ function getMyEventsSimple($idutilizador) {
     return false;
 }
 
-function getEvents($texto) {
+function getEventsPublic($texto) {
     global $conn;
-    $stmt = $conn->prepare("SELECT get_events(?)");
+    $stmt = $conn->prepare("SELECT get_events_public(?)");
     $stmt->execute(array($texto));
     $result = $stmt->fetch();
     if ($result !== false) {
-        return $result["get_events"];
+        return $result["get_events_public"];
     }
     return false;
 }
 
-function getEventsSimple() {
+function getEventsPublicSimple() {
     global $conn;
-    $stmt = $conn->prepare("SELECT get_events_simple()");
+    $stmt = $conn->prepare("SELECT get_events_public_simple()");
     $stmt->execute();
     $result = $stmt->fetch();
     if ($result !== false) {
-        return $result["get_events_simple"];
+        return $result["get_events_public_simple"];
     }
     return false;
 }
@@ -201,7 +242,6 @@ function getHosts($event_id)
 
 function addUserToHosts($idutilizador, $idevento){
     global $conn;
-
     $query = "INSERT INTO Anfitriao(idevento,idanfitriao) VALUES(?,?)";
     $stmt = $conn->prepare($query);
     $stmt->execute([$idevento, $idutilizador]);
@@ -210,19 +250,27 @@ function addUserToHosts($idutilizador, $idevento){
 
 function insertComment($texto, $idcomentador, $idevento){
     global $conn;
-
     $query = "INSERT INTO Comentario(texto, idcomentador, idevento) VALUES(?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->execute([$texto, $idcomentador, $idevento]);
     return $stmt->fetch() !== false;
 }
 
-function deleteEvent($idevento){
+function deleteEvent($idevento)
+{
     global $conn;
 
     $query = "DELETE FROM Evento WHERE idEvento = ?";
     $stmt = $conn->prepare($query);
     $stmt->execute([$idevento]);
+    return $stmt->fetch() !== false;
+}
+
+function insertParticipation($idevento, $idutilizador){
+    global $conn;
+    $query = "INSERT INTO Participacao(IdEvento, IdParticipante, classificacao, comentario) VALUES (?, ?, NULL, NULL)";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$idevento, $idutilizador]);
     return $stmt->fetch() !== false;
 }
 
