@@ -125,4 +125,11 @@ function updateEmail($idutilizador, $email){
     return $stmt->execute([$email, $idutilizador]);
 }
 
+function updateCountry($idutilizador, $idpais){
+    global $conn;
+    $query = "UPDATE utilizador SET idpais = ? WHERE idutilizador = ?";
+    $stmt = $conn->prepare($query);
+    return $stmt->execute([$idpais, $idutilizador]);
+}
+
 ?>

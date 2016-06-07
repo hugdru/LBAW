@@ -111,13 +111,6 @@ if ($fotoExists) {
 }
 // END OF FILE HANDLING
 
-// TODO FIX
-//if ($_POST["facebook_photo"]) {
-//    $url = $_POST["facebook_photo"];
-//    $foto = $BASE_URL . "images/" . $username . '.jpg';
-//    copy($url, $BASE_DIR . $foto);
-//}
-
 $hashedPassword = create_hash($password);
 $idutilizador = insertUser($nome, $username, $hashedPassword, $email, $pais, $imagePath);
 if ($idutilizador !== false) {
@@ -129,11 +122,32 @@ if ($idutilizador !== false) {
         $imagePath = $imageDir . $imageFilename;
         if (updateUserPhoto($idutilizador, $imagePath) === false) {
             throw new RuntimeException('Failed to insert image path on database.');
-        };
+        }
         if (!move_uploaded_file($fotoFile['tmp_name'], $BASE_DIR . $imagePath)) {
             throw new RuntimeException('Failed to move uploaded file.');
         }
     }
+    
+    // Facebook Photo Handling
+    if ($_POST["facebook_photo"]) {
+        $url = $_POST["facebook_photo"];
+        $imageDir = "data/users/" . $idutilizador . "/";
+        $imageFilename = sha1($url) . ".jpg";
+        $imagePath = $imageDir . $imageFilename;
+        
+        if (!is_dir($BASE_DIR . $imageDir)) {
+            mkdir($BASE_DIR . $imageDir, 0711, true);
+        }
+        
+        if (! copy($url, $BASE_DIR . $imagePath)) {
+            throw new RuntimeException('Failed to copy facebook image.');
+        }
+        
+        if (updateUserPhoto($idutilizador, $imagePath) === false) {
+            throw new RuntimeException('Failed to insert image path on database.');
+        }
+    }
+    // End of Facebook Photo Handling
 } else {
     $_SESSION['error_messages'][] = 'Failed to create Utilizador';
     header('Location: ' . $_SERVER['HTTP_REFERER']);

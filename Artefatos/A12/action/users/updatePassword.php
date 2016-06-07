@@ -46,6 +46,6 @@ $hashedNewPassword = create_hash($newPassword);
 
 updatePassword($idutilizador, $hashedNewPassword);
 
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+header($errorMessage . "0");
 exit();
 ?>

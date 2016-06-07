@@ -2,7 +2,7 @@
 <html>
 <head>
     {include file="common/head.tpl" title="settings"}
-    <link rel="stylesheet" href="{$BASE_URL}css/home.css">
+    <link rel="stylesheet" href="{$BASE_URL}css/settings.css">
 </head>
 <body>
 {include file='common/navbar.tpl' currentPage="$currentPage"}
@@ -66,6 +66,13 @@
     </div>
 {/if}
 
+{if $countryReply === "0"}
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Region Update</strong> : Successful
+    </div>
+{/if}
+
 
 <h1>Settings</h1>
 
@@ -78,7 +85,7 @@
 
             <div class="form-group">
                 <label for="currentPicture">Current Picture</label>
-                <img class="img-responsive img-circle" style="min-width: 100%" src="{$BASE_URL}{$smarty.session.foto}"/>
+                <img class="img-circle st-profile-img center-block" src="{$BASE_URL}{$smarty.session.foto}"/>
             </div>
 
             <div class="form-group">
@@ -88,7 +95,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
         </form>
     </div>
 
@@ -96,19 +103,28 @@
         <form method="post" action="{$actionUpdateDescription}" role="form" enctype="multipart/form-data">
             <h3>Profile: Description</h3>
             <div class="form-group">
-                <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}">{$smarty.session.descricao}</textarea>
+                <textarea class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}">{$smarty.session.descricao}</textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
         </form>
     </div>
 
     <div class="col-sm-4">
-        <form role="form">
+        <form role="form" action="{$actionUpdateCountry}" method="post">
             <h3>Profile: Region</h3>
             <div class="form-group">
-                <input type="text" class="form-control" id="rgn" value="Portugal">
+                <select name="{$actionUpdateCountryVars['newCountry']}" id="country" class="form-control">
+                    {foreach from=$countryList item='country'}
+                        {if $country['idpais'] eq $smarty.session.idpais}
+                            <option selected="selected" value='{$country["idpais"]}'>{$country["nome"]}</option>
+                        {else}
+                            <option value='{$country["idpais"]}'>{$country["nome"]}</option>
+                        {/if}
+                    {/foreach}
+                </select>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
         </form>
     </div>
 </div>
@@ -121,7 +137,7 @@
                 <label for="eml">Email Address</label>
                 <input type="email" class="form-control" id="eml" name="{$actionUpdateEmailVars["newEmail"]}" value="{$smarty.session.email}">
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
         </form>
     </div>
 
@@ -149,7 +165,7 @@
                        name="{$actionUpdatePasswordVars["newRepeatPassword"]}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
         </form>
     </div>
 
@@ -168,7 +184,7 @@
                     <label><input type="checkbox" value="">EventBook has recommended events for me</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary btn-block">Save</button>
         </form>
     </div>
 </div>
