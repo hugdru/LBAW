@@ -176,8 +176,7 @@ function getEventPoll($event_id)
 {
     global $conn;
     $stmt = $conn->prepare(
-        "SELECT Sondagem.IdSondagem, Sondagem.descricao, Sondagem.data, Sondagem.escolhaMultipla,
-          json_agg(json_build_object('id', Opcao.idOpcao, 'descricao', Opcao.descricao))
+        "SELECT Sondagem.IdSondagem, Sondagem.descricao, Sondagem.data, json_agg(json_build_object('id', Opcao.idOpcao, 'descricao', Opcao.descricao))
         FROM Sondagem
         JOIN Opcao ON Opcao.idSondagem = Sondagem.idSondagem
         WHERE Sondagem.idEvento = ?
