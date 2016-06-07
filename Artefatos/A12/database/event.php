@@ -82,9 +82,7 @@ FROM (
 ) AS comentarioResults";
     $stmt = $conn->prepare($query);
     $stmt->execute(array($event_id));
-    $row = $stmt->fetchAll();
-    var_dump($row);
-    exit;
+    $stmt->fetchAll();
 }
 
 function getPhotosAlbums($event_id)
