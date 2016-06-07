@@ -9,6 +9,9 @@ $smarty->assign("idevent", $id_event);
 
 $event = getEventById($id_event);
 
+
+
+
 if(!$event){
     $_SESSION['error_messages'][] = 'Event ID not found';
     header('Location: '. $BASE_URL . 'pages/404.php');
@@ -23,6 +26,10 @@ $poll = getEventPoll($id_event);
 $poll_results = getPollResults($id_event);
 $numpart = getParticipantsNumber($id_event);
 $hosts = getHosts($id_event);
+
+$is_host = false;
+foreach ($hosts as $host){
+}
 
 
 //var_dump($hosts); exit;

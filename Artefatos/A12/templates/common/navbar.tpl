@@ -29,8 +29,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
-            <a class="navbar-brand" href="{$BASE_URL}index.php">EventBook</a>
+            {if !isset($smarty.session.username)}
+            <a class="navbar-brand" href="{$BASE_URL}pages/home.php">EventBook</a>
+            {else}
+                <a class="navbar-brand" href="{$BASE_URL}pages/event/explore_events.php">EventBook</a>
+            {/if}
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
