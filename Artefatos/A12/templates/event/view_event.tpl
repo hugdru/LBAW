@@ -85,9 +85,9 @@
                 {/if}
     </div>
 </div>
+<br><br>
 <div class="row">
 {if $is_participant}
-
 {elseif isset($smarty.session.username)}
     <label for="intention">Are you going to this event?</label>
     <div class="going">
@@ -96,9 +96,13 @@
             <button type="submit" class="btn btn-success glyphicon glyphicon-ok"> YES!</button>
         </form>
     </div>
-</div>
+{else}
+    <label for="intention">Register to join this event!</label>
+    <div id="edit-event">
+        <a type="button" role="button" href="{$BASE_URL}pages/users/register.php'" class="btn btn-primary" >Register</a>
+    </div>
 {/if}
-
+</div>
 <h2><i class="glyphicon glyphicon-comment"></i> Comments</h2>
 <table>
     {foreach $comments as $comm}
