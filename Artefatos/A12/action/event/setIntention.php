@@ -17,7 +17,7 @@ $idutilizador = $_SESSION["idutilizador"];
 $idevento = $_POST['idEvent'];
 
 if(insertParticipation($idevento, $idutilizador)){
-    $_SESSION['success_messages'][] = 'Your comment was posted successfully';
+    $_SESSION['success_messages'][] = 'You are now going to this event';
     header('Location: ' . $BASE_URL . "pages/event/view_event.php?id=" . $idevento );
     exit();
 }

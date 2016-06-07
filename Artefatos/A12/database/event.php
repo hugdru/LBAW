@@ -1,7 +1,6 @@
 <?php
-require_once('../config/init.php');
 
-function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador, $textoNotif, $link)
+function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador, $base)
 {
     global $conn;
     $conn->beginTransaction();
@@ -21,7 +20,7 @@ function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $dur
         return false;
     }
 
-    $link = $BASE_URL . "pages/event/view_event.php?id=" . $newID;
+    $link = $base . "pages/event/view_event.php?id=" . $newID;
     $textoNotif = "Um dos utilizadores que segues criou um novo evento";
 
     $stmt = $conn->prepare("INSERT INTO Notificacao(idNotificado, descricao, link, lida, idNotificante)

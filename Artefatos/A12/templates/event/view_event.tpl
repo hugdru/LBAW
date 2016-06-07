@@ -60,9 +60,12 @@
     <div class="going"
         <form method="post" action="{$actionIntention}" role="form" enctype="multipart/form-data">
             <input type="hidden" name="{$actionIntentionVar["idEvent"]}" value="{$event.idevento}">
-            <p><button type="submit" class="btn btn-primary glyphicon glyphicon-ok"> I am going!</button></p>
+            <p><button type="submit" class="btn btn-success glyphicon glyphicon-ok"> <strong>YES!</strong></button></p>
         </form>
     </div>
+    <script>
+
+    </script>
 {/if}
 </div>
 
