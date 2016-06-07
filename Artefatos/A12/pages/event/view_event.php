@@ -11,6 +11,8 @@ if (!isset($_GET['id'])) {
 
 $id_event = $_GET['id'];
 
+$smarty->assign('idevent', $id_event);
+
 $event = getEventById($id_event);
 
 if(!$event){
@@ -83,7 +85,6 @@ $smarty->assign('actionCancelEventVars', array(
         "idEvent" => "idEvent"
     )
 );
-
 
 $smarty->assign('currentPage', "view_event");
 $smarty->display('event/view_event.tpl');
