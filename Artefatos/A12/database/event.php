@@ -1,13 +1,25 @@
 <?php
-function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico)
+function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador)
 {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO Evento(titulo, capa, descricao, localizacao, datainicio, duracao, publico) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $conn->beginTransaction();
+    $stmt = $conn->prepare("INSERT INTO Evento(titulo, capa, descricao, localizacao, dataInicio, duracao, publico) VALUES (?, ?, ?, ?, ?, ?, ?)");
     if ($stmt->execute(array($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico)) === false) {
         return false;
-    } else {
-        return $conn->lastInsertId("evento_idevento_seq");
     }
+    $newID = $conn->lastInsertId("evento_idevento_seq");
+    
+    $stmt = $conn->prepare("INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (?, ?)");
+    if ($stmt->execute(array($newID, $idUtilizador)) === false) {
+        return false;
+    }
+
+    $stmt = $conn->prepare("INSERT INTO participacao (IdEvento, IdParticipante, classificacao, comentario) VALUES (?, ?, NULL, NULL)");
+    if ($stmt->execute(array($newID, $idUtilizador)) === false) {
+        return false;
+    }
+    $conn->commit();
+    return $conn->lastInsertId("evento_idevento_seq");
 }
 
 function updateEventPhoto($idevento, $imagePath)
@@ -46,29 +58,6 @@ function getEventByID($id)
     $stmt->execute(array($id));
     return $stmt->fetch();
 }
-
-/*function getCommentsSection($event_id)
-{
-    global $conn;
-    $stmt = $conn->prepare(
-        "SELECT Results.idComentario, Results.idComentador, Results.username, Results.foto, Results.texto, Results.datacomentario, Results.idComentarioPai,
-          json_object_agg(Results.positivo, json_build_object('voters', Results.voters, 'votes', Results.count)) AS votes
-        FROM (
-          SELECT Comentario.idComentario, Comentario.idComentador, (SELECT Utilizador.username FROM Utilizador WHERE Utilizador.idUtilizador = Comentario.idComentario)
-            AS username, (SELECT Utilizador.foto FROM Utilizador WHERE Utilizador.idUtilizador = Comentario.idComentario) AS foto,
-            Comentario.texto, Comentario.datacomentario, json_agg(json_build_object('id', Utilizador.idUtilizador, 'username', Utilizador.username))
-            AS voters, Comentario.idComentarioPai, positivo, COUNT(positivo) AS COUNT
-          FROM Comentario
-          JOIN ComentarioVoto ON ComentarioVoto.idComentario = Comentario.idComentario
-          JOIN Utilizador ON Utilizador.idUtilizador = ComentarioVoto.idVotante
-          WHERE Comentario.idEvento = ?
-          GROUP BY Comentario.idComentario, ComentarioVoto.Positivo
-        ) AS Results
-        GROUP BY Results.idComentario, Results.idComentador, Results.username, Results.foto, Results.texto, Results.datacomentario, Results.idComentarioPai;"
-    );
-    $stmt->execute(array($event_id));
-    return $stmt->fetchAll();
-}*/
 
 function getCommentsSection($event_id){
     global $conn;
@@ -122,6 +111,19 @@ function getPollResults($event_id)
           WHERE Opcao.idSondagem = ?
           GROUP BY Opcao.idOpcao
         ) AS ResultsById;"
+    );
+    $stmt->execute(array($event_id));
+    return $stmt->fetchAll();
+}
+
+function getParticipants($event_id)
+{
+    global $conn;
+    $stmt = $conn->prepare(
+        "SELECT Utilizador.idUtilizador, Utilizador.username, Participacao.classificacao, Participacao.comentario
+        FROM Participacao
+        JOIN Utilizador ON Participacao.IdParticipante = Utilizador.idUtilizador
+        WHERE Participacao.idEvento = ?;"
     );
     $stmt->execute(array($event_id));
     return $stmt->fetchAll();

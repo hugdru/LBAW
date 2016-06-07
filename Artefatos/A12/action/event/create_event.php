@@ -38,7 +38,7 @@ if ($duracao <= 0) {
 
 $publico = $_POST['publico'];
 if ($publico !== "true" && $publico !== "false") {
-    $_SESSION['error_messages'][] = 'Event can be either public true or false';
+    $_SESSION['error_messages'][] = 'Event visibility attribute must be true or false';
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
 }
@@ -87,8 +87,8 @@ if ($capaExists) {
     }
 }
 
-$idEvento = insertEvent($titulo, $imagePath, $descricao, $localizacao, $dataInicio, $duracao, $publico);
-addUserToHosts($_SESSION["idutilizador"], $idEvento);
+$idEvento = insertEvent($titulo, $imagePath, $descricao, $localizacao, $dataInicio, $duracao, $publico, $_SESSION['idutilizador']);
+
 if ($idEvento !== false) {
     if ($capaExists) {
         $imageDir = "data/event/" . $idEvento . "/";
@@ -103,6 +103,7 @@ if ($idEvento !== false) {
             throw new RuntimeException('Failed to move uploaded file.');
         }
     }
+    $_SESSION['success_messages'][] = 'Your event was created successfully';
     header('Location: ' . $BASE_URL . "pages/event/view_event.php?id=" . $idEvento);
     exit();
 } else {
