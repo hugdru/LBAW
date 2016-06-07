@@ -5,6 +5,12 @@ require_once($BASE_DIR . 'functions/users.php');
 
 redirectIfNotLoggedIn($BASE_URL);
 
+if (!isset($_POST['csrf'])) {
+    $_SESSION['error_messages'][] = 'An unauthorized request was made';
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
+
 if (!isset($_POST['idutilizador'], $_POST['password'], $_POST['newPassword'], $_POST['newRepeatPassword'])) {
     $_SESSION['error_messages'][] = 'Parameters Missing';
     $_SESSION['form_values'] = $_POST;
@@ -44,7 +50,9 @@ if (!validLoginDatabaseCheck($idutilizador, $password)) {
 
 $hashedNewPassword = create_hash($newPassword);
 
-updatePassword($idutilizador, $hashedNewPassword);
+if (updatePassword($idutilizador, $hashedNewPassword) === false) {
+    throw new RuntimeException('Failed to move uploaded file.');
+}
 
 header($errorMessage . "0");
 exit();

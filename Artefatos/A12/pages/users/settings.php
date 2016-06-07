@@ -7,11 +7,13 @@ redirectIfNotLoggedIn($BASE_URL . "pages/users/login.php");
 
 $smarty->assign('currentPage', "settings");
 $smarty->assign('actionUpdatePassword', $BASE_URL . "action/users/updatePassword.php");
-$smarty->assign('actionUpdatePasswordVars', array(
+$smarty->assign('actionUpdatePasswordVars', 
+    array(
         "idutilizador" => "idutilizador",
         "password" => "password",
         "newPassword" => "newPassword",
-        "newRepeatPassword" => "newRepeatPassword"
+        "newRepeatPassword" => "newRepeatPassword",
+        "csrf" => "csrf"
     )
 );
 

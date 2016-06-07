@@ -165,7 +165,10 @@
                        name="{$actionUpdatePasswordVars["newRepeatPassword"]}">
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
+            <div class="poll-submit">
+                <input type="hidden" name="{$actionUpdatePasswordVars['csrf']}" value="{$smarty.session.csrf_token}">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
         </form>
     </div>
 
