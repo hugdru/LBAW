@@ -27,7 +27,7 @@ $hosts = getHosts($id_event);
 
 //var_dump($hosts); exit;
 
-$smarty->assign('actionComment', $BASE_URL . "action/users/insertComment.php");
+$smarty->assign('actionComment', $BASE_URL . "action/event/insertComment.php");
 $smarty->assign('actionCommentVars', array(
         "idEvent" => "idEvent",
         "newComment" => "newComment"
