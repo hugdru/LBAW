@@ -8,27 +8,27 @@
 {include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file="common/content-top.tpl"}
 <!-- Content Start -->
-{if $passwordReply === 0}
+{if $passwordReply === "0"}
     <div class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update</strong> : Successful
     </div>
-{elseif $passwordReply === 1}
+{elseif $passwordReply === "1"}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : You can only change your password
     </div>
-{elseif $passwordReply === 2}
+{elseif $passwordReply === "2"}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : New Passwords Mistmatch
     </div>
-{elseif $passwordReply === 3}
+{elseif $passwordReply === "3"}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : Original Password is not correct
     </div>
-{elseif $passwordReply === 4}
+{elseif $passwordReply === "4"}
     <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Password Update Error</strong> : New password should have between 8 and 100 characters
@@ -117,7 +117,10 @@
                        name="{$actionUpdatePasswordVars["newRepeatPassword"]}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
+            <div class="poll-submit">
+                <input type="hidden" name="{$actionUpdatePasswordVars['csrf']}" value="{$smarty.session.csrf_token}">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
         </form>
     </div>
 

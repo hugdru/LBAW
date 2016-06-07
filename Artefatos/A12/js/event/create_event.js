@@ -1,4 +1,3 @@
-
 $(function () {
     var dateTomorrow = new Date();
     dateTomorrow.setDate(dateTomorrow.getDate() + 1);
@@ -11,7 +10,7 @@ $(function () {
     });
 
     var create_event_form = $("#create_event_form");
-    create_event_form.submit(function(eventObj) {
+    create_event_form.submit(function (eventObj) {
         console.log(eventObj);
         console.log(eventDateTimePicker.data("DateTimePicker").date().toISOString());
         $('<input>').attr('type', 'hidden')
