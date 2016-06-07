@@ -32,6 +32,8 @@
         <label for="since"> <i class="glyphicon glyphicon-stats"></i> Statistics</label>
         <!-- CONTAR EVENTOS JOINED E EVENTOS HOSTED PARA DISPLAY (SQL) -->
         <p id="since">Events: Joined 50, Hosted 10</p>
+
+        <button type="submit" class="btn btn-primary btn-block" <i class="glyphicon glyphicon-pencil"></i>>Edit Profile</button>
     </div>
 </div>
 {else}   
