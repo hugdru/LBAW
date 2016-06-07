@@ -25,6 +25,7 @@ $albums =getPhotosAlbums($id_event);
 $poll = getEventPoll($id_event);
 $poll_results = getPollResults($id_event);
 $numpart = getParticipantsNumber($id_event);
+$participants = getParticipants($id_event);
 $hosts = getHosts($id_event);
 
 
@@ -36,7 +37,14 @@ foreach ($hosts as $host){
     }
 }
 
-//var_dump($comments_section); exit;
+$is_participant = false;
+foreach ($participants as $participant){
+    if($participant['username'] === $_SESSION['username']){
+        $is_participant = true;
+    }
+}
+
+//var_dump($is_participant); exit;
 
 
 
@@ -48,6 +56,8 @@ $smarty->assign('poll_results', $poll_results);
 $smarty->assign('number_part', $numpart);
 $smarty->assign('hosts', $hosts);
 $smarty->assign('is_host', $is_host);
+$smarty->assign('participants', $participants);
+$smarty->assign('is_participant', $is_participant);
 
 $smarty->assign('actionComment', $BASE_URL . "action/event/insertComment.php");
 $smarty->assign('actionCommentVars', array(
