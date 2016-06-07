@@ -18,6 +18,12 @@ if (!validLoginSessionCheck() && $event['publico'] === false) {
     exit();
 }
 
+if (!can_view($_SESSION['idutilizador'], $id_event)) {
+    $_SESSION['error_messages'][] = 'You can\' access this private event';
+    header('Location: '. $BASE_URL . 'pages/404.php');
+    exit();
+};
+
 if(!$event){
     $_SESSION['error_messages'][] = 'Event ID not found';
     header('Location: '. $BASE_URL . 'pages/404.php');

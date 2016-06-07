@@ -33,6 +33,14 @@ function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $dur
     return $newID;
 }
 
+function can_view($idutilizador, $idevento) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT can_view_event(?, ?)");
+    $stmt->execute(array($idutilizador, $idevento));
+    $result = $stmt->fetch();
+    return $result['can_view_event'];
+}
+
 function updateEventPhoto($idevento, $imagePath)
 {
     global $conn;

@@ -883,4 +883,12 @@ return result;
 END;
 $$ LANGUAGE plpgsql;
 
-select get_events_public_simple();
+CREATE FUNCTION can_view_event(idUtilizadorrr integer, idEventooo integer) returns boolean AS $$
+BEGIN
+  return exists (
+    SELECT * FROM
+    (select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr) AS search
+    WHERE idevento = idEventooo
+  );
+END;
+$$ LANGUAGE plpgsql;
