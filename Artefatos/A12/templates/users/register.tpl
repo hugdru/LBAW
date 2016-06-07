@@ -29,8 +29,8 @@
             <input name="{$actionVars['username']}" type="text" class="form-control" id="username">
         </div>
 
-        <div class="form-group">
-            <label for="email">Email Address</label>
+        <div class="form-group" id="email_group">
+            <label id="email_label" for="email">Email Address</label>
             <input name="{$actionVars['email']}" type="email" class="form-control" id="email" {if $email}value="{$email}"{/if}>
         </div>
 
