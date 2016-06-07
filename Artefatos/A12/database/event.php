@@ -217,4 +217,13 @@ function insertComment($texto, $idcomentador, $idevento){
     return $stmt->fetch() !== false;
 }
 
+function deleteEvent($idevento){
+    global $conn;
+
+    $query = "DELETE FROM Evento WHERE idEvento = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$idevento]);
+    return $stmt->fetch() !== false;
+}
+
 ?>

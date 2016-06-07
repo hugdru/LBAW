@@ -3,17 +3,50 @@
 <head>
     {include file='common/head.tpl'}
     <link rel="stylesheet" href="{$BASE_URL}css/home.css">
+    <link rel="stylesheet" href="{$BASE_URL}css/event.css">
 </head>
 <body>
 {include file='common/navbar.tpl' currentPage="$currentPage"}
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
-
 <div class="row">
     <div id="event-imgbox" class="col-md-4">
         <h2>{$event.titulo|escape:'html'}</h2>
         <img src="{$BASE_URL}{$event.capa}" class="img-thumbnail" alt="Capa" width="450" height="400">
     </div>
+    {if $is_host}
+        <!-- Button trigger modal -->
+        <div id="cancel-event">
+            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#myModal" style="margin: 15px 150px;"> <i style="padding-right: 8%;" class="glyphicon glyphicon-remove"></i>
+                Cancel Event
+            </button>
+        </div>
+        <div id="edit-event">
+            <a type="button" role="button" href="{$BASE_URL}pages/users/edit_event.php'" type="button" class="btn btn-info" style="margin: 15px 150px;"> <i style="padding-right: 8%;" class="glyphicon glyphicon-pencil"></i>Edit Event</a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Do you really want to cancel the event?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <form method="post" action="{$BASE_URL}action/event/cancel_event.php" role="form" enctype="multipart/form-data">
+                            <input type="hidden" name="{$actionCancelEventVars["idEvent"]}"
+                                   value="{$idevent}">
+                            <div id="cancel-event2">
+                                <button type="submit" class="btn btn-primary" style="margin: 15px 150px;"> <i style="padding-right: 8%;" class="glyphicon glyphicon-remove"></i>Yes i want</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/if}
     <div id="event-detailbox" class="col-md-8">
         <h2>Details</h2>
         <div class="row">

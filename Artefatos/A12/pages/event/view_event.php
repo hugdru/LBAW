@@ -65,6 +65,12 @@ $smarty->assign('actionCommentVars', array(
         "newComment" => "newComment"
     )
 );
+
+$smarty->assign('actionCancelEventVars', array(
+        "idEvent" => "idEvent"
+    )
+);
+
 $smarty->assign('commentReply', $_GET["commentReply"]);
 
 

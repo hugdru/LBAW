@@ -6,7 +6,7 @@ include_once($BASE_DIR . 'functions/users.php');
 redirectIfNotLoggedIn($BASE_URL . "pages/users/login.php");
 
 $smarty->assign('currentPage', "settings");
-$smarty->assign('actionUpdatePasswordVars', 
+$smarty->assign('actionUpdatePasswordVars',
     array(
         "idutilizador" => "idutilizador",
         "password" => "password",
