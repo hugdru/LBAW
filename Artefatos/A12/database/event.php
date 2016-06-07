@@ -19,7 +19,7 @@ function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $dur
         return false;
     }
     $conn->commit();
-    return $conn->lastInsertId("evento_idevento_seq");
+    return $newID;
 }
 
 function updateEventPhoto($idevento, $imagePath)

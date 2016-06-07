@@ -107,7 +107,7 @@ if ($idEvento !== false) {
     header('Location: ' . $BASE_URL . "pages/event/view_event.php?id=" . $idEvento);
     exit();
 } else {
-    $_SESSION['error_messages'][] = 'Failed to create Event';
+    $_SESSION['error_messages'][] = 'An unexpected error has occurred. Failed to create event';
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
 }
