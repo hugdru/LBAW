@@ -1,5 +1,5 @@
 <?php
-require_once('../../config/init.php');
+require_once('../config/init.php');
 
 function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador, $textoNotif, $link)
 {

@@ -12,6 +12,11 @@ if (!isset($_GET['id'])) {
 $id_event = $_GET['id'];
 
 $event = getEventById($id_event);
+if (!validLoginSessionCheck() && $event['publico'] === false) {
+    $_SESSION['error_messages'][] = 'Please login to see this private event';
+    header('Location: '. $BASE_URL . 'pages/404.php');
+    exit();
+}
 
 if(!$event){
     $_SESSION['error_messages'][] = 'Event ID not found';

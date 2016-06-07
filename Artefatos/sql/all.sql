@@ -883,4 +883,4 @@ return result;
 END;
 $$ LANGUAGE plpgsql;
 
-select get_events_authenticated(1, 'great')
+select get_events_public_simple();
