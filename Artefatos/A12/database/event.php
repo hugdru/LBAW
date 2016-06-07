@@ -29,6 +29,28 @@ function updateEventPhoto($idevento, $imagePath)
     return $stmt->execute(array($imagePath, $idevento)) !== false;
 }
 
+function getMyEvents($idutilizador, $texto) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_my_events(?, ?)");
+    $stmt->execute(array($idutilizador, $texto));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_my_events"];
+    }
+    return false;
+}
+
+function getMyEventsSimple($idutilizador) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_my_events_simple(?)");
+    $stmt->execute(array($idutilizador));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_my_events_simple"];
+    }
+    return false;
+}
+
 function getEvents($texto) {
     global $conn;
     $stmt = $conn->prepare("SELECT get_events(?)");
