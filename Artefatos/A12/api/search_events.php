@@ -8,9 +8,17 @@ $text = $_GET['text'];
 
 $result = null;
 if ($text) {
-    $result = getEvents($_GET['text']);
+    if (validLoginSessionCheck()) {
+        $result = getEventsAuthenticated($_SESSION['idutilizador'], $_GET['text']);
+    } else {
+        $result = getEventsPublic($_GET['text']);
+    }
 } else {
-    $result = getEventsSimple();
+    if (validLoginSessionCheck()) {
+        $result = getEventsSimpleAuthenticated($_SESSION['idutilizador']);
+    } else {
+        $result = getEventsPublicSimple();
+    }
 }
 
 if (!$result) {
