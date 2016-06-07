@@ -22,7 +22,7 @@
             </button>
         </div>
         <div id="edit-event">
-            <a type="button" role="button" href="{$BASE_URL}pages/users/edit_event.php'" type="button" class="btn btn-info" style="margin: 15px 150px;"> <i style="padding-right: 8%;" class="glyphicon glyphicon-pencil"></i>Edit Event</a>
+            <a type="button" role="button" href="{$BASE_URL}pages/users/edit_event.php'" class="btn btn-info" style="margin: 15px 150px;"> <i style="padding-right: 8%;" class="glyphicon glyphicon-pencil"></i>Edit Event</a>
         </div>
 
         <!-- Modal -->
@@ -88,19 +88,16 @@
 <div class="row">
 {if $is_participant}
 
-{else}
+{elseif isset($smarty.session.username)}
     <label for="intention">Are you going to this event?</label>
-    <div class="going"
-        <form method="post" action="{$actionIntention}" role="form" enctype="multipart/form-data">
+    <div class="going">
+        <form method="post" action="{$BASE_URL}action/event/setIntention.php" role="form" enctype="multipart/form-data">
             <input type="hidden" name="{$actionIntentionVar["idEvent"]}" value="{$event.idevento}">
-            <p><button type="submit" class="btn btn-success glyphicon glyphicon-ok"> <strong>YES!</strong></button></p>
+            <button type="submit" class="btn btn-success glyphicon glyphicon-ok"> YES!</button>
         </form>
     </div>
-    <script>
-
-    </script>
-{/if}
 </div>
+{/if}
 
 <h2><i class="glyphicon glyphicon-comment"></i> Comments</h2>
 <table>
@@ -108,7 +105,7 @@
     <tr>
         <td class="hidden-xs text-center">
             <div class="comment-holder">
-                <img class='img-circle avatar' src='{$BASE_URL}{$comm["foto"]}'>
+                <img class='img-circle avatar' src='{$BASE_URL}{$comm["foto"]}' alt='avatar'>
                 <p>{$comm["username"]|escape:'html'}</p>
             </div>
         </td>

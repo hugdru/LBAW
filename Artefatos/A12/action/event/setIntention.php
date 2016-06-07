@@ -6,7 +6,7 @@ require_once($BASE_DIR . 'database/event.php');
 
 redirectIfNotLoggedIn($BASE_URL);
 
-if (!isset($_POST['intention'], $_POST['idEvent'])) {
+if (!isset($_POST['idEvent'])) {
     $_SESSION['error_messages'][] = 'Parameters missing. Something went wrong.';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
