@@ -13,15 +13,13 @@ if (!isset($_POST['newDescription'])) {
     exit;
 }
 
-// 0 Success
-$errorMessage = 'Location: ' . $BASE_URL . "pages/users/settings.php" . "?descriptionReply=";
-
 $newDescription = $_POST['newDescription'];
 
 if (updateDescription($_SESSION["idutilizador"], $newDescription))
     $_SESSION["descricao"] = $newDescription;
 
-header($errorMessage . "0");
+$_SESSION['success_messages'][] = 'Description updated successfully';
+header('Location: ' . $BASE_URL . "pages/users/settings.php");
 exit();
 
 

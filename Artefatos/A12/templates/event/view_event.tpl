@@ -9,13 +9,6 @@
 {include file='common/content-top.tpl'}
 <!-- Content Start -->
 
-{if $commentReply === "0"}
-<div class="alert alert-success">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Comment added</strong> : Success
-</div>
-{/if}
-
 <div class="row">
     <div id="event-imgbox" class="col-md-4">
         <h2>{$event.titulo|escape:'html'}</h2>

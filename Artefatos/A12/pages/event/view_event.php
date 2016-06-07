@@ -27,21 +27,17 @@ $poll_results = getPollResults($id_event);
 $numpart = getParticipantsNumber($id_event);
 $hosts = getHosts($id_event);
 
+
+
 $is_host = false;
 foreach ($hosts as $host){
+    if($host['username'] === $_SESSION['username']){
+        $is_host = true;
+    }
 }
-
 
 //var_dump($hosts); exit;
 
-$smarty->assign('actionComment', $BASE_URL . "action/event/insertComment.php");
-$smarty->assign('actionCommentVars', array(
-        "idEvent" => "idEvent",
-        "newComment" => "newComment"
-    )
-);
-
-$smarty->assign('commentReply', $_GET["commentReply"]);
 
 
 $smarty->assign('event', $event);
@@ -51,6 +47,17 @@ $smarty->assign('poll', $poll);
 $smarty->assign('poll_results', $poll_results);
 $smarty->assign('number_part', $numpart);
 $smarty->assign('hosts', $hosts);
+$smarty->assign('is_host', $is_host);
+
+$smarty->assign('actionComment', $BASE_URL . "action/event/insertComment.php");
+$smarty->assign('actionCommentVars', array(
+        "idEvent" => "idEvent",
+        "newComment" => "newComment"
+    )
+);
+$smarty->assign('commentReply', $_GET["commentReply"]);
+
+
 $smarty->assign('currentPage', "view_event");
 $smarty->display('event/view_event.tpl');
 ?>

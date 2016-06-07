@@ -89,13 +89,23 @@
 {if isset($ERROR_MESSAGES)}
     <div id="error_messages">
     {foreach $ERROR_MESSAGES as $message}
-        <div class="alert alert-danger alert-dismissible" role="alert" id="registerStatus">
-            <button type="button" class="close" onclick="$('#registerStatus').fadeOut()" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <center>{$message}</center>
+        <div class="alert alert-danger alert-dismissible" role="alert" id="error_message">
+            <button type="button" class="close" onclick="$('#error_message').fadeOut()" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <strong><center>{$message}</center></strong>
         </div>
     {/foreach}
+    </div>
+{/if}
+{if isset($SUCCESS_MESSAGES)}
+    <div id="success_messages">
+        {foreach $SUCCESS_MESSAGES as $message}
+            <div class="alert alert-success alert-dismissible" role="alert" id="success_message">
+                <button type="button" class="close" onclick="$('#success_message').fadeOut()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <strong><center>{$message}</strong></center>
+            </div>
+        {/foreach}
     </div>
 {/if}
 
