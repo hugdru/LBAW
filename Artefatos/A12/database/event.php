@@ -29,6 +29,52 @@ function updateEventPhoto($idevento, $imagePath)
     return $stmt->execute(array($imagePath, $idevento)) !== false;
 }
 
+function getTopEventsPublic()
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_top_events_public()");
+    $stmt->execute();
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_top_events_public"];
+    }
+    return false;
+}
+
+function getTopEventsAuthenticated($idutilizador)
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_top_events_authenticated(?)");
+    $stmt->execute(array($idutilizador));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_top_events_authenticated"];
+    }
+    return false;
+}
+
+function getMyEvents($idutilizador, $texto) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_my_events(?, ?)");
+    $stmt->execute(array($idutilizador, $texto));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_my_events"];
+    }
+    return false;
+}
+
+function getMyEventsSimple($idutilizador) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_my_events_simple(?)");
+    $stmt->execute(array($idutilizador));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_my_events_simple"];
+    }
+    return false;
+}
+
 function getEvents($texto) {
     global $conn;
     $stmt = $conn->prepare("SELECT get_events(?)");
