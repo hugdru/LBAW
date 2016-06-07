@@ -29,14 +29,26 @@ function updateEventPhoto($idevento, $imagePath)
     return $stmt->execute(array($imagePath, $idevento)) !== false;
 }
 
-function getTopEvents()
+function getTopEventsPublic()
 {
     global $conn;
-    $stmt = $conn->prepare("SELECT get_top_events()");
+    $stmt = $conn->prepare("SELECT get_top_events_public()");
     $stmt->execute();
     $result = $stmt->fetch();
     if ($result !== false) {
-        return $result["get_top_events"];
+        return $result["get_top_events_public"];
+    }
+    return false;
+}
+
+function getTopEventsAuthenticated($idutilizador)
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_top_events_authenticated(?)");
+    $stmt->execute(array($idutilizador));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_top_events_authenticated"];
     }
     return false;
 }
