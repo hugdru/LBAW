@@ -9,12 +9,11 @@
 {include file="common/content-top.tpl"}
 <!-- Content Start -->
 
-
 <h1>Settings</h1>
 
+<form method="post" action="{$BASE_URL}action/users/updateProfile.php" role="form" enctype="multipart/form-data">
 <div class="row">
     <div class="col-sm-4">
-        <form method="post" action="{$actionUpdatePhoto}" role="form" enctype="multipart/form-data">
             <h3>Change Picture</h3>
             <input type="hidden" name="{$actionUpdatePhotoVars["idutilizador"]}"
                    value="{$smarty.session.idutilizador}">
@@ -30,55 +29,33 @@
                     <input type="file" name="{$actionUpdatePhotoVars["newPhoto"]}" id="newPicture">
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
     </div>
 
     <div class="col-sm-4">
-        <form method="post" action="{$actionUpdateDescription}" role="form" enctype="multipart/form-data">
             <h3>Profile: Description</h3>
             <div class="form-group">
                 <textarea class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}">{$smarty.session.descricao}</textarea>
             </div>
-
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
     </div>
 
     <div class="col-sm-4">
-        <form role="form" action="{$actionUpdateCountry}" method="post">
             <h3>Profile: Region</h3>
             <div class="form-group">
-                <select name="{$actionUpdateCountryVars['newCountry']}" id="country" class="form-control">
-                    {foreach from=$countryList item='country'}
-                        {if $country['idpais'] eq $smarty.session.idpais}
-                            <option selected="selected" value='{$country["idpais"]}'>{$country["nome"]}</option>
-                        {else}
-                            <option value='{$country["idpais"]}'>{$country["nome"]}</option>
-                        {/if}
-                    {/foreach}
-                </select>
+                <input readonly class="form-control" id="dsc" value="{$smarty.session.pais}">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-4">
-        <form method="post" action="{$actionUpdateEmail}" role="form" enctype="multipart/form-data">
             <h3>Change Email Address</h3>
             <div class="form-group">
                 <label for="eml">Email Address</label>
                 <input type="email" class="form-control" id="eml" name="{$actionUpdateEmailVars["newEmail"]}" value="{$smarty.session.email}">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
     </div>
 
     <div class="col-sm-4">
-        <form method="post" action="{$actionUpdatePassword}" role="form">
             <h3>Change Password</h3>
             <input type="hidden" name="{$actionUpdatePasswordVars["idutilizador"]}"
                    value="{$smarty.session.idutilizador}">
@@ -103,13 +80,10 @@
 
             <div class="poll-submit">
                 <input type="hidden" name="{$actionUpdatePasswordVars['csrf']}" value="{$smarty.session.csrf_token}">
-                <button type="submit" class="btn btn-primary">Save</button>
             </div>
-        </form>
     </div>
 
     <div class="col-sm-4">
-        <form role="form">
             <h3>Notification Preferences</h3>
             <div class="form-group">
                 <label>Send me a Email when</label>
@@ -123,10 +97,12 @@
                     <label><input type="checkbox" value="">EventBook has recommended events for me</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Save</button>
-        </form>
     </div>
 </div>
+    <div id="save">
+    <button type="submit" class="btn btn-info" style="margin: 15px 150px;"> <i style="padding-right: 8%;" class="glyphicon glyphicon-ok"></i>Save Profile</button>
+    </div>
+</form>
 
 <!-- Content Finish -->
 {include file="common/content-bottom.tpl"}

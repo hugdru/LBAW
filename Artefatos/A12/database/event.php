@@ -1,5 +1,7 @@
 <?php
-function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador)
+require_once('../../config/init.php');
+
+function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $duracao, $publico, $idUtilizador, $textoNotif, $link)
 {
     global $conn;
     $conn->beginTransaction();
@@ -8,7 +10,7 @@ function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $dur
         return false;
     }
     $newID = $conn->lastInsertId("evento_idevento_seq");
-    
+
     $stmt = $conn->prepare("INSERT INTO Anfitriao (IdEvento, IdAnfitriao) VALUES (?, ?)");
     if ($stmt->execute(array($newID, $idUtilizador)) === false) {
         return false;
@@ -18,8 +20,18 @@ function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $dur
     if ($stmt->execute(array($newID, $idUtilizador)) === false) {
         return false;
     }
+
+    $link = $BASE_URL . "pages/event/view_event.php?id=" . $newID;
+    $textoNotif = "Um dos utilizadores que segues criou um novo evento";
+
+    $stmt = $conn->prepare("INSERT INTO Notificacao(idNotificado, descricao, link, lida, idNotificante)
+                            SELECT Seguidor.idSeguidor, ?, ?, FALSE, Seguidor.idSeguido FROM Seguidor
+                            WHERE Seguidor.idSeguido = ?");
+    if ($stmt->execute(array($textoNotif, $link, $idUtilizador)) === false) {
+        return false;
+    }
     $conn->commit();
-    return $conn->lastInsertId("evento_idevento_seq");
+    return $newID;
 }
 
 function updateEventPhoto($idevento, $imagePath)
@@ -223,7 +235,6 @@ function getHosts($event_id)
 
 function addUserToHosts($idutilizador, $idevento){
     global $conn;
-
     $query = "INSERT INTO Anfitriao(idevento,idanfitriao) VALUES(?,?)";
     $stmt = $conn->prepare($query);
     $stmt->execute([$idevento, $idutilizador]);
@@ -232,10 +243,17 @@ function addUserToHosts($idutilizador, $idevento){
 
 function insertComment($texto, $idcomentador, $idevento){
     global $conn;
-
     $query = "INSERT INTO Comentario(texto, idcomentador, idevento) VALUES(?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->execute([$texto, $idcomentador, $idevento]);
+    return $stmt->fetch() !== false;
+}
+
+function insertParticipation($idevento, $idutilizador){
+    global $conn;
+    $query = "INSERT INTO Participacao(IdEvento, IdParticipante, classificacao, comentario) VALUES (?, ?, NULL, NULL)";
+    $stmt = $conn->prepare($query);
+    $stmt->execute([$idevento, $idutilizador]);
     return $stmt->fetch() !== false;
 }
 

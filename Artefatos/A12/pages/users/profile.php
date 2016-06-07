@@ -7,23 +7,18 @@ include_once($BASE_DIR . 'database/users.php');
 
 redirectIfNotLoggedIn($BASE_URL . "pages/users/login.php");
 
-$joins = getJoinedEventsByUser($_SESSION["idutilizador"]);
-$hosts = getHostedEventsByUser($_SESSION["idutilizador"]);
-
-$smarty->assign("joins", $joins);
-$smarty->assign("hosts", $hosts);
-
 if($_GET["id"]){
     $user = getUserById($_GET["id"]);
-    
-    if($user){
-        $user["pais"] = getCountryById($user["idpais"]);
-    }
-    $smarty->assign("user", $user);
 }
+else{
+    $user = getUserById($_SESSION["idutilizador"]);
+}
+$user["pais"] = getCountryById($user["idpais"]);
+$user["joins"] = getJoinedEventsByUser($user['idutilizador']);
+$user["hosts"] = getHostedEventsByUser($user['idutilizador']);
 
+$smarty->assign("user", $user);
 
-$smarty->assign('settings', $BASE_URL . 'pages/users/settings.php');
 $smarty->assign('currentPage', "profile");
 $smarty->display('users/profile.tpl');
 

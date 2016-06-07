@@ -42,7 +42,28 @@
                 <p id="share"><a href="#">Facebook</a>, <a href="#">Email</a></p>
             </div>
         </div>
+            <label for="visibility">
+                {if $event.publico}
+                <i class="glyphicon glyphicon-eye-open"></i> Visibility</label>
+                <p>This is a public event. Everyone can access it.</p>
+                {else}
+                <i class="glyphicon glyphicon-eye-close"></i> Visibility</label>
+                <p>This is a private event. Only invited users can access it.</p>
+                {/if}
     </div>
+</div>
+<div class="row">
+{if $is_participant}
+
+{else}
+    <label for="intention">Are you going to this event?</label>
+    <div class="going"
+        <form method="post" action="{$actionIntention}" role="form" enctype="multipart/form-data">
+            <input type="hidden" name="{$actionIntentionVar["idEvent"]}" value="{$event.idevento}">
+            <p><button type="submit" class="btn btn-primary glyphicon glyphicon-ok"> I am going!</button></p>
+        </form>
+    </div>
+{/if}
 </div>
 
 <h2><i class="glyphicon glyphicon-comment"></i> Comments</h2>
@@ -70,21 +91,10 @@
         <td colspan="2" class="text-right" style="width: 1000px">
             <form method="post" action="{$actionComment}" role="form" enctype="multipart/form-data">
                 <input type="hidden" name="{$actionCommentVars["idEvent"]}"
-                       value="{$idevent}">
+                       value="{$event.idevento}">
                 <p><textarea style="min-height: 100px;" class="form-control" name="{$actionCommentVars["newComment"]}" placeholder="New Comment..."></textarea></p>
-                <p>
-                    <button class="btn btn-primary">Post</button>
-                </p>
-                <!--<div class="form-group">
-                    <textarea style="min-height: 100px; resize: none;" class="form-control" id="dsc" name="{$actionUpdateDescriptionVars["newDescription"]}">{$smarty.session.descricao}</textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-                <button class="btn btn-primary">Post</button>-->
+                <p><button type="submit" class="btn btn-primary">Post</button></p>
             </form>
-            <!--<p><textarea style="min-height: 100px;" class="form-control" placeholder="New Comment..."></textarea></p>
-            <p>
-                <button class="btn btn-primary">Post</button>
-            </p>-->
         </td>
     </tr>
     {/if}
