@@ -64,6 +64,28 @@ function getTopEventsAuthenticated($idutilizador)
     return false;
 }
 
+function getEventsAuthenticated($idutilizador, $text) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_events_authenticated(?, ?)");
+    $stmt->execute(array($idutilizador, $text));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_events_authenticated"];
+    }
+    return false;
+}
+
+function getEventsSimpleAuthenticated($idutilizador) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_events_simple_authenticated(?)");
+    $stmt->execute(array($idutilizador));
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_events_simple_authenticated"];
+    }
+    return false;
+}
+
 function getMyEvents($idutilizador, $texto) {
     global $conn;
     $stmt = $conn->prepare("SELECT get_my_events(?, ?)");
@@ -86,24 +108,24 @@ function getMyEventsSimple($idutilizador) {
     return false;
 }
 
-function getEvents($texto) {
+function getEventsPublic($texto) {
     global $conn;
-    $stmt = $conn->prepare("SELECT get_events(?)");
+    $stmt = $conn->prepare("SELECT get_events_public(?)");
     $stmt->execute(array($texto));
     $result = $stmt->fetch();
     if ($result !== false) {
-        return $result["get_events"];
+        return $result["get_events_public"];
     }
     return false;
 }
 
-function getEventsSimple() {
+function getEventsPublicSimple() {
     global $conn;
-    $stmt = $conn->prepare("SELECT get_events_simple()");
+    $stmt = $conn->prepare("SELECT get_events_public_simple()");
     $stmt->execute();
     $result = $stmt->fetch();
     if ($result !== false) {
-        return $result["get_events_simple"];
+        return $result["get_events_public_simple"];
     }
     return false;
 }

@@ -726,6 +726,7 @@ SELECT  Evento.idEvento as idEvento,
         Evento.capa as capa,
         Evento.localizacao as localizacao,
         Evento.dataInicio as dataInicio,
+        Evento.publico as publico,
         setweight(to_tsvector('english', Evento.titulo), 'A') ||
         setweight(to_tsvector('english', COALESCE(Evento.descricao, '')), 'B') ||
         setweight(to_tsvector('simple', Evento.localizacao), 'C') ||
@@ -735,7 +736,7 @@ JOIN Anfitriao ON Anfitriao.idEvento = Evento.idEvento
 JOIN Utilizador ON Utilizador.idUtilizador = Anfitriao.IdAnfitriao
 GROUP BY Evento.idEvento;
 
-CREATE FUNCTION get_events(texto character varying) RETURNS json AS $$
+CREATE FUNCTION get_events_public(texto character varying) RETURNS json AS $$
 DECLARE
   result character varying;
 BEGIN
@@ -743,18 +744,54 @@ BEGIN
   FROM
   (SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio
     FROM Event_view_fts
-    WHERE Event_view_fts.document @@ plainto_tsquery(texto)
+    WHERE
+      publico = true AND
+      Event_view_fts.document @@ plainto_tsquery(texto)
     ORDER BY ts_rank(Event_view_fts.document, plainto_tsquery(texto)) DESC) AS search;
     return result;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION get_events_simple() RETURNS json AS $$
+CREATE FUNCTION get_events_authenticated(idutilizadorrr integer, texto character varying) RETURNS json AS $$
+DECLARE
+  result character varying;
+BEGIN
+  SELECT json_agg(row_to_json(search)) INTO result
+  FROM
+  (SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio
+    FROM Event_view_fts
+    WHERE
+idEvento in (
+  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr) and
+      Event_view_fts.document @@ plainto_tsquery(texto)
+    ORDER BY ts_rank(Event_view_fts.document, plainto_tsquery(texto)) DESC) AS search;
+    return result;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION get_events_simple_authenticated(idutilizadorrr integer) RETURNS json AS $$
 DECLARE
   result character varying;
 BEGIN
 SELECT json_agg(row_to_json(search)) INTO result
-FROM (SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio FROM Evento) AS search;
+FROM (
+  SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio FROM Evento
+WHERE idEvento in (
+  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union all select convite.idevento from convite where convite.idconvidado = idutilizadorrr)
+) AS search;
+return result;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION get_events_public_simple() RETURNS json AS $$
+DECLARE
+  result character varying;
+BEGIN
+SELECT json_agg(row_to_json(search)) INTO result
+FROM (
+  SELECT idEvento, titulo, descricao, capa, localizacao, dataInicio FROM Evento
+  WHERE publico = true
+) AS search;
 return result;
 END;
 $$ LANGUAGE plpgsql;
@@ -840,8 +877,10 @@ INNER JOIN
   GROUP BY idEvento
 ) P ON E.idEvento = P.idEvento
 WHERE E.idEvento in (
-  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union all select convite.idevento from convite where convite.idconvidado = idutilizadorrr)
+  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union select convite.idevento from convite where convite.idconvidado = idutilizadorrr)
 ORDER BY Numero_de_Participantes DESC) AS search;
 return result;
 END;
 $$ LANGUAGE plpgsql;
+
+select get_events_authenticated(1, 'great')
