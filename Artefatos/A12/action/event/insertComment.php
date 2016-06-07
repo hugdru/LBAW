@@ -17,7 +17,7 @@ $idutilizador = $_SESSION["idutilizador"];
 $texto = $_POST['newComment'];
 $idevento = $_POST['idEvent'];
 
-if(insertComment($texto, $idutilizador, $idevento)){
+if(insertComment($texto, $idutilizador, $idevento, $BASE_URL)){
     $_SESSION['success_messages'][] = 'Your comment was posted successfully';
     header('Location: ' . $BASE_URL . "pages/event/view_event.php?id=" . $idevento );
     exit();

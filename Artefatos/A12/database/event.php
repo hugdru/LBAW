@@ -21,7 +21,7 @@ function insertEvent($titulo, $capa, $descricao, $localizacao, $dataInicio, $dur
     }
 
     $link = $base . "pages/event/view_event.php?id=" . $newID;
-    $textoNotif = "Um dos utilizadores que segues criou um novo evento";
+    $textoNotif = "One of the users you follow created a new event";
 
     $stmt = $conn->prepare("INSERT INTO Notificacao(idNotificado, descricao, link, lida, idNotificante)
                             SELECT Seguidor.idSeguidor, ?, ?, FALSE, Seguidor.idSeguido FROM Seguidor
@@ -247,12 +247,31 @@ function addUserToHosts($idutilizador, $idevento){
     return $stmt->fetch();
 }
 
-function insertComment($texto, $idcomentador, $idevento){
+function insertComment($texto, $idcomentador, $idevento, $base){
     global $conn;
+
+    $conn->beginTransaction();
     $query = "INSERT INTO Comentario(texto, idcomentador, idevento) VALUES(?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->execute([$texto, $idcomentador, $idevento]);
-    return $stmt->fetch() !== false;
+
+    if ($stmt->execute([$texto, $idcomentador, $idevento]) === false) {
+        return false;
+    }
+
+    $link = $base . "pages/event/view_event.php?id=" . $idevento;
+    $textoNotifAnf = "Your event has new comments";
+
+    $stmt = $conn->prepare("INSERT INTO Notificacao(idNotificado, descricao, link, lida, idNotificante)
+                            SELECT Anfitriao.idAnfitriao, ?, ?, FALSE, ?
+                            FROM Anfitriao
+                            WHERE idEvento = ?
+                           ");
+    if ($stmt->execute(array($textoNotifAnf, $link, $idcomentador, $idevento)) === false) {
+        return false;
+    }
+    $conn->commit();
+
+    return true;
 }
 
 function deleteEvent($idevento)
