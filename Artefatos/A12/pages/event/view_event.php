@@ -68,7 +68,6 @@ $smarty->assign('is_host', $is_host);
 $smarty->assign('participants', $participants);
 $smarty->assign('is_participant', $is_participant);
 
-$smarty->assign('actionIntention', $BASE_URL . "action/event/setIntention.php");
 $smarty->assign('actionIntentionVar', array(
         "idEvent" => "idEvent"
     )
