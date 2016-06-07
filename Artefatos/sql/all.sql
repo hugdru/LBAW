@@ -37,7 +37,6 @@ CREATE TABLE Sondagem(
   idSondagem SERIAL PRIMARY KEY,
   descricao TEXT,
   "data" TIMESTAMP NOT NULL CHECK ("data" >= CURRENT_TIMESTAMP),
-  escolhaMultipla BOOLEAN DEFAULT FALSE NOT NULL,
   idEvento INTEGER NOT NULL REFERENCES Evento(idEvento) ON DELETE CASCADE
 );
 
@@ -525,18 +524,18 @@ INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('
 INSERT INTO utilizador (nome, username, password, foto, email, IdPais) VALUES ('Cavaco Silva', 'cavaquinho', 'whirlpool:1000:Ru0cV0q9k+YmyLRMz8rhhE1RotI+WC/k:/Nnj7TVyOtVRGXT064fBpIjFq185oOGxMYORr/IGkT9Ja3FGAPo/vUS0xlsRuw6VQ5yQgpnqvzam/Ah0NQENoA==', 'data/default/foto.png', 'maconaria_33@macons.pt', 170);
 
 -- Tabela "Sondagem"
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Onde realizar?', '2016-12-30', TRUE, 1);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Prog Rock or Epic?', '2016-07-06', FALSE, 2);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Musica preferida?', '2016-11-21', FALSE, 3);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Vencedor?', '2017-10-31', FALSE, 4);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Interessado em que festa?', '2016-08-25', TRUE, 5);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Musica preferida de Matador?', '2016-07-25', FALSE, 6);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Artista que mais gostaste de ver ver no neostage?', '2016-08-10', FALSE, 7);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Qual é a tua linguagem de programaçao web preferida?', '2016-10-19', FALSE, 8);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Qual é o teu algoritmo best-first preferido?', '2016-12-01', FALSE, 9);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Qual é a fase do compilador preferida?', '2016-11-17', FALSE, 10);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Enuncia os signos de linguagem nao verbal que mais gostas', '2016-07-23', TRUE, 11);
-INSERT INTO sondagem (descricao, data, escolhaMultipla, IdEvento) VALUES ('Qual é o teu protocolo de transferencia de dados preferido?', '2016-07-17', FALSE, 12);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Onde realizar?', '2016-12-30', 1);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Prog Rock or Epic?', '2016-07-06', 2);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Musica preferida?', '2016-11-21', 3);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Vencedor?', '2017-10-31', 4);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Interessado em que festa?', '2016-08-25', 5);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Musica preferida de Matador?', '2016-07-25', 6);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Artista que mais gostaste de ver ver no neostage?', '2016-08-10', 7);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Qual é a tua linguagem de programaçao web preferida?', '2016-10-19', 8);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Qual é o teu algoritmo best-first preferido?', '2016-12-01', 9);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Qual é a fase do compilador preferida?', '2016-11-17', 10);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Enuncia os signos de linguagem nao verbal que mais gostas', '2016-07-23', 11);
+INSERT INTO sondagem (descricao, data, IdEvento) VALUES ('Qual é o teu protocolo de transferencia de dados preferido?', '2016-07-17', 12);
 
 -- Tabela "Opcao"
 INSERT INTO opcao (descricao, IdSondagem) VALUES ('Queijos', 1);
