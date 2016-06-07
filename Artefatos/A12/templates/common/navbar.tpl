@@ -48,10 +48,10 @@
                     <li {if $currentPage=="create_event"} class="active" {/if} >
                         <a href="{$BASE_URL}pages/event/create_event.php">Create</a>
                     </li>
-                    <li {if $currentPage=="top_events"} class="active" {/if}>
-                        <a href="{$BASE_URL}pages/event/top_events.php">Top</a>
-                    </li>
                 {/if}
+                <li {if $currentPage=="top_events"} class="active" {/if}>
+                    <a href="{$BASE_URL}pages/event/top_events.php">Top</a>
+                </li>
             </ul>
 
 
