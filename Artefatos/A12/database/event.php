@@ -148,34 +148,6 @@ function addUserToHosts($idutilizador, $idevento){
     return $stmt->fetch();
 }
 
-function getJoinedEventsByUser($idutilizador){
-    global $conn;
-
-    $query = "SELECT COUNT(idparticipante) AS participationsById FROM participacao WHERE idparticipante = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->execute([$idutilizador]);
-    $row = $stmt->fetch();
-    if ($row){
-        return $row["participationsbyid"];
-    }
-    else
-        return false;
-}
-
-function getHostedEventsByUser($idutilizador){
-    global $conn;
-
-    $query = "SELECT COUNT(idanfitriao) AS hostsById FROM anfitriao WHERE idanfitriao = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->execute([$idutilizador]);
-    $row = $stmt->fetch();
-    if ($row){
-        return $row["hostsbyid"];
-    }
-    else
-        return false;
-}
-
 function insertComment($texto, $idcomentador, $idevento){
     global $conn;
 
