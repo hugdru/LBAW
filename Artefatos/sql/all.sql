@@ -803,4 +803,23 @@ FROM (
 return result;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE FUNCTION get_top_events() returns json AS $$
+DECLARE
+  result character varying;
+BEGIN
+SELECT json_agg(row_to_json(search)) INTO result
+FROM
+(SELECT E.idEvento, E.titulo, E.capa, E.descricao, E.localizacao, E.dataInicio, E.duracao, E.publico, P.Numero_de_Participantes
+FROM Evento E
+INNER JOIN
+(
+  SELECT idEvento, count(idEvento) AS Numero_de_Participantes
+  FROM Participacao
+  GROUP BY idEvento
+) P ON E.idEvento = P.idEvento
+ORDER BY Numero_de_Participantes DESC) AS search;
+return result;
+END;
+$$ LANGUAGE plpgsql;
 -- END OF FULL TEXT SEARCH

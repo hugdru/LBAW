@@ -29,6 +29,18 @@ function updateEventPhoto($idevento, $imagePath)
     return $stmt->execute(array($imagePath, $idevento)) !== false;
 }
 
+function getTopEvents()
+{
+    global $conn;
+    $stmt = $conn->prepare("SELECT get_top_events()");
+    $stmt->execute();
+    $result = $stmt->fetch();
+    if ($result !== false) {
+        return $result["get_top_events"];
+    }
+    return false;
+}
+
 function getMyEvents($idutilizador, $texto) {
     global $conn;
     $stmt = $conn->prepare("SELECT get_my_events(?, ?)");
