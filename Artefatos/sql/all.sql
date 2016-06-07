@@ -818,6 +818,7 @@ INNER JOIN
   FROM Participacao
   GROUP BY idEvento
 ) P ON E.idEvento = P.idEvento
+where e.publico = true
 ORDER BY Numero_de_Participantes DESC) AS search;
 return result;
 END;
@@ -839,7 +840,7 @@ INNER JOIN
   GROUP BY idEvento
 ) P ON E.idEvento = P.idEvento
 WHERE E.idEvento in (
-  select participacao.idvento from participacao where participacao.idparticipante = idutilizadorrr union all select convite.idevento from convite where convite.idconvidado = idutilizadorrr)
+  select participacao.idevento from participacao where participacao.idparticipante = idutilizadorrr union all select convite.idevento from convite where convite.idconvidado = idutilizadorrr)
 ORDER BY Numero_de_Participantes DESC) AS search;
 return result;
 END;
